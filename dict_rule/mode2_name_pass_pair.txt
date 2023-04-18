@@ -1,0 +1,6 @@
+admin:123456
+admin:12345678
+test:%USERNAME%{str=letters#3:a-d}$
+test:%USERNAME%%CommonWeakPassword%
+π‹¿Ì‘±:%USERNAME%{str=letters#3:a-d}$
+admin:password

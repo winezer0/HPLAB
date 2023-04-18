@@ -1,0 +1,5 @@
+admin
+admin{str=letters#3:a-d}$
+test
+admin_%%DOMAIN%%
+¹ÜÀíÔ±

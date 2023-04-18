@@ -1,0 +1,4 @@
+123456
+12345678
+%USERNAME%{str=letters#3:a-d}$
+password
