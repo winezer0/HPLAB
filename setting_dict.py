@@ -16,9 +16,6 @@ GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 # 获取setting.py脚本所在路径作为的基本路径
 GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 ############################################################
-# 程序开始运行时间  %Y-%m-%d-%H-%M-%S
-GB_RUN_TIME = time.strftime("%Y-%m-%d", time.localtime())
-##################################################################
 # 基础变量文件夹 里面的每个文件都代表一个替换变量
 GB_BASE_VAR_DIR = GB_BASE_DIR.joinpath("dict_base")
 # 基础变量字典文件的后缀名列表 通过file.endswith匹配
@@ -54,7 +51,7 @@ GB_PAIR_LINK_SYMBOL = ':'
 GB_USE_PAIR_FILE_FLAG = True
 ############################################################
 # 指定记录字典文件的目录
-GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{GB_RUN_TIME}")
+GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
 ############################################################
 # 用户名中的中文转拼音处理
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
@@ -71,15 +68,13 @@ GB_USER_PASS_MAX_LEN = 12  # 密码最大长度（含）
 #######################
 # 对字符串列表处理时的配置字典
 GB_CHINESE_OPTIONS_LIST = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
-GB_CHINESE_OPTIONS_LIST[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN  # 生成的拼音不能超过这个长度
-GB_CHINESE_OPTIONS_LIST[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 把因变量和基本变量里面用到特殊字符放进去
-GB_CHINESE_OPTIONS_LIST[FT_IGNORE_EMPTY] = GB_IGNORE_EMPTY  # 忽略空字符的处理
+GB_CHINESE_OPTIONS_LIST[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN  # 最终生成的字符串不能超过这个长度
+GB_CHINESE_OPTIONS_LIST[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
 #######################
 # 对元组列表处理时的配置字典
 GB_CHINESE_OPTIONS_TUPLE = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
-GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2  # 生成的拼音不能超过这个长度
-GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 把因变量和基本变量里面用到特殊字符放进去
-GB_CHINESE_OPTIONS_TUPLE[FT_IGNORE_EMPTY] = GB_IGNORE_EMPTY  # 忽略空字符的处理
+GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2  # 最终生成的字符串不能超过这个长度
+GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS # 长度过滤时忽略带有这些字符的元素
 ############################################################
 # 对生成的账号|密码列表进行排除的选项配置
 # 排除列表 排除姓名的配置

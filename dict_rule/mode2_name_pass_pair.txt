@@ -2,5 +2,4 @@ admin:123456
 admin:12345678
 test:%USERNAME%{str=letters#3:a-d}$
 test:%USERNAME%%CommonWeakPassword%
-管理员:%USERNAME%{str=letters#3:a-d}$
-admin:password
+管理员:password
