@@ -54,7 +54,7 @@ GB_PAIR_LINK_SYMBOL = ':'
 GB_USE_PAIR_FILE_FLAG = True
 ############################################################
 # 指定记录字典文件的目录
-GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"_temp_dict.{GB_RUN_TIME}")
+GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{GB_RUN_TIME}")
 ############################################################
 # 用户名中的中文转拼音处理
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
