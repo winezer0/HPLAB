@@ -4,20 +4,20 @@
 import argparse
 
 from libs.lib_chinese_encode.chinese_encode import tuple_list_chinese_encode_by_char
-from libs.lib_chinese_pinyin.chinese_list_to_alphabet_list import chinese_list_to_alphabet_list
+from libs.lib_chinese_pinyin.chinese_list_to_alphabet_list import dict_chinese_to_dict_alphabet
+from libs.lib_dyna_rule.base_key_replace import replace_list_has_key_str
+from libs.lib_dyna_rule.base_rule_parser import base_rule_render_list
+from libs.lib_dyna_rule.dyna_rule_tools import cartesian_product_merging
+from libs.lib_dyna_rule.dyna_rule_tools import frozen_tuple_list
+from libs.lib_dyna_rule.set_basic_var import set_base_var_dict
+from libs.lib_dyna_rule.set_depend_var import set_dependent_var_dict
 from libs.lib_file_operate.file_coding import file_encoding
 from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
 from libs.lib_filter_srting.filter_call import format_string_list, format_tuple_list
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO
-from libs.lib_dyna_rule.base_key_replace import replace_list_has_key_str
-from libs.lib_dyna_rule.base_rule_parser import base_rule_render_list
-from libs.lib_dyna_rule.set_basic_var import set_base_var_dict
-from libs.lib_dyna_rule.set_depend_var import set_dependent_var_dict
-from libs.lib_dyna_rule.dyna_rule_tools import cartesian_product_merging
-from libs.lib_dyna_rule.dyna_rule_tools import frozen_tuple_list
-from libs.lib_social_dict.social_tools import split_str_list_to_tuple
 from libs.lib_social_dict.social_repl_mark import replace_mark_user_name_itertools
+from libs.lib_social_dict.social_tools import split_str_list_to_tuple
 from setting_total import *
 
 
@@ -62,6 +62,11 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
     # 获取基础变量字典
     base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
 
+    # 对基本变量字典中的列表值进行中文处理
+    base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+                                                          options_dict=GB_CHINESE_OPTIONS_LIST,
+                                                          store_chinese=GB_STORE_CHINESE)
+
     # 基础变量替换
     name_list, replace_count, run_time = replace_list_has_key_str(name_list, base_var_replace_dict)
     pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, base_var_replace_dict)
@@ -74,23 +79,18 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.name.txt"), name_list)
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pass.txt"), pass_list)
 
-    # 用户名中的中文处理
-    if GB_CHINESE_TO_PINYIN:
-        name_list = chinese_list_to_alphabet_list(string_list=name_list,
-                                                  options_dict=GB_CHINESE_OPTIONS_LIST,
-                                                  store_chinese=GB_STORE_CHINESE)
-        # 进行格式化
-        name_list = format_string_list(string_list=name_list, options_dict=GB_FILTER_OPTIONS_NAME)
-        # 写入当前结果
-        step += 1
-        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_chinese.name.txt"), name_list)
-
     # 获取因变量
     dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
                                                         base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
                                                         ignore_ip_format=GB_IGNORE_IP_FORMAT,
                                                         symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
                                                         not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
+
+    # 对因变量字典中的列表值进行中文处理
+    dependent_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=dependent_var_replace_dict,
+                                                               options_dict=GB_CHINESE_OPTIONS_LIST,
+                                                               store_chinese=GB_STORE_CHINESE)
+
     # 因变量替换
     name_list, replace_count, run_time = replace_list_has_key_str(name_list, dependent_var_replace_dict)
     pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, dependent_var_replace_dict)
@@ -174,20 +174,15 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
 
     # 获取基础变量字典
     base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
+    # 对基本变量字典中的列表值进行中文处理
+    base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+                                                          options_dict=GB_CHINESE_OPTIONS_LIST,
+                                                          store_chinese=GB_STORE_CHINESE)
     # 基础变量替换
     name_pass_pair_list, replace_count, run_time = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
     # 写入当前结果
     step += 1
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
-
-    # 用户名中的中文处理
-    if GB_CHINESE_TO_PINYIN:
-        name_pass_pair_list = chinese_list_to_alphabet_list(string_list=name_pass_pair_list,
-                                                            options_dict=GB_CHINESE_OPTIONS_TUPLE,
-                                                            store_chinese=GB_STORE_CHINESE)
-        # 写入当前结果
-        step += 1
-        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_chinese.pair.txt"), name_pass_pair_list)
 
     # 获取因变量
     dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
@@ -195,6 +190,10 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
                                                         ignore_ip_format=GB_IGNORE_IP_FORMAT,
                                                         symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
                                                         not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
+    # 对因变量字典中的列表值进行中文处理
+    dependent_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=dependent_var_replace_dict,
+                                                               options_dict=GB_CHINESE_OPTIONS_LIST,
+                                                               store_chinese=GB_STORE_CHINESE)
     # 因变量替换
     name_pass_pair_list, replace_count, run_time = replace_list_has_key_str(name_pass_pair_list,
                                                                             dependent_var_replace_dict)
