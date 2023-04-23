@@ -166,15 +166,6 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
                                             de_strip=True,
                                             de_weight=True)
 
-    # 用户名中的中文处理
-    if GB_CHINESE_TO_PINYIN:
-        name_pass_pair_list = chinese_list_to_alphabet_list(string_list=name_pass_pair_list,
-                                                            options_dict=GB_CHINESE_OPTIONS_TUPLE,
-                                                            store_chinese=GB_STORE_CHINESE)
-        # 写入当前结果
-        step += 1
-        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_chinese.pair.txt"), name_pass_pair_list)
-
     # 动态规则解析
     name_pass_pair_list, render_count, run_time = base_rule_render_list(name_pass_pair_list)
     # 写入当前结果
@@ -188,6 +179,15 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
     # 写入当前结果
     step += 1
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
+
+    # 用户名中的中文处理
+    if GB_CHINESE_TO_PINYIN:
+        name_pass_pair_list = chinese_list_to_alphabet_list(string_list=name_pass_pair_list,
+                                                            options_dict=GB_CHINESE_OPTIONS_TUPLE,
+                                                            store_chinese=GB_STORE_CHINESE)
+        # 写入当前结果
+        step += 1
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_chinese.pair.txt"), name_pass_pair_list)
 
     # 获取因变量
     dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,

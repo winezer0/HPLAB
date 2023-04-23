@@ -64,7 +64,8 @@ GB_THREAD_SLEEP = 0.2
 GB_TASK_CHUNK_SIZE = GB_THREADS_COUNT
 ############################################################
 # 作为HTTP报文中 账号、密码 可能的参数名
-GB_USERNAME_PARAMS = ["username", "name", "uname", "loginname", "loginuser"]
+GB_USERNAME_PARAMS = ["username", "name", "uname", "loginname", "loginuser", "LogName", "Account",
+                      "userId", "userCode", "User"]
 GB_PASSWORD_PARAMS = ["password", "passwd", "pwd", "loginpass"]
 
 # 将 账号密码参数对应的参数值 替换为标记字符串,便于后续替换使用

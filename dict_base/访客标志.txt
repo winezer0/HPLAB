@@ -1,0 +1,6 @@
+guest
+anonymous
+any
+nobody
+factory
+customer

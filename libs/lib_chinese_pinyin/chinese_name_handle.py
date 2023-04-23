@@ -105,10 +105,10 @@ def chinese_string_basic_list_format(pinyin_list_list, options_dict, link_symbol
     for pinyin_list in pinyin_list_list:
         pinyin_list = merge_base_ele_list(pinyin_list=pinyin_list,
                                           temp_symbol=options_dict[PY_TEMP_SYMBOL],
-                                          py_upper=options_dict[PY_UPPER_MIN_UNI],
-                                          py_lower=options_dict[PY_LOWER_MIN_UNI],
-                                          py_title=options_dict[PY_TITLE_MIN_UNI],
-                                          py_caper=options_dict[PY_CAPER_MIN_UNI],
+                                          py_upper=options_dict[PY_UPPER_UNI],
+                                          py_lower=options_dict[PY_LOWER_UNI],
+                                          py_title=options_dict[PY_TITLE_UNI],
+                                          py_caper=options_dict[PY_CAPER_UNI],
                                           )
         pinyin_str_list.extend(pinyin_list)
 

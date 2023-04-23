@@ -48,7 +48,7 @@ GB_USER_PASS_PAIR_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode2_name_pass_pair.t
 # 账号密码对文件 连接符号
 GB_PAIR_LINK_SYMBOL = ':'
 # 使用账号:密码对文件进行爆破，默认使用账号字典、密码字典
-GB_USE_PAIR_FILE_FLAG = True
+GB_USE_PAIR_FILE_FLAG = False
 ############################################################
 # 指定记录字典文件的目录
 GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
