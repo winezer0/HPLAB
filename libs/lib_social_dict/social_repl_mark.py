@@ -35,6 +35,10 @@ def replace_mark_user_name_itertools(user_pass_pair_list,
         user_name_list = []
         user_pass_list = []
 
+        # 保留原始用户名
+        if options_dict[SO_NAME_KEEP]:
+            user_name_list.append(str(base_name))
+
         # 首字母大写用户名
         if options_dict[SO_NAME_CAPER]:
             user_name_list.append(str(base_name).capitalize())
@@ -47,8 +51,9 @@ def replace_mark_user_name_itertools(user_pass_pair_list,
         if options_dict[SO_NAME_UPPER]:
             user_name_list.append(str(base_name).upper())
 
-        # 添加原始密码|同时进行原始用户名的替换
-        user_pass_list.append(base_pass.replace(mark_string, base_name))
+        # 保留原始密码|同时进行原始用户名的替换
+        if options_dict[SO_PASS_KEEP]:
+            user_pass_list.append(base_pass.replace(mark_string, base_name))
 
         # 替换密码内的用户名标记
         if mark_string in base_pass:
@@ -65,7 +70,7 @@ def replace_mark_user_name_itertools(user_pass_pair_list,
                 user_pass_list.append(base_pass.replace(mark_string, str(base_name).upper()))
         else:
             # 并非 仅处理密码中包含用户名变量的密码
-            if not options_dict[SO_ONLY_REPL_MARK_PASS]:
+            if not options_dict[SO_ONLY_MARK_PASS]:
                 # 首字母大写的密码
                 if options_dict[SO_PASS_CAPER]:
                     user_pass_list.append(str(base_pass).capitalize())
