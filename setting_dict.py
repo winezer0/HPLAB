@@ -82,7 +82,6 @@ GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS # 长度过滤时
 GB_FILTER_OPTIONS_NAME = {
     FT_IGNORE_SYMBOLS: GB_IGNORE_SYMBOLS,
     FT_IGNORE_EMPTY: GB_IGNORE_EMPTY,
-    FT_IGNORE_CHINESE: GB_STORE_CHINESE,
 
     FT_NO_DUPLICATE: True,
     FT_BAN_SYMBOLS_STR: [],
@@ -90,11 +89,11 @@ GB_FILTER_OPTIONS_NAME = {
     FT_MIN_LEN_STR: GB_USER_NAME_MIN_LEN,
     FT_MAX_LEN_STR: GB_USER_NAME_MAX_LEN,
 
-    # 排除规则 # has_digit, has_upper, has_lower, has_symbol
+    # 排除规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXCLUDE_RULES_STR: [
-        (0, 0, 0, 1),  # 排除纯符号
+        (0, 0, 0, 1, 0),  # 排除纯符号
     ],
-    # 提取规则 # has_digit, has_upper, has_lower, has_symbol
+    # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXTRACT_RULES_STR: [],
 
 }
@@ -104,7 +103,6 @@ GB_FILTER_OPTIONS_NAME = {
 GB_FILTER_OPTIONS_PASS = {
     FT_IGNORE_SYMBOLS: GB_IGNORE_SYMBOLS,
     FT_IGNORE_EMPTY: GB_IGNORE_EMPTY,
-    FT_IGNORE_CHINESE: GB_STORE_CHINESE,
 
     FT_NO_DUPLICATE: True,
     FT_BAN_SYMBOLS_STR: [],
@@ -112,14 +110,14 @@ GB_FILTER_OPTIONS_PASS = {
     FT_MIN_LEN_STR: GB_USER_PASS_MIN_LEN,
     FT_MAX_LEN_STR: GB_USER_PASS_MAX_LEN,
 
-    # 排除规则 # has_digit, has_upper, has_lower, has_symbol
+    # 排除规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXCLUDE_RULES_STR: [
-        (0, 0, 0, 1),  # 排除仅符号
-        (0, 1, 0, 0),  # 排除仅大写
-        (0, 1, 0, 1),  # 排除仅大写+符号
+        (0, 0, 0, 1, 0),  # 排除仅符号
+        (0, 1, 0, 0, 0),  # 排除仅大写
+        (0, 1, 0, 1, 0),  # 排除仅大写+符号
     ],
 
-    # 提取规则 # has_digit, has_upper, has_lower, has_symbol
+    # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXTRACT_RULES_STR: [],
 
 }
@@ -130,7 +128,6 @@ GB_FILTER_OPTIONS_PASS = {
 GB_FILTER_TUPLE_OPTIONS = {
     FT_IGNORE_SYMBOLS: GB_IGNORE_SYMBOLS,
     FT_IGNORE_EMPTY: GB_IGNORE_EMPTY,
-    FT_IGNORE_CHINESE: GB_STORE_CHINESE,
 
     FT_NO_DUPLICATE: True,
 
@@ -144,12 +141,12 @@ GB_FILTER_TUPLE_OPTIONS = {
 
     # 排除规则 # has_digit, has_upper, has_lower, has_symbol
     FT_EXCLUDE_RULES_NAME: [
-        (0, 0, 0, 1),  # 排除纯符号
+        (0, 0, 0, 1, 0),  # 排除纯符号
     ],
     FT_EXCLUDE_RULES_PASS: [
-        (0, 0, 0, 1),  # 排除仅符号
-        (0, 1, 0, 0),  # 排除仅大写
-        (0, 1, 0, 1),  # 排除仅大写+符号
+        (0, 0, 0, 1, 0),  # 排除仅符号
+        (0, 1, 0, 0, 0),  # 排除仅大写
+        (0, 1, 0, 1, 0),  # 排除仅大写+符号
     ],
 
     # 提取规则 # has_digit, has_upper, has_lower, has_symbol

@@ -2,6 +2,7 @@
 # encoding: utf-8
 
 import re
+from itertools import product
 
 
 def has_chinese_func(string):
@@ -48,7 +49,8 @@ def analyse_string_per_char(string):
     has_upper = has_upper_func(string)
     has_lower = has_lower_func(string)
     has_symbol = has_symbol_func(string)
-    return has_digit, has_upper, has_lower, has_symbol
+    has_chinese = has_chinese_func(string)
+    return has_digit, has_upper, has_lower, has_symbol, has_chinese
 
 
 # 统计字符串中 数字、大写、小写、符号、其他的数量
@@ -74,12 +76,27 @@ def statistic_char_frequency(string):
     return upper_count, lower_count, symbol_count, digit_count, other_count
 
 
+# 扩展带有通配符的规则
+def wildcard_rule_handle(rule_tuple):
+    # 使用列表推导式和条件表达式将值为-1的元素替换为1和0
+    # 创建一个新列表，将-1替换为[1, 0]
+    replacement_list = [val if val != -1 else [1, 0] for val in rule_tuple]
+    # 使用itertools.product生成所有可能的组合
+    return list(product(*replacement_list))
+
+
 def format_rule_list(tuple_list):
+    # 通配符处理
+    new_tuple_list=[]
+    for rule in tuple_list:
+        if -1 in rule:
+            rule_list = wildcard_rule_handle(rule)
+            new_tuple_list.extend(rule_list)
+        else:
+            new_tuple_list.append(rule)
+
     tuple_list = [
-        (bool(has_digit), bool(has_upper), bool(has_lower), bool(has_symbol))
-        for has_digit, has_upper, has_lower, has_symbol in tuple_list
+        (bool(has_digit), bool(has_upper), bool(has_lower), bool(has_symbol), bool(has_chinese))
+        for has_digit, has_upper, has_lower, has_symbol, has_chinese in new_tuple_list
     ]
     return tuple_list
-
-
-

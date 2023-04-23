@@ -7,7 +7,6 @@
 FT_NO_DUPLICATE = "FT_NO_DUPLICATE"
 #########################
 FT_IGNORE_EMPTY = "FT_IGNORE_EMPTY"  # 忽略空字符的处理
-FT_IGNORE_CHINESE = "FT_IGNORE_CHINESE"  # 忽略 含有中文 字符操作
 FT_IGNORE_SYMBOLS = "FT_IGNORE_SYMBOLS"  # 过滤操作时时忽略包含特定字符的字符串
 #########################
 # 长度过滤
@@ -45,7 +44,6 @@ FT_EXTRACT_RULES_PASS = "FT_EXTRACT_RULES_PASS"
 FT_STRING_OPTIONS = {
     FT_IGNORE_SYMBOLS: ["%%","%","}$"],
     FT_IGNORE_EMPTY: True,
-    FT_IGNORE_CHINESE: True,
 
     FT_NO_DUPLICATE: True,
 
@@ -61,7 +59,6 @@ FT_STRING_OPTIONS = {
 FT_TUPLE_OPTIONS = {
     FT_IGNORE_SYMBOLS: ["%%","%","}$"],
     FT_IGNORE_EMPTY: True,
-    FT_IGNORE_CHINESE: True,
 
     FT_NO_DUPLICATE: True,
 

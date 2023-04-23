@@ -21,7 +21,6 @@ def format_string_list(string_list=[], options_dict={}):
                                                        min_len_str=options_dict[FT_MIN_LEN_STR],
                                                        max_len_str=options_dict[FT_MAX_LEN_STR],
                                                        ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                       ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                        ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                        )
 
@@ -30,7 +29,6 @@ def format_string_list(string_list=[], options_dict={}):
             string_list = filter_string_list_by_symbols(string_list=string_list,
                                                         ban_symbols_str=options_dict[FT_BAN_SYMBOLS_STR],
                                                         ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                        ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                         ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                         )
 
@@ -39,7 +37,6 @@ def format_string_list(string_list=[], options_dict={}):
             string_list = exclude_string_list_by_char_type(string_list=string_list,
                                                            expected_rules_str=options_dict[FT_EXCLUDE_RULES_STR],
                                                            ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                           ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                            ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                            )
         # 按格式提取
@@ -47,7 +44,6 @@ def format_string_list(string_list=[], options_dict={}):
             string_list = extract_string_list_by_char_type(string_list=string_list,
                                                            expected_rules_str=options_dict[FT_EXTRACT_RULES_STR],
                                                            ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                           ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                            ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                            )
 
@@ -68,7 +64,6 @@ def format_tuple_list(tuple_list=[], options_dict={}):
                                                       ban_symbols_name=options_dict[FT_BAN_SYMBOLS_NAME],
                                                       ban_symbols_pass=options_dict[FT_BAN_SYMBOLS_PASS],
                                                       ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                      ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                       ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                       )
 
@@ -80,7 +75,6 @@ def format_tuple_list(tuple_list=[], options_dict={}):
                                                       min_len_pass=options_dict[FT_MIN_LEN_PASS],
                                                       max_len_pass=options_dict[FT_MAX_LEN_PASS],
                                                       ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                      ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                       ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                       )
 
@@ -90,7 +84,6 @@ def format_tuple_list(tuple_list=[], options_dict={}):
                                                          expected_rules_name=options_dict[FT_EXCLUDE_RULES_NAME],
                                                          expected_rules_pass=options_dict[FT_EXCLUDE_RULES_PASS],
                                                          ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                         ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                          ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                          )
         # 按格式提取 # 需要传递两种规则列表
@@ -99,7 +92,6 @@ def format_tuple_list(tuple_list=[], options_dict={}):
                                                          expected_rules_name=options_dict[FT_EXTRACT_RULES_NAME],
                                                          expected_rules_pass=options_dict[FT_EXTRACT_RULES_PASS],
                                                          ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                         ignore_chinese=options_dict[FT_IGNORE_CHINESE],
                                                          ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                          )
     return tuple_list
@@ -110,7 +102,6 @@ if __name__ == '__main__':
     # OPTIONS = {
     #     FT_IGNORE_SYMBOLS: ["%%","%","}$"],
     #     FT_IGNORE_EMPTY: False,
-    #     FT_IGNORE_CHINESE: True,
     #
     #     FT_NO_DUPLICATE: True,
     #
@@ -133,7 +124,6 @@ if __name__ == '__main__':
     # OPTIONS = {
     #     FT_IGNORE_SYMBOLS: ["%%","%","}$"],
     #     FT_IGNORE_EMPTY: True,
-    #     FT_IGNORE_CHINESE: True,
     #
     #     FT_NO_DUPLICATE: True,
     #
