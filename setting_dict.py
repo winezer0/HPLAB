@@ -54,7 +54,7 @@ GB_USE_PAIR_FILE_FLAG = False
 GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
 ############################################################
 # 用户名中的中文转拼音处理
-GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
+GB_CHINESE_TO_PINYIN = False  # 开启中文转拼音的操作
 GB_STORE_CHINESE = True  # 保留原始的中文字符串 便于中文用户名的爆破
 GB_IGNORE_SYMBOLS = ["%%", "%", "}$"]
 ###################
@@ -66,14 +66,65 @@ GB_USER_PASS_MIN_LEN = 0  # 密码最小长度（含）
 GB_USER_PASS_MAX_LEN = 12  # 密码最大长度（含）
 #######################
 # 中文转拼音处理时，对字符串列表处理时的配置字典
-GB_CHINESE_OPTIONS_LIST = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
-GB_CHINESE_OPTIONS_LIST[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN  # 最终生成的字符串不能超过这个长度
-GB_CHINESE_OPTIONS_LIST[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
+# GB_CHINESE_OPTIONS_LIST = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
+# GB_CHINESE_OPTIONS_LIST[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN  # 最终生成的字符串不能超过这个长度
+# GB_CHINESE_OPTIONS_LIST[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
+GB_CHINESE_OPTIONS_LIST = {
+    PY_TEMP_SYMBOL: "_",
+    PY_LINK_SYMBOLS: [""],
+    PY_CN_NAME_MAX_LEN: 4,
+
+    PY_SY_LOWER: True,
+    PY_SY_UPPER: False,
+    PY_SY_TITLE: True,
+    PY_SY_CAPER: True,
+
+    PY_CN_FC_USE_JIEBA: False,
+
+    PY_POSITIVE: True,
+    PY_REVERSE: True,
+    PY_UNIVERS: True,
+
+    PY_XM2CH: False,
+    PY_CH2XM: False,
+
+
+    PY_FT_NO_BLANK: True,
+    PY_FT_NO_DUPL: True,
+    PY_FT_MAX_LEN: GB_USER_NAME_MAX_LEN,
+    PY_IGNORE_SYMBOL: GB_IGNORE_SYMBOLS,
+
+    PY_NORMAL_UNI: True,
+    PY_FIRST_UNI: True,
+    PY_INITIALS_UNI: True,
+    PY_LOWER_UNI: True,
+    PY_UPPER_UNI: False,
+    PY_TITLE_UNI: True,
+    PY_CAPER_UNI: True,
+
+    PY_NORMAL_XIN: True,
+    PY_FIRST_XIN: True,
+    PY_INITIALS_XIN: True,
+    PY_LOWER_XIN: True,
+    PY_UPPER_XIN: False,
+    PY_TITLE_XIN: True,
+    PY_CAPER_XIN: True,
+
+    PY_NORMAL_MIN: True,
+    PY_FIRST_MIN: True,
+    PY_INITIALS_MIN: True,
+    PY_LOWER_MIN: True,
+    PY_UPPER_MIN: False,
+    PY_TITLE_MIN: True,
+    PY_CAPER_MIN: True,
+}
 #######################
 # 中文转拼音处理时，对元组列表处理时的配置字典
-GB_CHINESE_OPTIONS_TUPLE = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
-GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2  # 最终生成的字符串不能超过这个长度
-GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
+# GB_CHINESE_OPTIONS_TUPLE = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
+# GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2  # 最终生成的字符串不能超过这个长度
+# GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
+GB_CHINESE_OPTIONS_TUPLE = copy.copy(GB_CHINESE_OPTIONS_LIST)
+GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2
 ############################################################
 # 对生成的账号|密码列表进行排除的选项配置
 GB_IGNORE_EMPTY = True  # 进行格式过滤时保留空值[""]

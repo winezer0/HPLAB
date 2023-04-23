@@ -9,7 +9,7 @@ from setting_dict import *
 
 ##################################################################
 # 版本号配置
-GB_VERSION = "Ver 0.1.0 2023-04-23 19:00"
+GB_VERSION = "Ver 0.1.1 2023-04-23 23:10"
 # 增加标签处理功能,便于对标记的数据自动进行（加密|编码）操作 目前支持<none><md5><url><base64>
 ##################################################################
 # 程序开始运行时间  %Y-%m-%d-%H-%M-%S
@@ -64,8 +64,8 @@ GB_THREAD_SLEEP = 0.2
 GB_TASK_CHUNK_SIZE = GB_THREADS_COUNT
 ############################################################
 # 作为HTTP报文中 账号、密码 可能的参数名
-GB_USERNAME_PARAMS = ["username", "name", "uname", "loginname", "loginuser", "LogName", "Account",
-                      "userId", "userCode", "User"]
+GB_USERNAME_PARAMS = ["username", "name", "uname", "loginname", "loginuser",
+                      "LogName", "Account", "userId", "userCode", "User"]
 GB_PASSWORD_PARAMS = ["password", "passwd", "pwd", "loginpass"]
 
 # 将 账号密码参数对应的参数值 替换为标记字符串,便于后续替换使用

@@ -177,7 +177,7 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
                                             de_weight=True)
     output(f"[*] 读取账号密码文件完成 name_pass_pair_list:{len(name_pass_pair_list)}")
 
-    # 动态规则解析
+    # 动态规则解析 # 可以考虑取消动态规则解析和基本变量替换过程
     name_pass_pair_list, render_count, run_time = base_rule_render_list(name_pass_pair_list)
     output(f"[*] 元组动态规则解析完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
     # 写入当前结果
