@@ -263,6 +263,8 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
         frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=":")
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.chinese_encode.pair.txt"), frozen_tuple_list_)
 
+    # 对元组列表进行 账号全部小写处理
+
     return name_pass_pair_list
 
 

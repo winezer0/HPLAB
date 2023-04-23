@@ -55,8 +55,7 @@ GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y
 ############################################################
 # 用户名中的中文转拼音处理
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
-GB_STORE_CHINESE = True  # 保留一份原始的中文字符串 便于中文用户名的爆破
-GB_IGNORE_EMPTY = True  # 进行格式过滤时保留空值[""]
+GB_STORE_CHINESE = True  # 保留原始的中文字符串 便于中文用户名的爆破
 GB_IGNORE_SYMBOLS = ["%%", "%", "}$"]
 ###################
 # 中文转拼音处理时，通过长度对最后的（账号:密码）进行过滤的依据
@@ -77,6 +76,7 @@ GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2  # 最终生�
 GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
 ############################################################
 # 对生成的账号|密码列表进行排除的选项配置
+GB_IGNORE_EMPTY = True  # 进行格式过滤时保留空值[""]
 # 排除列表 排除姓名的配置
 # GB_FILTER_OPTIONS_NAME = copy.copy(FILTER_STRING_OPTIONS)
 GB_FILTER_OPTIONS_NAME = {
@@ -164,12 +164,12 @@ GB_FILTER_TUPLE_OPTIONS = {
 # GB_SOCIAL_OPTIONS_DICT = copy.copy(SOCIAL_OPTIONS_DICT)
 GB_SOCIAL_OPTIONS_DICT = {
     SO_NAME_CAPER: False,  # 用户名首字母大写
-    SO_NAME_LOWER: False,  # 用户名全部小写
+    SO_NAME_LOWER: True,  # 用户名全部小写
     SO_NAME_UPPER: False,  # 用户名全部大写
     SO_PASS_CAPER: False,  # 密码 首字母大写（如果密码中有用户名 就密码内的 用户名首字母大写,否则就密码整体首字母大写）
     SO_PASS_LOWER: False,  # 密码用户名 全部小写（如果密码中有用户名 就密码内的 用户名全部小写,否则就密码整体全部小写）
     SO_PASS_UPPER: False,  # 密码用户名 全部大写 （如果密码中有用户名 就密码内的 用户名全部大写,否则就密码整体全部大写）
-    SO_ONLY_REPL_MARK_PASS: True  # 仅对 密码中包含用户名变量的密码 进行以上操作
+    SO_ONLY_REPL_MARK_PASS: False  # 仅对 密码中包含用户名变量的密码 进行以上操作
 }
 ############################################################
 # 最后爆破时，对中文账号密码进行进行中文编码
