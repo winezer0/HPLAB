@@ -180,5 +180,4 @@ GB_SOCIAL_OPTIONS_DICT = {
 GB_CHINESE_ENCODE_CODING = ["utf-8"]  # 可选 ["utf-8","gb2312","unicode_escape"]
 GB_CHINESE_CHAR_URLENCODE = True  # 对中文编码时操作、同时进行URL编码
 GB_ONLY_CHINESE_URL_ENCODE = True  # 仅对包含中文的字符串进行中文及URL编码操作
-GB_STORE_RAW_CHINESE = GB_STORE_CHINESE  # 保留一份原始的中文账号密码爆破
 ############################################################

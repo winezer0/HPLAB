@@ -25,6 +25,6 @@ SOCIAL_OPTIONS_DICT = {
     SO_PASS_UPPER: False,  # 密码 全部大写 （如果密码中有用户名 就密码内的 用户名全部大写,否则就密码整体全部大写）
     SO_PASS_KEEP: True,  # 对密码进行格式化时, 保留原始密码
 
-    SO_ONLY_MARK_PASS: True  # 仅对 密码中包含用户名变量标记的密码 进行密码格式处理操作
+    SO_ONLY_MARK_PASS: True  # 仅对 包含用户名变量标记的密码 进行密码格式处理操作
 }
 #######################################
