@@ -80,9 +80,10 @@ def statistic_char_frequency(string):
 def wildcard_rule_handle(rule_tuple):
     # 使用列表推导式和条件表达式将值为-1的元素替换为1和0
     # 创建一个新列表，将-1替换为[1, 0]
-    replacement_list = [val if val != -1 else [1, 0] for val in rule_tuple]
+    replacement_list = [str(val) if val != -1 else [1, 0] for val in rule_tuple]
+    replacement_list = list(product(*replacement_list))
     # 使用itertools.product生成所有可能的组合
-    return list(product(*replacement_list))
+    return replacement_list
 
 
 def format_rule_list(tuple_list):
@@ -96,7 +97,8 @@ def format_rule_list(tuple_list):
             new_tuple_list.append(rule)
 
     tuple_list = [
-        (bool(has_digit), bool(has_upper), bool(has_lower), bool(has_symbol), bool(has_chinese))
+        (bool(int(has_digit)), bool(int(has_upper)),
+         bool(int(has_lower)),  bool(int(has_symbol)), bool(int(has_chinese)))
         for has_digit, has_upper, has_lower, has_symbol, has_chinese in new_tuple_list
     ]
     return tuple_list

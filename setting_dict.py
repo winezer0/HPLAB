@@ -59,22 +59,22 @@ GB_STORE_CHINESE = True  # 保留一份原始的中文字符串 便于中文用�
 GB_IGNORE_EMPTY = True  # 进行格式过滤时保留空值[""]
 GB_IGNORE_SYMBOLS = ["%%", "%", "}$"]
 ###################
-# 通过长度对最后的（账号:密码）进行过滤的依据
+# 中文转拼音处理时，通过长度对最后的（账号:密码）进行过滤的依据
 GB_USER_NAME_MIN_LEN = 0  # 用户名最小长度（含）
 GB_USER_NAME_MAX_LEN = 12  # 用户名最大长度（含）
 
 GB_USER_PASS_MIN_LEN = 0  # 密码最小长度（含）
 GB_USER_PASS_MAX_LEN = 12  # 密码最大长度（含）
 #######################
-# 对字符串列表处理时的配置字典
+# 中文转拼音处理时，对字符串列表处理时的配置字典
 GB_CHINESE_OPTIONS_LIST = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
 GB_CHINESE_OPTIONS_LIST[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN  # 最终生成的字符串不能超过这个长度
 GB_CHINESE_OPTIONS_LIST[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
 #######################
-# 对元组列表处理时的配置字典
+# 中文转拼音处理时，对元组列表处理时的配置字典
 GB_CHINESE_OPTIONS_TUPLE = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
 GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2  # 最终生成的字符串不能超过这个长度
-GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS # 长度过滤时忽略带有这些字符的元素
+GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
 ############################################################
 # 对生成的账号|密码列表进行排除的选项配置
 # 排除列表 排除姓名的配置
@@ -92,6 +92,8 @@ GB_FILTER_OPTIONS_NAME = {
     # 排除规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXCLUDE_RULES_STR: [
         (0, 0, 0, 1, 0),  # 排除纯符号
+        (-1, 1, -1, -1, 1),  # 排除中英文混合 有大写+中文
+        (-1, -1, 1, -1, 1),  # 排除中英文混合 有小写+中文
     ],
     # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXTRACT_RULES_STR: [],
@@ -115,6 +117,8 @@ GB_FILTER_OPTIONS_PASS = {
         (0, 0, 0, 1, 0),  # 排除仅符号
         (0, 1, 0, 0, 0),  # 排除仅大写
         (0, 1, 0, 1, 0),  # 排除仅大写+符号
+        (-1, 1, -1, -1, 1),  # 排除中英文混合 必须有大写+中文
+        (-1, -1, 1, -1, 1),  # 排除中英文混合 必须有小写+中文
     ],
 
     # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
@@ -139,7 +143,7 @@ GB_FILTER_TUPLE_OPTIONS = {
     FT_MAX_LEN_PASS: GB_USER_PASS_MAX_LEN,
     FT_MIN_LEN_PASS: GB_USER_PASS_MIN_LEN,
 
-    # 排除规则 # has_digit, has_upper, has_lower, has_symbol
+    # 排除规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXCLUDE_RULES_NAME: [
         (0, 0, 0, 1, 0),  # 排除纯符号
     ],
@@ -147,9 +151,11 @@ GB_FILTER_TUPLE_OPTIONS = {
         (0, 0, 0, 1, 0),  # 排除仅符号
         (0, 1, 0, 0, 0),  # 排除仅大写
         (0, 1, 0, 1, 0),  # 排除仅大写+符号
+        (-1, 1, -1, -1, 1),  # 排除中英文混合 必须有大写+中文
+        (-1, -1, 1, -1, 1),   # 排除中英文混合 必须有小写+中文
     ],
 
-    # 提取规则 # has_digit, has_upper, has_lower, has_symbol
+    # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXTRACT_RULES_NAME: [],
     FT_EXTRACT_RULES_PASS: [],
 }
