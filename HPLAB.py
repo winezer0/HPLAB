@@ -146,7 +146,7 @@ def auto_login_packet_brute():
     output(f"[*] 进行字典替换和多线程请求...", level=LOG_INFO)
 
     # 动态生成账号密码字典
-    if GB_USE_PAIR_FILE_FLAG:
+    if GB_USE_PAIR_FILE:
         # 使用【用户名:密码对】字典
         output(f"[*] 使用字典 {GB_USER_PASS_PAIR_FILE},字段分隔符 [{GB_PAIR_LINK_SYMBOL}]", level=LOG_INFO)
         name_pass_pair_list = social_rule_handle_in_steps_one_pairs(base_var_dir=GB_BASE_VAR_DIR,
@@ -323,8 +323,8 @@ def parse_input():
     argument_parser.add_argument("-A", "--user_pass_pair_file", default=GB_USER_PASS_PAIR_FILE,
                                  help=f"Specifies the password rule file, Default is [{GB_USER_PASS_PAIR_FILE}]")
 
-    argument_parser.add_argument("-a", "--use_pair_file_flag", default=GB_USE_PAIR_FILE_FLAG, action="store_true",
-                                 help=f"Specifies Display Debug Info, Default is [{GB_USE_PAIR_FILE_FLAG}]", )
+    argument_parser.add_argument("-a", "--use_pair_file", default=GB_USE_PAIR_FILE, action="store_true",
+                                 help=f"Specifies Display Debug Info, Default is [{GB_USE_PAIR_FILE}]", )
 
     argument_parser.add_argument("-t", "--threads_count", default=GB_THREADS_COUNT, type=int,
                                  help=f"Specifies the request threads, Default is [{GB_THREADS_COUNT}]")

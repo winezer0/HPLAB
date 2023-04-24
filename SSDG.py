@@ -300,8 +300,8 @@ def parse_input():
 
     argument_parser.add_argument("-A", "--user_pass_pair_file", default=GB_USER_PASS_PAIR_FILE,
                                  help=f"Specifies the password rule file, Default is {GB_USER_PASS_PAIR_FILE}")
-    argument_parser.add_argument("-a", "--use_pair_file_flag", default=GB_USE_PAIR_FILE_FLAG, action="store_true",
-                                 help=f"Specifies Display Debug Info, Default is {GB_USE_PAIR_FILE_FLAG}", )
+    argument_parser.add_argument("-a", "--use_pair_file", default=GB_USE_PAIR_FILE, action="store_true",
+                                 help=f"Specifies Display Debug Info, Default is {GB_USE_PAIR_FILE}", )
 
     argument_parser.add_argument("-d", "--debug_flag", default=GB_DEBUG_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is {GB_DEBUG_FLAG}", )
@@ -330,7 +330,7 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
-    if not GB_USE_PAIR_FILE_FLAG:
+    if not GB_USE_PAIR_FILE:
         user_pass_dict = social_rule_handle_in_steps_two_list(GB_BASE_VAR_DIR,
                                                               GB_DICT_SUFFIX,
                                                               GB_USER_NAME_FILE,
