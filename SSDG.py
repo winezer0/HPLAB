@@ -67,11 +67,11 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
 
     # 获取基础变量字典
     base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
-    print(f"[*] 基础变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+    output(f"[*] 基础变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
+    # 进行基本变量字典替换 及 其中的中文词汇处理
     if GB_CHINESE_TO_PINYIN:
         # 对账号列表依赖的 基本变量字典中的列表值进行中文处理
-        output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
         name_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
                                                                    options_dict=GB_CHINESE_OPTIONS_NAME,
                                                                    store_chinese=GB_STORE_CHINESE)
