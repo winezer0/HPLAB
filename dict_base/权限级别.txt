@@ -14,7 +14,6 @@ free
 sys
 system
 confirm
-高级
 adv
 allin1
 allinone

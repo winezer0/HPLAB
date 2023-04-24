@@ -2,11 +2,21 @@
 from libs.lib_chinese_pinyin.chinese_const import PY_OPTIMIZED
 
 TRANSLATE_DICT = {
-    "管理员": ["gly", "admin", "adm", "manager", "man", "support", "staff"],
-    "审计": ["audit", "security"],
+    "管理员": ["gly", "admin", "adm", "manager"],
     "超级": ["super"],
     "认证": ["auth"],
-    "系统": ["sys", "system", "xt"],
+    "系统": ["sys", "system", "xi", "xitong"],
+    "测试": ["ceshi", "cs", "test"],
+    "用户": ["user", "man"],
+    "日志": ["log", "logger"],
+    "开发": ["dev"],
+    "安全": ["sec", "security"],
+    "审计": ["audit"],
+    "运维": ["operator","yunwei"],
+    "支持": ["support"],
+    "反馈": ["fankui"],
+    "备份": ["backup"],
+
     # "管理员": ["admin", "administrator", "manager", "supervisor", "overseer", "director", "executive", "coordinator",
     #         "controller", "superintendent", "chief", "head", "leader", "boss", "adm", "mgr", "exec"],
     # "用户名": ["username", "user", "login name"],
