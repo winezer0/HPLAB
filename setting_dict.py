@@ -49,12 +49,14 @@ GB_USER_PASS_PAIR_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode2_name_pass_pair.t
 GB_PAIR_LINK_SYMBOL = ':'
 # 使用账号:密码对文件进行爆破，默认使用账号字典、密码字典
 GB_USE_PAIR_FILE_FLAG = False
+# 使用账号:密码对文件进行爆破时,是否进行基础变量替换
+GB_USE_PAIR_BASE_REPL = False
 ############################################################
 # 指定记录字典文件的目录
 GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
 ############################################################
 # 用户名中的中文转拼音处理
-GB_CHINESE_TO_PINYIN = False  # 开启中文转拼音的操作
+GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
 GB_STORE_CHINESE = True  # 保留原始的中文字符串 便于中文用户名的爆破
 GB_IGNORE_SYMBOLS = ["%%", "%", "}$"]
 ###################
@@ -69,7 +71,9 @@ GB_USER_PASS_MAX_LEN = 12  # 密码最大长度（含）
 # GB_CHINESE_OPTIONS_LIST = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
 # GB_CHINESE_OPTIONS_LIST[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN  # 最终生成的字符串不能超过这个长度
 # GB_CHINESE_OPTIONS_LIST[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
-GB_CHINESE_OPTIONS_LIST = {
+#######################
+# 对账号中依赖的中文处理方案
+GB_CHINESE_OPTIONS_NAME = {
     PY_TEMP_SYMBOL: "_",
     PY_LINK_SYMBOLS: [""],
     PY_CN_NAME_MAX_LEN: 4,
@@ -119,11 +123,14 @@ GB_CHINESE_OPTIONS_LIST = {
     PY_CAPER_MIN: True,
 }
 #######################
+# 对密码中依赖的中文处理方案
+GB_CHINESE_OPTIONS_PASS = copy.copy(GB_CHINESE_OPTIONS_NAME)
+#######################
 # 中文转拼音处理时，对元组列表处理时的配置字典
 # GB_CHINESE_OPTIONS_TUPLE = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用
 # GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2  # 最终生成的字符串不能超过这个长度
 # GB_CHINESE_OPTIONS_TUPLE[PY_IGNORE_SYMBOL] = GB_IGNORE_SYMBOLS  # 长度过滤时忽略带有这些字符的元素
-GB_CHINESE_OPTIONS_TUPLE = copy.copy(GB_CHINESE_OPTIONS_LIST)
+GB_CHINESE_OPTIONS_TUPLE = copy.copy(GB_CHINESE_OPTIONS_NAME)
 GB_CHINESE_OPTIONS_TUPLE[PY_FT_MAX_LEN] = GB_USER_NAME_MAX_LEN * 2
 ############################################################
 # 对生成的账号|密码列表进行排除的选项配置

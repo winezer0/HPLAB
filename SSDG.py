@@ -65,20 +65,35 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.name.txt"), name_list)
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.pass.txt"), pass_list)
 
-    # 获取基础变量字典
-    base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
-
-    # 对基本变量字典中的列表值进行中文处理
     if GB_CHINESE_TO_PINYIN:
-        output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
-        base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
-                                                              options_dict=GB_CHINESE_OPTIONS_LIST,
-                                                              store_chinese=GB_STORE_CHINESE)
-        output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+        # 获取基础变量字典
+        base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
 
-    # 基础变量替换
-    name_list, replace_count, run_time = replace_list_has_key_str(name_list, base_var_replace_dict)
-    pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, base_var_replace_dict)
+        # 对账号列表依赖的 基本变量字典中的列表值进行中文处理
+        output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+        name_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+                                                                   options_dict=GB_CHINESE_OPTIONS_NAME,
+                                                                   store_chinese=GB_STORE_CHINESE)
+        output(f"[*] 中文列表处理转换完成 name_base_var_replace_dict:{len(str(name_base_var_replace_dict))}", level=LOG_INFO)
+
+        # 对密码列表依赖的 基本变量字典中的列表值进行中文处理
+        if GB_CHINESE_OPTIONS_PASS != GB_CHINESE_OPTIONS_NAME:
+            pass_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+                                                                       options_dict=GB_CHINESE_OPTIONS_PASS,
+                                                                       store_chinese=GB_STORE_CHINESE)
+        else:
+            pass_base_var_replace_dict = name_base_var_replace_dict
+        output(f"[*] 中文列表处理转换完成 pass_base_var_replace_dict:{len(str(pass_base_var_replace_dict))}", level=LOG_INFO)
+
+        # 基础变量替换
+        name_list, replace_count, run_time = replace_list_has_key_str(name_list, name_base_var_replace_dict)
+        pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, pass_base_var_replace_dict)
+    else:
+        # 获取基础变量字典
+        base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
+        # 基础变量替换
+        name_list, replace_count, run_time = replace_list_has_key_str(name_list, base_var_replace_dict)
+        pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, base_var_replace_dict)
     output(f"[*] 基础变量替换完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
     # 进行格式化
@@ -177,30 +192,32 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
                                             de_weight=True)
     output(f"[*] 读取账号密码文件完成 name_pass_pair_list:{len(name_pass_pair_list)}")
 
-    # 动态规则解析 # 可以考虑取消动态规则解析和基本变量替换过程
-    name_pass_pair_list, render_count, run_time = base_rule_render_list(name_pass_pair_list)
-    output(f"[*] 元组动态规则解析完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
-    # 写入当前结果
-    step += 1
-    write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.base_render.pair.txt"), name_pass_pair_list)
+    # 动态规则解析和基本变量替换过程 默认取消
+    if GB_USE_PAIR_BASE_REPL:
+        # 动态规则解析
+        name_pass_pair_list, render_count, run_time = base_rule_render_list(name_pass_pair_list)
+        output(f"[*] 元组动态规则解析完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+        # 写入当前结果
+        step += 1
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.base_render.pair.txt"), name_pass_pair_list)
 
-    # 获取基础变量字典
-    base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
+        # 获取基础变量字典
+        base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
 
-    # 对基本变量字典中的列表值进行中文处理
-    if GB_CHINESE_TO_PINYIN:
-        output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
-        base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
-                                                              options_dict=GB_CHINESE_OPTIONS_TUPLE,
-                                                              store_chinese=GB_STORE_CHINESE)
-        output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+        # 对基本变量字典中的列表值进行中文处理
+        if GB_CHINESE_TO_PINYIN:
+            output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+            base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+                                                                  options_dict=GB_CHINESE_OPTIONS_TUPLE,
+                                                                  store_chinese=GB_STORE_CHINESE)
+            output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
 
-    # 基础变量替换
-    name_pass_pair_list, replace_count, run_time = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
-    output(f"[*] 元组基础变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
-    # 写入当前结果
-    step += 1
-    write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
+        # 基础变量替换
+        name_pass_pair_list, replace_count, run_time = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
+        output(f"[*] 元组基础变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+        # 写入当前结果
+        step += 1
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
 
     # 获取因变量
     dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
