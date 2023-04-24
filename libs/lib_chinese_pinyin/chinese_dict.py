@@ -16,6 +16,10 @@ TRANSLATE_DICT = {
     "支持": ["support"],
     "反馈": ["fankui"],
     "备份": ["backup"],
+    "普通": ["base"],
+    "文章": ["article"],
+    "发布员": ["publisher"],
+    "发布者": ["publisher"],
 
     # "管理员": ["admin", "administrator", "manager", "supervisor", "overseer", "director", "executive", "coordinator",
     #         "controller", "superintendent", "chief", "head", "leader", "boss", "adm", "mgr", "exec"],
