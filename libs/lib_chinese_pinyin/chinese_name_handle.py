@@ -147,12 +147,12 @@ def chinese_word_to_any_pinyin(chinese_word, options_dict, link_symbol):
             xin_name_list = get_word_base_ele_list(name_str=xin_name,
                                                    py_normal=options_dict[PY_NORMAL_XIN],
                                                    py_first=options_dict[PY_FIRST_XIN],
-                                                   py_initials=options_dict[PY_NORMAL_XIN],
+                                                   py_initials=options_dict[PY_INITIALS_XIN],
                                                    )
             min_name_list = get_word_base_ele_list(name_str=min_name,
                                                    py_normal=options_dict[PY_NORMAL_MIN],
                                                    py_first=options_dict[PY_FIRST_MIN],
-                                                   py_initials=options_dict[PY_NORMAL_MIN],
+                                                   py_initials=options_dict[PY_INITIALS_MIN],
                                                    )
             pinyin_list = list(itertools.product(xin_name_list, min_name_list))
             # "王安石" [(['wang'], ['an', 'shi']), (['wang'], ['a', 's']), (['wang'], ['a', 'sh']), (['w'], ['an', 'shi'])...
@@ -174,7 +174,7 @@ def chinese_word_to_any_pinyin(chinese_word, options_dict, link_symbol):
             pinyin_list = get_word_base_ele_list(name_str=chinese_word,
                                                  py_normal=options_dict[PY_NORMAL_UNI],
                                                  py_first=options_dict[PY_FIRST_UNI],
-                                                 py_initials=options_dict[PY_NORMAL_UNI],
+                                                 py_initials=options_dict[PY_INITIALS_UNI],
                                                  )
             univers_list = chinese_string_basic_list_format(pinyin_list,
                                                             options_dict=options_dict,
@@ -187,7 +187,7 @@ def chinese_word_to_any_pinyin(chinese_word, options_dict, link_symbol):
             pinyin_list = get_word_base_ele_list(name_str=chinese_word,
                                                  py_normal=options_dict[PY_NORMAL_UNI],
                                                  py_first=options_dict[PY_FIRST_UNI],
-                                                 py_initials=options_dict[PY_NORMAL_UNI],
+                                                 py_initials=options_dict[PY_INITIALS_UNI],
                                                  )
             #  "我安石" [['wo', 'an', 'shi'], ['w', 'a', 's'], ['w', 'a', 'sh']]
             #  大小写处理
@@ -203,12 +203,12 @@ def chinese_word_to_any_pinyin(chinese_word, options_dict, link_symbol):
             xin_name_list = get_word_base_ele_list(name_str=xin_name,
                                                    py_normal=options_dict[PY_NORMAL_XIN],
                                                    py_first=options_dict[PY_FIRST_XIN],
-                                                   py_initials=options_dict[PY_NORMAL_XIN],
+                                                   py_initials=options_dict[PY_INITIALS_XIN],
                                                    )
             min_name_list = get_word_base_ele_list(name_str=min_name,
                                                    py_normal=options_dict[PY_NORMAL_MIN],
                                                    py_first=options_dict[PY_FIRST_MIN],
-                                                   py_initials=options_dict[PY_NORMAL_MIN],
+                                                   py_initials=options_dict[PY_INITIALS_MIN],
                                                    )
             pinyin_list = list(itertools.product(xin_name_list, min_name_list))
             # "王安石" [(['wang'], ['an', 'shi']), (['wang'], ['a', 's']), (['wang'], ['a', 'sh']), (['w'], ['an', 'shi'])...

@@ -80,13 +80,13 @@ GB_CHINESE_OPTIONS_NAME = {
 
     PY_SY_LOWER: True,
     PY_SY_UPPER: False,
-    PY_SY_TITLE: True,
-    PY_SY_CAPER: True,
+    PY_SY_TITLE: False,
+    PY_SY_CAPER: False,
 
     PY_CN_FC_USE_JIEBA: False,
 
     PY_POSITIVE: True,
-    PY_REVERSE: True,
+    PY_REVERSE: False,
     PY_UNIVERS: True,
 
     PY_XM2CH: False,
@@ -101,6 +101,7 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_NORMAL_UNI: True,
     PY_FIRST_UNI: True,
     PY_INITIALS_UNI: True,
+
     PY_LOWER_UNI: True,
     PY_UPPER_UNI: False,
     PY_TITLE_UNI: True,
@@ -109,6 +110,7 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_NORMAL_XIN: True,
     PY_FIRST_XIN: True,
     PY_INITIALS_XIN: True,
+
     PY_LOWER_XIN: True,
     PY_UPPER_XIN: False,
     PY_TITLE_XIN: True,
@@ -117,6 +119,7 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_NORMAL_MIN: True,
     PY_FIRST_MIN: True,
     PY_INITIALS_MIN: True,
+
     PY_LOWER_MIN: True,
     PY_UPPER_MIN: False,
     PY_TITLE_MIN: True,
