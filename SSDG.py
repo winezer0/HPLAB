@@ -65,16 +65,16 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.name.txt"), name_list)
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.pass.txt"), pass_list)
 
-    if GB_CHINESE_TO_PINYIN:
-        # 获取基础变量字典
-        base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
+    # 获取基础变量字典
+    base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
+    print(f"[*] 基础变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
+    if GB_CHINESE_TO_PINYIN:
         # 对账号列表依赖的 基本变量字典中的列表值进行中文处理
         output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
         name_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
                                                                    options_dict=GB_CHINESE_OPTIONS_NAME,
                                                                    store_chinese=GB_STORE_CHINESE)
-        output(f"[*] 中文列表处理转换完成 name_base_var_replace_dict:{len(str(name_base_var_replace_dict))}", level=LOG_INFO)
 
         # 对密码列表依赖的 基本变量字典中的列表值进行中文处理
         if GB_CHINESE_OPTIONS_PASS != GB_CHINESE_OPTIONS_NAME:
@@ -83,14 +83,14 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
                                                                        store_chinese=GB_STORE_CHINESE)
         else:
             pass_base_var_replace_dict = name_base_var_replace_dict
+
         output(f"[*] 中文列表处理转换完成 pass_base_var_replace_dict:{len(str(pass_base_var_replace_dict))}", level=LOG_INFO)
+        output(f"[*] 中文列表处理转换完成 name_base_var_replace_dict:{len(str(name_base_var_replace_dict))}", level=LOG_INFO)
 
         # 基础变量替换
         name_list, replace_count, run_time = replace_list_has_key_str(name_list, name_base_var_replace_dict)
         pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, pass_base_var_replace_dict)
     else:
-        # 获取基础变量字典
-        base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
         # 基础变量替换
         name_list, replace_count, run_time = replace_list_has_key_str(name_list, base_var_replace_dict)
         pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, base_var_replace_dict)

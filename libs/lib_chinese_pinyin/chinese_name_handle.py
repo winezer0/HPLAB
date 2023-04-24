@@ -197,7 +197,7 @@ def chinese_word_to_any_pinyin(chinese_word, options_dict, link_symbol):
             result_list.extend(univers_list)
 
         # 扩展成中文姓名处理,第一个字为姓氏,之后的为名字
-        if len(chinese_word) > 1 and options_dict[PY_CH2XM]:
+        if options_dict[PY_CH2XM] and len(chinese_word) > 1:
             # 生成中文姓，名的基本元素列表  # 并进行笛卡尔积组合
             xin_name, min_name = chinese_word[1], chinese_word[1:]
             xin_name_list = get_word_base_ele_list(name_str=xin_name,

@@ -58,7 +58,8 @@ GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y
 # 用户名中的中文转拼音处理
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
 GB_STORE_CHINESE = True  # 保留原始的中文字符串 便于中文用户名的爆破
-GB_IGNORE_SYMBOLS = ["%%", "%", "}$"]
+# GB_IGNORE_SYMBOLS = ["%%", "%", "}$"]
+GB_IGNORE_SYMBOLS = ["%%"]
 ###################
 # 中文转拼音处理时，通过长度对最后的（账号:密码）进行过滤的依据
 GB_USER_NAME_MIN_LEN = 0  # 用户名最小长度（含）

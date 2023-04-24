@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 
 from libs.lib_chinese_pinyin.chinese_const import *
 from libs.lib_chinese_pinyin.chinese_dict import TRANSLATE_DICT
@@ -90,6 +91,7 @@ def chinese_list_to_alphabet_list(string_list, options_dict, store_chinese=False
 
 
 def dict_chinese_to_dict_alphabet(string_dict, options_dict, store_chinese=False):
+    string_dict = copy.copy(string_dict)
     for key, string_list in string_dict.items():
         if string_list:
             string_dict[key] = chinese_list_to_alphabet_list(string_list=string_list,
