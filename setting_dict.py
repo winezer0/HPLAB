@@ -16,9 +16,11 @@ GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 # 获取setting.py脚本所在路径作为的基本路径
 GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 ############################################################
-# 基础变量文件夹 里面的每个文件都代表一个替换变量
+# 基本变量文件夹 里面的每个文件都代表一个替换变量
 GB_BASE_VAR_DIR = GB_BASE_DIR.joinpath("dict_base")
-# 基础变量字典文件的后缀名列表 通过file.endswith匹配
+# 存储用户的动态字典,也是读取进 基本变量字典,分离是防止文件太多
+GB_BASE_DYNA_DIR = GB_BASE_DIR.joinpath("dict_dyna")
+# 基本变量字典文件的后缀名列表 通过file.endswith匹配
 GB_DICT_SUFFIX = [".txt"]
 # 存储 自定义 基本变量
 GB_BASE_VAR_REPLACE_DICT = {"%BLANK%": ['']}
@@ -49,7 +51,7 @@ GB_USER_PASS_PAIR_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode2_name_pass_pair.t
 GB_PAIR_LINK_SYMBOL = ':'
 # 使用账号:密码对文件进行爆破，默认使用账号字典、密码字典
 GB_USE_PAIR_FILE = False
-# 使用账号:密码对文件进行爆破时,是否进行基础变量替换
+# 使用账号:密码对文件进行爆破时,是否进行基本变量替换
 GB_USE_PAIR_BASE_REPL = False
 ############################################################
 # 指定记录字典文件的目录

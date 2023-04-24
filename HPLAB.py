@@ -148,23 +148,13 @@ def auto_login_packet_brute():
     # 动态生成账号密码字典
     if GB_USE_PAIR_FILE:
         # 使用【用户名:密码对】字典
-        output(f"[*] 使用字典 {GB_USER_PASS_PAIR_FILE},字段分隔符 [{GB_PAIR_LINK_SYMBOL}]", level=LOG_INFO)
-        name_pass_pair_list = social_rule_handle_in_steps_one_pairs(base_var_dir=GB_BASE_VAR_DIR,
-                                                                    dict_suffix=GB_DICT_SUFFIX,
-                                                                    name_pass_pair_file=GB_USER_PASS_PAIR_FILE,
-                                                                    pair_link_symbol=GB_PAIR_LINK_SYMBOL,
-                                                                    target_url=req_url,
+        name_pass_pair_list = social_rule_handle_in_steps_one_pairs(target_url=req_url,
                                                                     default_name_list=default_name_list,
                                                                     default_pass_list=default_pass_list
                                                                     )
     else:
         # 使用【用户名字典】和【密码字典】
-        output(f"[*] 使用字典 {GB_USER_NAME_FILE} 和 {GB_USER_PASS_FILE}", level=LOG_INFO)
-        name_pass_pair_list = social_rule_handle_in_steps_two_list(base_var_dir=GB_BASE_VAR_DIR,
-                                                                   dict_suffix=GB_DICT_SUFFIX,
-                                                                   name_file=GB_USER_NAME_FILE,
-                                                                   pass_file=GB_USER_PASS_FILE,
-                                                                   target_url=req_url,
+        name_pass_pair_list = social_rule_handle_in_steps_two_list(target_url=req_url,
                                                                    default_name_list=default_name_list,
                                                                    default_pass_list=default_pass_list,
                                                                    )

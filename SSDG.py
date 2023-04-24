@@ -22,34 +22,27 @@ from setting_total import *
 
 
 # 分割写法 基于 用户名和密码规则生成 元组列表
-def social_rule_handle_in_steps_two_list(base_var_dir,
-                                         dict_suffix,
-                                         name_file,
-                                         pass_file,
-                                         target_url,
-                                         default_name_list=None,
-                                         default_pass_list=None,
-                                         ):
+def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, default_pass_list=None):
     mode = "mode1"
     step = 0
 
     # 读取账号文件
     if default_name_list:
-        output(f"[*] 已输入默认账号列表 {default_name_list} 忽略读取账号字典文件")
+        output(f"[*] 已输入默认账号列表 {default_name_list} 忽略读取账号字典文件", level=LOG_INFO)
         name_list = default_name_list
     else:
-        output(f"[*] 未输入默认密码列表 读取账号字典文件 {name_file}...")
-        name_list = read_file_to_list(name_file, encoding=file_encoding(name_file), de_strip=True, de_weight=True)
+        output(f"[*] 读取账号字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
+        name_list = read_file_to_list(GB_USER_NAME_FILE, encoding=file_encoding(GB_USER_NAME_FILE), de_strip=True, de_weight=True)
 
     # 读取密码文件
     if default_pass_list:
-        output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件")
+        output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
         pass_list = default_pass_list
     else:
-        output(f"[*] 未输入默认密码列表 读取密码字典文件 {name_file}...")
-        pass_list = read_file_to_list(pass_file, encoding=file_encoding(pass_file), de_strip=True, de_weight=True)
+        output(f"[*] 读取密码字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
+        pass_list = read_file_to_list(GB_USER_PASS_FILE, encoding=file_encoding(GB_USER_PASS_FILE), de_strip=True, de_weight=True)
 
-    output(f"[*] 读取账号|密码文件完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}")
+    output(f"[*] 读取账号|密码文件完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
     # 动态规则解析
     name_list, render_count, run_time = base_rule_render_list(name_list)
@@ -65,9 +58,12 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.name.txt"), name_list)
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.pass.txt"), pass_list)
 
-    # 获取基础变量字典
-    base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
-    output(f"[*] 基础变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+    # 获取基本变量字典
+    base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
+    output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+
+    base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+    output(f"[*] 用户基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
     # 进行基本变量字典替换 及 其中的中文词汇处理
     if GB_CHINESE_TO_PINYIN:
@@ -87,14 +83,14 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
         output(f"[*] 中文列表处理转换完成 pass_base_var_replace_dict:{len(str(pass_base_var_replace_dict))}", level=LOG_INFO)
         output(f"[*] 中文列表处理转换完成 name_base_var_replace_dict:{len(str(name_base_var_replace_dict))}", level=LOG_INFO)
 
-        # 基础变量替换
+        # 基本变量替换
         name_list, replace_count, run_time = replace_list_has_key_str(name_list, name_base_var_replace_dict)
         pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, pass_base_var_replace_dict)
     else:
-        # 基础变量替换
+        # 基本变量替换
         name_list, replace_count, run_time = replace_list_has_key_str(name_list, base_var_replace_dict)
         pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, base_var_replace_dict)
-    output(f"[*] 基础变量替换完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
+    output(f"[*] 基本变量替换完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
     # 进行格式化
     name_list = format_string_list(string_list=name_list, options_dict=GB_FILTER_OPTIONS_NAME)
@@ -175,22 +171,16 @@ def social_rule_handle_in_steps_two_list(base_var_dir,
 
 
 # 分割写法 基于 用户名:密码对 规则生成 元组列表
-def social_rule_handle_in_steps_one_pairs(base_var_dir,
-                                          dict_suffix,
-                                          name_pass_pair_file,
-                                          pair_link_symbol,
-                                          target_url,
-                                          default_name_list=None,
-                                          default_pass_list=None):
+def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, default_pass_list=None):
     mode = "mode2"
     step = 0
 
     # 读取用户账号文件
-    name_pass_pair_list = read_file_to_list(name_pass_pair_file,
-                                            encoding=file_encoding(name_pass_pair_file),
+    name_pass_pair_list = read_file_to_list(GB_USER_PASS_PAIR_FILE,
+                                            encoding=file_encoding(GB_USER_PASS_PAIR_FILE),
                                             de_strip=True,
                                             de_weight=True)
-    output(f"[*] 读取账号密码文件完成 name_pass_pair_list:{len(name_pass_pair_list)}")
+    output(f"[*] 读取账号密码文件完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
     # 动态规则解析和基本变量替换过程 默认取消
     if GB_USE_PAIR_BASE_REPL:
@@ -201,8 +191,8 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
         step += 1
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.base_render.pair.txt"), name_pass_pair_list)
 
-        # 获取基础变量字典
-        base_var_replace_dict = set_base_var_dict(base_var_dir, dict_suffix, GB_BASE_VAR_REPLACE_DICT)
+        # 获取基本变量字典
+        base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
 
         # 对基本变量字典中的列表值进行中文处理
         if GB_CHINESE_TO_PINYIN:
@@ -212,9 +202,9 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
                                                                   store_chinese=GB_STORE_CHINESE)
             output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
 
-        # 基础变量替换
+        # 基本变量替换
         name_pass_pair_list, replace_count, run_time = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
-        output(f"[*] 元组基础变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+        output(f"[*] 元组基本变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
         # 写入当前结果
         step += 1
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
@@ -236,7 +226,7 @@ def social_rule_handle_in_steps_one_pairs(base_var_dir,
     write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"), name_pass_pair_list)
 
     # 拆分出账号 密码对 元祖
-    name_pass_pair_list = split_str_list_to_tuple(name_pass_pair_list, pair_link_symbol)
+    name_pass_pair_list = split_str_list_to_tuple(name_pass_pair_list, GB_PAIR_LINK_SYMBOL)
 
     # 如果输入了默认值列表,就组合更新的账号 列表
     if default_name_list or default_pass_list:
@@ -331,16 +321,8 @@ if __name__ == '__main__':
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_USE_PAIR_FILE:
-        user_pass_dict = social_rule_handle_in_steps_two_list(GB_BASE_VAR_DIR,
-                                                              GB_DICT_SUFFIX,
-                                                              GB_USER_NAME_FILE,
-                                                              GB_USER_PASS_FILE,
-                                                              GB_TARGET_URL)
+        user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL)
     else:
-        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_BASE_VAR_DIR,
-                                                               GB_DICT_SUFFIX,
-                                                               GB_USER_PASS_PAIR_FILE,
-                                                               GB_PAIR_LINK_SYMBOL,
-                                                               GB_TARGET_URL)
+        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_TARGET_URL)
 
     output(f"[*] 最终生成账号密码对数量: {len(user_pass_dict)}", level=LOG_INFO)

@@ -98,4 +98,7 @@ GB_ONLY_BRUTE_ONE_PASS = True
 # 一些创建目录的操作
 auto_make_dir(GB_RESULT_DIR)
 auto_make_dir(GB_TEMP_DICT_DIR)
+auto_make_dir(GB_BASE_VAR_DIR)
+auto_make_dir(GB_BASE_DYNA_DIR)
+auto_make_dir(GB_RULE_DICT_DIR)
 ############################################################
