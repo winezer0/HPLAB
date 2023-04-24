@@ -18,8 +18,10 @@ GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 ############################################################
 # 基本变量文件夹 里面的每个文件都代表一个替换变量
 GB_BASE_VAR_DIR = GB_BASE_DIR.joinpath("dict_base")
-# 存储用户的动态字典,也是读取进 基本变量字典,分离是防止文件太多
-GB_BASE_DYNA_DIR = GB_BASE_DIR.joinpath("dict_dyna")
+# 存储用户账号的动态字典,也是读取进 基本变量字典,分离是防止文件太多
+GB_BASE_NAME_DIR = GB_BASE_DIR.joinpath("dict_name")
+# 存储用户密码相关的动态字典,也是读取进 基本变量字典,分离是防止文件太多
+GB_BASE_PASS_DIR = GB_BASE_DIR.joinpath("dict_pass")
 # 基本变量字典文件的后缀名列表 通过file.endswith匹配
 GB_DICT_SUFFIX = [".txt"]
 # 存储 自定义 基本变量

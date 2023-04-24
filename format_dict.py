@@ -40,3 +40,5 @@ def format_dir(base_var_dir, ext_list):
 
 if __name__ == '__main__':
     format_dir(GB_BASE_VAR_DIR, GB_DICT_SUFFIX)
+    format_dir(GB_BASE_NAME_DIR, GB_DICT_SUFFIX)
+    format_dir(GB_BASE_PASS_DIR, GB_DICT_SUFFIX)

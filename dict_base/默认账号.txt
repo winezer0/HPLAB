@@ -1,6 +1,5 @@
 admin
 root
-admin
 hello
 laser
 hdman

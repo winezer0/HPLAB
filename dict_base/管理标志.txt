@@ -16,3 +16,5 @@ guanli
 mast
 master
 supervisor
+supervisr
+maintainer

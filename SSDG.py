@@ -62,8 +62,11 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
     base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
     output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-    base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+    base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
     output(f"[*] 用户基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+
+    base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+    output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
     # 进行基本变量字典替换 及 其中的中文词汇处理
     if GB_CHINESE_TO_PINYIN:
@@ -195,8 +198,11 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
         output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        output(f"[*] 用户基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+
+        base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # 对基本变量字典中的列表值进行中文处理
         if GB_CHINESE_TO_PINYIN:
