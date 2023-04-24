@@ -17,7 +17,7 @@ PY_SY_CAPER = "PY_SY_CAPER"  # 串首大写
 PY_CN_NAME_MAX_LEN = "PY_CN_NAME_MAX_LEN"
 
 # 是否使用结巴分词
-PY_CN_FC_USE_JIEBA = "PY_CN_FC_USE_JIEBA"
+PY_CN_USE_JIEBA = "PY_CN_USE_JIEBA"
 
 # 基本的词汇生成
 PY_POSITIVE = "PY_POSITIVE"  # 通用的姓名处理,需要默认开启  当解析出姓、名的时候进行
@@ -79,7 +79,7 @@ PY_MAX_OPTIONS = {
     PY_SY_UPPER: True,
     PY_SY_TITLE: True,
     PY_SY_CAPER: True,
-    PY_CN_FC_USE_JIEBA: True,
+    PY_CN_USE_JIEBA: True,
     PY_POSITIVE: True,
     PY_REVERSE: True,
     PY_UNIVERS: True,
@@ -126,7 +126,7 @@ PY_BASE_OPTIONS = {
     PY_SY_TITLE: True,
     PY_SY_CAPER: True,
 
-    PY_CN_FC_USE_JIEBA: False,
+    PY_CN_USE_JIEBA: False,
 
     PY_POSITIVE: True,
     PY_REVERSE: True,

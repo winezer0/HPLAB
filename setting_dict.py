@@ -83,7 +83,7 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_SY_TITLE: False,
     PY_SY_CAPER: False,
 
-    PY_CN_FC_USE_JIEBA: False,
+    PY_CN_USE_JIEBA: True,
 
     PY_POSITIVE: True,
     PY_REVERSE: False,
@@ -91,7 +91,6 @@ GB_CHINESE_OPTIONS_NAME = {
 
     PY_XM2CH: False,
     PY_CH2XM: False,
-
 
     PY_FT_NO_BLANK: True,
     PY_FT_NO_DUPL: True,
@@ -104,6 +103,59 @@ GB_CHINESE_OPTIONS_NAME = {
 
     PY_LOWER_UNI: True,
     PY_UPPER_UNI: False,
+    PY_TITLE_UNI: False,
+    PY_CAPER_UNI: False,
+
+    PY_NORMAL_XIN: True,
+    PY_FIRST_XIN: True,
+    PY_INITIALS_XIN: True,
+
+    PY_LOWER_XIN: True,
+    PY_UPPER_XIN: False,
+    PY_TITLE_XIN: False,
+    PY_CAPER_XIN: False,
+
+    PY_NORMAL_MIN: True,
+    PY_FIRST_MIN: True,
+    PY_INITIALS_MIN: True,
+
+    PY_LOWER_MIN: True,
+    PY_UPPER_MIN: False,
+    PY_TITLE_MIN: False,
+    PY_CAPER_MIN: False,
+}
+#######################
+# 对密码中依赖的中文处理方案
+GB_CHINESE_OPTIONS_PASS = {
+    PY_TEMP_SYMBOL: "_",
+    PY_LINK_SYMBOLS: [""],
+    PY_CN_NAME_MAX_LEN: 4,
+
+    PY_SY_LOWER: True,
+    PY_SY_UPPER: True,
+    PY_SY_TITLE: True,
+    PY_SY_CAPER: True,
+
+    PY_CN_USE_JIEBA: True,
+
+    PY_POSITIVE: True,
+    PY_REVERSE: False,
+    PY_UNIVERS: True,
+
+    PY_XM2CH: False,
+    PY_CH2XM: False,
+
+    PY_FT_NO_BLANK: True,
+    PY_FT_NO_DUPL: True,
+    PY_FT_MAX_LEN: GB_USER_NAME_MAX_LEN,
+    PY_IGNORE_SYMBOL: GB_IGNORE_SYMBOLS,
+
+    PY_NORMAL_UNI: True,
+    PY_FIRST_UNI: True,
+    PY_INITIALS_UNI: True,
+
+    PY_LOWER_UNI: True,
+    PY_UPPER_UNI: True,
     PY_TITLE_UNI: True,
     PY_CAPER_UNI: True,
 
@@ -112,7 +164,7 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_INITIALS_XIN: True,
 
     PY_LOWER_XIN: True,
-    PY_UPPER_XIN: False,
+    PY_UPPER_XIN: True,
     PY_TITLE_XIN: True,
     PY_CAPER_XIN: True,
 
@@ -121,13 +173,10 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_INITIALS_MIN: True,
 
     PY_LOWER_MIN: True,
-    PY_UPPER_MIN: False,
+    PY_UPPER_MIN: True,
     PY_TITLE_MIN: True,
     PY_CAPER_MIN: True,
 }
-#######################
-# 对密码中依赖的中文处理方案
-GB_CHINESE_OPTIONS_PASS = copy.copy(GB_CHINESE_OPTIONS_NAME)
 #######################
 # 中文转拼音处理时，对元组列表处理时的配置字典
 # GB_CHINESE_OPTIONS_TUPLE = copy.copy(PY_BASE_OPTIONS)  # MAX_OPTIONS->最大化配置,不建议使用

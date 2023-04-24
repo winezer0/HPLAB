@@ -4,7 +4,7 @@ import re
 
 import jieba
 
-from libs.lib_chinese_pinyin.chinese_const import PY_CN_FC_USE_JIEBA
+from libs.lib_chinese_pinyin.chinese_const import PY_CN_USE_JIEBA
 from libs.lib_chinese_pinyin.chinese_name_handle import get_xin_list_from_words
 from libs.lib_chinese_pinyin.chinese_string_handle import gen_chinese_word_to_pinyin_list_dict
 from libs.lib_log_print.logger_printer import output, LOG_ERROR, LOG_DEBUG
@@ -128,7 +128,7 @@ def replace_chinese_string_to_pinyin_list(chinese_string, options_dict, link_sym
 
     # 1、提取其中的连续的中文字符串
     chinese_word_list = []
-    if options_dict[PY_CN_FC_USE_JIEBA]:
+    if options_dict[PY_CN_USE_JIEBA]:
         chinese_word_list = extracting_chinese_str_by_jieba(chinese_string)
         output(f"[+] 通过jieba提取[{chinese_string}]中文词组 结果:{chinese_word_list}")
 
