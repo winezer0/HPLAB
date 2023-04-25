@@ -14,8 +14,8 @@ free
 sys
 system
 confirm
+超级
 adv
 allin1
 allinone
-超级
 super

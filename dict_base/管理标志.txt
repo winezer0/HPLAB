@@ -1,9 +1,7 @@
 管理员
 gly
 root
-roots
 admin
-admins
 administrator
 adminer
 adm
@@ -15,6 +13,4 @@ mgr
 guanli
 mast
 master
-supervisor
-supervisr
 maintainer

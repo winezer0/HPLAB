@@ -4,3 +4,5 @@ hdman
 user
 account
 works
+visor
+visr
