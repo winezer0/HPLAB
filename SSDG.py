@@ -45,8 +45,8 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
     output(f"[*] 读取账号|密码文件完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
     # 动态规则解析
-    name_list, render_count, run_time = base_rule_render_list(name_list)
-    pass_list, render_count, run_time = base_rule_render_list(pass_list)
+    name_list, _, _ = base_rule_render_list(name_list)
+    pass_list, _, _ = base_rule_render_list(pass_list)
     output(f"[*] 动态规则解析完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
     # 进行格式化
@@ -62,37 +62,37 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
     base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
     output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-    base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-    output(f"[*] 用户基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+    base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+    output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-    base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+    # 对账号列表依赖的 基本变量字典中的列表值进行中文处理
+    name_base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+    output(f"[*] 账号基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+
+    pass_base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
     output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
     # 进行基本变量字典替换 及 其中的中文词汇处理
     if GB_CHINESE_TO_PINYIN:
         # 对账号列表依赖的 基本变量字典中的列表值进行中文处理
-        name_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+        name_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=name_base_var_replace_dict,
                                                                    options_dict=GB_CHINESE_OPTIONS_NAME,
                                                                    store_chinese=GB_STORE_CHINESE)
-
         # 对密码列表依赖的 基本变量字典中的列表值进行中文处理
-        if GB_CHINESE_OPTIONS_PASS != GB_CHINESE_OPTIONS_NAME:
-            pass_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
-                                                                       options_dict=GB_CHINESE_OPTIONS_PASS,
-                                                                       store_chinese=GB_STORE_CHINESE)
-        else:
-            pass_base_var_replace_dict = name_base_var_replace_dict
+        pass_base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=pass_base_var_replace_dict,
+                                                                   options_dict=GB_CHINESE_OPTIONS_PASS,
+                                                                   store_chinese=GB_STORE_CHINESE)
 
-        output(f"[*] 中文列表处理转换完成 pass_base_var_replace_dict:{len(str(pass_base_var_replace_dict))}", level=LOG_INFO)
         output(f"[*] 中文列表处理转换完成 name_base_var_replace_dict:{len(str(name_base_var_replace_dict))}", level=LOG_INFO)
+        output(f"[*] 中文列表处理转换完成 pass_base_var_replace_dict:{len(str(pass_base_var_replace_dict))}", level=LOG_INFO)
 
         # 基本变量替换
-        name_list, replace_count, run_time = replace_list_has_key_str(name_list, name_base_var_replace_dict)
-        pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, pass_base_var_replace_dict)
+        name_list, _, _ = replace_list_has_key_str(name_list, name_base_var_replace_dict)
+        pass_list, _, _ = replace_list_has_key_str(pass_list, pass_base_var_replace_dict)
     else:
         # 基本变量替换
-        name_list, replace_count, run_time = replace_list_has_key_str(name_list, base_var_replace_dict)
-        pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, base_var_replace_dict)
+        name_list, _, _ = replace_list_has_key_str(name_list, name_base_var_replace_dict)
+        pass_list, _, _ = replace_list_has_key_str(pass_list, pass_base_var_replace_dict)
     output(f"[*] 基本变量替换完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
     # 进行格式化
@@ -113,8 +113,8 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
     output(f"[*] 获取因变量完成 dependent_var_replace_dict:{dependent_var_replace_dict}")
 
     # 因变量替换
-    name_list, replace_count, run_time = replace_list_has_key_str(name_list, dependent_var_replace_dict)
-    pass_list, replace_count, run_time = replace_list_has_key_str(pass_list, dependent_var_replace_dict)
+    name_list, _, _ = replace_list_has_key_str(name_list, dependent_var_replace_dict)
+    pass_list, _, _ = replace_list_has_key_str(pass_list, dependent_var_replace_dict)
     output(f"[*] 因变量替换完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}")
 
     # 进行格式化
@@ -188,7 +188,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
     # 动态规则解析和基本变量替换过程 默认取消
     if GB_USE_PAIR_BASE_REPL:
         # 动态规则解析
-        name_pass_pair_list, render_count, run_time = base_rule_render_list(name_pass_pair_list)
+        name_pass_pair_list, _, _ = base_rule_render_list(name_pass_pair_list)
         output(f"[*] 元组动态规则解析完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
         # 写入当前结果
         step += 1
@@ -198,11 +198,14 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
         output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        # base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        # output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        #
+        # base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        # output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # 对基本变量字典中的列表值进行中文处理
         if GB_CHINESE_TO_PINYIN:
@@ -213,7 +216,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
             output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
 
         # 基本变量替换
-        name_pass_pair_list, replace_count, run_time = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
+        name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
         output(f"[*] 元组基本变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
         # 写入当前结果
         step += 1
@@ -227,8 +230,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
                                                         not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
 
     # 因变量替换
-    name_pass_pair_list, replace_count, run_time = replace_list_has_key_str(name_pass_pair_list,
-                                                                            dependent_var_replace_dict)
+    name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, dependent_var_replace_dict)
     output(f"[*] 元组因变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
     # 写入当前结果

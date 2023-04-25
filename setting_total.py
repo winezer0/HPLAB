@@ -9,7 +9,7 @@ from setting_dict import *
 
 ##################################################################
 # 版本号配置
-GB_VERSION = "Ver 0.1.2 2023-04-24 10:10"
+GB_VERSION = "Ver 0.1.3 2023-04-25 19:45"
 # 增加标签处理功能,便于对标记的数据自动进行（加密|编码）操作 目前支持<none><md5><url><base64>
 ##################################################################
 # 程序开始运行时间  %Y-%m-%d-%H-%M-%S
@@ -98,8 +98,9 @@ GB_ONLY_BRUTE_ONE_PASS = True
 # 一些创建目录的操作
 auto_make_dir(GB_RESULT_DIR)
 auto_make_dir(GB_TEMP_DICT_DIR)
-# auto_make_dir(GB_BASE_VAR_DIR)
-# auto_make_dir(GB_BASE_NAME_DIR)
-# auto_make_dir(GB_BASE_PASS_DIR)
-# auto_make_dir(GB_RULE_DICT_DIR)
+auto_make_dir(GB_BASE_VAR_DIR)
+auto_make_dir(GB_BASE_DYNA_DIR)
+auto_make_dir(GB_BASE_NAME_DIR)
+auto_make_dir(GB_BASE_PASS_DIR)
+auto_make_dir(GB_RULE_DICT_DIR)
 ############################################################
