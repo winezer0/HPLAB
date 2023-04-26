@@ -222,20 +222,20 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         step += 1
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
 
-    # 获取因变量
-    dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
-                                                        base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
-                                                        ignore_ip_format=GB_IGNORE_IP_FORMAT,
-                                                        symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
-                                                        not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
+        # 获取因变量
+        dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
+                                                            base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
+                                                            ignore_ip_format=GB_IGNORE_IP_FORMAT,
+                                                            symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
+                                                            not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
 
-    # 因变量替换
-    name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, dependent_var_replace_dict)
-    output(f"[*] 元组因变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+        # 因变量替换
+        name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, dependent_var_replace_dict)
+        output(f"[*] 元组因变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
-    # 写入当前结果
-    step += 1
-    write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"), name_pass_pair_list)
+        # 写入当前结果
+        step += 1
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"), name_pass_pair_list)
 
     # 拆分出账号 密码对 元祖
     name_pass_pair_list = split_str_list_to_tuple(name_pass_pair_list, GB_PAIR_LINK_SYMBOL)
