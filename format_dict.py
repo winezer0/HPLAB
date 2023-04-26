@@ -30,13 +30,13 @@ def format_dir(base_var_dir, ext_list):
 
         # # 读文件到列表
         base_var_file_path = os.path.join(base_var_dir, base_file_pure_name)
-        # base_var_file_content = read_file_to_list(base_var_file_path,
-        #                                           encoding=file_encoding(base_var_file_path),
-        #                                           de_strip=True,
-        #                                           de_weight=True,
-        #                                           de_unprintable=True)
-        # new_content_list = format_string_list(base_var_file_content)
-        # write_lines(base_var_file_path, new_content_list, encoding="utf-8", new_line=True, mode="w+")
+        base_var_file_content = read_file_to_list(base_var_file_path,
+                                                  encoding=file_encoding(base_var_file_path),
+                                                  de_strip=True,
+                                                  de_weight=True,
+                                                  de_unprintable=True)
+        new_content_list = format_string_list(base_var_file_content)
+        write_lines(base_var_file_path, new_content_list, encoding="utf-8", new_line=True, mode="w+")
         print(f"[+] 格式化成功...{base_var_file_path}")
 
 
