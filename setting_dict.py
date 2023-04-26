@@ -60,7 +60,8 @@ GB_USE_PAIR_FILE = False
 GB_USE_PAIR_BASE_REPL = False
 ############################################################
 # 指定记录字典文件的目录
-GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
+# GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
+GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d', time.localtime())}")
 ############################################################
 # 用户名中的中文转拼音处理
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
