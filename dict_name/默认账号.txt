@@ -2,4 +2,4 @@ admin
 root
 hello
 laser
-hdman
+administrator

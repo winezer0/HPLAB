@@ -94,3 +94,34 @@ def read_file_to_str(file_name, encoding='utf-8', de_strip=False, de_unprintable
             result_str = remove_unprintable_chars(result_str)
 
     return result_str
+
+
+def read_file_to_dict(file_name, encoding='utf-8', de_strip=True, de_unprintable=False, split_symbol=","):
+    """
+    简单读取文件到字典,以指定字符进行分隔
+    :param file_name: 文件路径
+    :param encoding: 文件编码
+    :param de_strip: 去除两端空白字符
+    :param de_unprintable: 去除不可见字符
+    :param split_symbol: 键值对分割符号
+    :return:
+    """
+    result_dict = {}
+    with open(file_name, 'r', encoding=encoding) as f_obj:
+        lines = f_obj.readlines()
+        for line in lines:
+            # 去除不可见字符
+            if de_unprintable:
+                line = remove_unprintable_chars(line)
+
+            # 分割csv
+            key = line.split(split_symbol)[0]
+            value = line.split(split_symbol)[-1]
+
+            # strip空白字符
+            if de_strip:
+                key = key.strip()
+                value = value.strip()
+
+            result_dict[key] = value
+    return result_dict
