@@ -2,14 +2,13 @@
 # encoding: utf-8
 # 全局配置文件
 # 输入原始报文路径
-import time
 
 from libs.lib_file_operate.file_path import auto_make_dir
 from setting_dict import *
 
 ##################################################################
 # 版本号配置
-GB_VERSION = "Ver 0.1.3 2023-04-25 19:45"
+GB_VERSION = "Ver 0.1.4 2023-05-05 23:10"
 # 增加标签处理功能,便于对标记的数据自动进行（加密|编码）操作 目前支持<none><md5><url><base64>
 ##################################################################
 # 程序开始运行时间  %Y-%m-%d-%H-%M-%S

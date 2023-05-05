@@ -1,0 +1,12 @@
+dev
+development
+devops
+develop
+developer
+developers
+debug
+dba
+db
+sql
+sqldba
+data

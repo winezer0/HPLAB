@@ -44,5 +44,9 @@ if __name__ == '__main__':
             GB_BASE_NAME_DIR: GB_DICT_SUFFIX,
             GB_BASE_PASS_DIR: GB_DICT_SUFFIX}
 
+    # 判断是否存在重复的属性名称,不能够存在重复【文件名|目录名】的。
+    # 如果存在目录和文件名相同也需要警告
+
+    # 格式化所有文件
     for dir_, suffix_ in dirs.items():
         format_dir(dir_, suffix_)
