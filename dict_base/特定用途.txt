@@ -1,8 +1,0 @@
-cdn
-git
-vpn
-jenkins
-jira
-zabbix
-kaifa
-chandao
