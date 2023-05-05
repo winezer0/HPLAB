@@ -9,7 +9,7 @@ from setting_total import *
 1、循环读取dict_base下的所有文件
 2、基本元素进行格式化 【全部小写、去重、】
 """
-from libs.lib_file_operate.file_path import get_dir_path_file_name, file_name_remove_ext_list
+from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_name_remove_ext_list
 
 
 def format_string_list(string_list):
@@ -19,17 +19,15 @@ def format_string_list(string_list):
 
 
 def format_dir(base_var_dir, ext_list):
-    base_var_file_list = get_dir_path_file_name(base_var_dir, ext_list=ext_list)
+    base_var_file_info_dict = get_dir_path_file_info_dict(base_var_dir, ext_list=ext_list)
     print(f"[*] DIR:{base_var_dir} -> SUFFIX: {ext_list}")
-    print(f"[*] FILES : {base_var_file_list}")
+    print(f"[*] FILES : {list(base_var_file_info_dict.values())}")
 
-    for base_var_file_name in base_var_file_list:
+    for base_var_file_name, base_var_file_path in base_var_file_info_dict.items():
         base_file_pure_name = file_name_remove_ext_list(base_var_file_name, ext_list)
-        base_var_name = f'%{base_file_pure_name}%'
-        print(f"[*] base_var_name : {base_var_name}")
+        print(f"[*] base_file_pure_name : {f'%{base_file_pure_name}%'}")
 
         # # 读文件到列表
-        base_var_file_path = os.path.join(base_var_dir, base_file_pure_name)
         base_var_file_content = read_file_to_list(base_var_file_path,
                                                   encoding=file_encoding(base_var_file_path),
                                                   de_strip=True,
