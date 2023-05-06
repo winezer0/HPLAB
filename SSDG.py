@@ -194,33 +194,32 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         step += 1
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.base_render.pair.txt"), name_pass_pair_list)
 
-        # # 获取基本变量字典 不需要进行基本变量获取
-        # base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
-        # output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
-        #
-        # base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        # output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        # 获取基本变量字典
+        base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
+        output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+
+        base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
         # output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
-        #
         # base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
         # output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        # # 对基本变量字典中的列表值进行中文处理
-        # if GB_CHINESE_TO_PINYIN:
-        #     output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
-        #     base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
-        #                                                           options_dict=GB_CHINESE_OPTIONS_TUPLE,
-        #                                                           store_chinese=GB_STORE_CHINESE)
-        #     output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
-        #
-        # # 基本变量替换
-        # name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
-        # output(f"[*] 元组基本变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
-        # # 写入当前结果
-        # step += 1
-        # write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
+        # 对基本变量字典中的列表值进行中文处理
+        if GB_CHINESE_TO_PINYIN:
+            output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+            base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+                                                                  options_dict=GB_CHINESE_OPTIONS_TUPLE,
+                                                                  store_chinese=GB_STORE_CHINESE)
+            output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+
+        # 基本变量替换
+        name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
+        output(f"[*] 元组基本变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+        # 写入当前结果
+        step += 1
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
 
         # 获取因变量
         dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
