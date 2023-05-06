@@ -6,7 +6,7 @@ from libs.lib_dyna_rule.base_rule_parser import RuleParser
 from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_name_remove_ext_list, \
     get_dir_path_dir_info_dict
 from libs.lib_file_operate.file_read import read_file_to_list
-from libs.lib_log_print.logger_printer import output, LOG_ERROR, set_logger
+from libs.lib_log_print.logger_printer import output, LOG_ERROR, set_logger, LOG_INFO
 from setting_total import *
 
 
@@ -98,13 +98,13 @@ def get_all_base_var(dirs):
 
 if __name__ == '__main__':
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
-    set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, True)
+    set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, False)
 
     base_dirs = {
-        GB_BASE_VAR_DIR: [".max.txt", ".txt"],
-        GB_BASE_DYNA_DIR: GB_DICT_SUFFIX,
-        GB_BASE_NAME_DIR: GB_DICT_SUFFIX,
-        GB_BASE_PASS_DIR: GB_DICT_SUFFIX
+        GB_BASE_VAR_DIR:  [".max.txt", ".txt"],
+        GB_BASE_DYNA_DIR: [".max.txt", ".txt"],
+        GB_BASE_NAME_DIR: [".max.txt", ".txt"],
+        GB_BASE_PASS_DIR: [".max.txt", ".txt"],
     }
 
     rule_dirs = {
@@ -125,6 +125,6 @@ if __name__ == '__main__':
     # 2、检查每一行规则
     error_rules_info = check_rule_base_var_format(rule_dirs, all_base_var)
     if error_rules_info:
-        output(f"[-] 发现错误变量|错误规则【{len(error_rules_info)}】个, 详情:{error_rules_info}")
+        output(f"[-] 发现错误变量|错误规则【{len(error_rules_info)}】个, 详情:{error_rules_info}",level=LOG_ERROR)
     else:
-        output(f"[+] 没有发现错误变量|错误规则...")
+        output(f"[+] 没有发现错误变量|错误规则...",level=LOG_INFO)

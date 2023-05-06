@@ -4,3 +4,4 @@ serv
 ipc
 http
 host
+shell

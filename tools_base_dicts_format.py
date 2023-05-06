@@ -23,6 +23,7 @@ def unique_list(string_list):
 # 进行小写处理
 def lower_list(string_list):
     for index, string in enumerate(string_list):
+        # 需要保留替换变量
         string_list[index] = str(string).lower()
     return string_list
 
@@ -56,12 +57,12 @@ def format_base_dict(dirs):
                     write_lines(file_path, new_content_list, encoding="utf-8", new_line=True, mode="w+")
                     output(f"[+] 成功格式化: {file_path}",level=LOG_INFO)
                 else:
-                    output(f"[*] 跳过格式化: {file_path}")
+                    output(f"[*] 跳过格式化: {file_path}",level=LOG_INFO)
 
 
 if __name__ == '__main__':
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
-    set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, True)
+    set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, False)
 
     base_dirs = {
         GB_BASE_VAR_DIR: GB_DICT_SUFFIX,

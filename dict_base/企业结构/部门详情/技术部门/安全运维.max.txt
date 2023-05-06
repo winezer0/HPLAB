@@ -18,3 +18,4 @@ autolog
 catalog
 yunwei
 vpn
+policy
