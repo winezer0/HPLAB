@@ -1,0 +1,70 @@
+#!/usr/bin/env python
+# encoding: utf-8
+from libs.lib_file_operate.file_coding import file_encoding
+from libs.lib_file_operate.file_read import read_file_to_list
+from libs.lib_file_operate.file_write import write_lines
+from setting_total import *
+
+from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_name_remove_ext_list
+
+
+# 列表去重并保持原始顺序
+def unique_list(string_list):
+    unique_lst = []
+    seen = set()
+    for item in string_list:
+        if item not in seen:
+            seen.add(item)
+            unique_lst.append(item)
+    return unique_lst
+
+
+# 进行小写处理
+def lower_list(string_list):
+    for index, string in enumerate(string_list):
+        string_list[index] = str(string).lower()
+    return string_list
+
+
+# 对目录下的文件进行小写和去重处理
+def format_base_dict(dirs):
+    """
+    1、循环读取dirs包含的目录下的所有文件
+    2、进行格式化 【全部小写、去重】
+    """
+    for base_var_dir, ext_list in dirs.items():
+        file_info_dict = get_dir_path_file_info_dict(base_var_dir, ext_list=ext_list)
+        print(f"[*] DIR:{base_var_dir} -> SUFFIX: {ext_list}")
+        print(f"[*] FILES : {list(file_info_dict.values())}")
+
+        for file_name, file_path in file_info_dict.items():
+            pure_name = file_name_remove_ext_list(file_name, ext_list)
+            # 读文件到列表
+            file_content = read_file_to_list(file_path,
+                                             encoding=file_encoding(file_path),
+                                             de_strip=True,
+                                             de_weight=True,
+                                             de_unprintable=True)
+
+            if file_content:
+                new_content_list = lower_list(file_content)
+                new_content_list = unique_list(new_content_list)
+                if len(file_content) != len(new_content_list):
+                    print(f"[*] 有效变量名: {f'%{pure_name}%'}")
+                    print(f"[*] 变量名内容: {file_content}")
+                    write_lines(file_path, new_content_list, encoding="utf-8", new_line=True, mode="w+")
+                    print(f"[+] 成功格式化: {file_path}")
+                else:
+                    print(f"[*] 跳过格式化: {file_path}")
+
+
+if __name__ == '__main__':
+    base_dirs = {
+        GB_BASE_VAR_DIR: GB_DICT_SUFFIX,
+        GB_BASE_DYNA_DIR: GB_DICT_SUFFIX,
+        # GB_BASE_NAME_DIR: GB_DICT_SUFFIX,
+        # GB_BASE_PASS_DIR: GB_DICT_SUFFIX,
+    }
+
+    # 格式化所有基本字典文件 小写|去重
+    format_base_dict(base_dirs)

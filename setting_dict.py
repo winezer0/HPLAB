@@ -6,6 +6,7 @@ import pathlib
 import time
 
 from libs.lib_chinese_pinyin.chinese_const import *
+from libs.lib_dyna_rule.dyna_rule_const import *
 from libs.lib_filter_srting.filter_const import *
 from libs.lib_social_dict.social_const import *
 
@@ -31,7 +32,12 @@ GB_DICT_SUFFIX = [".txt"]
 GB_BASE_VAR_REPLACE_DICT = {"%BLANK%": ['']}
 ###################
 # 存储 自定义 因变量
-GB_DEPENDENT_VAR_REPLACE_DICT = {"%%DEPENDENT%%": []}
+GB_DEPENDENT_VAR_REPLACE_DICT = {
+    STR_VAR_DEPENDENT: [],  # 存储自定义因变量
+    STR_VAR_DOMAIN: [],  # 存储动态PATH因变量-无需处理
+    STR_VAR_PATH: [],  # 存储动态域名因变量-无需处理
+}
+
 # DOMAIN PATH 因变量中的 符号替换规则, 替换后追加到域名因子列表
 GB_SYMBOL_REPLACE_DICT = {":": ["_"], ".": ["_"]}
 # 删除带有 特定符号 的因变量（比如:）的元素
@@ -271,7 +277,7 @@ GB_FILTER_TUPLE_OPTIONS = {
         (0, 1, 0, 0, 0),  # 排除仅大写
         (0, 1, 0, 1, 0),  # 排除仅大写+符号
         (-1, 1, -1, -1, 1),  # 排除中英文混合 必须有大写+中文
-        (-1, -1, 1, -1, 1),   # 排除中英文混合 必须有小写+中文
+        (-1, -1, 1, -1, 1),  # 排除中英文混合 必须有小写+中文
     ],
 
     # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
@@ -290,7 +296,7 @@ GB_SOCIAL_OPTIONS_DICT = {
     SO_PASS_CAPER: False,  # 密码 首字母大写（如果密码中有用户名 就密码内的 用户名首字母大写,否则就密码整体首字母大写）
     SO_PASS_LOWER: False,  # 密码用户名 全部小写（如果密码中有用户名 就密码内的 用户名全部小写,否则就密码整体全部小写）
     SO_PASS_UPPER: False,  # 密码用户名 全部大写 （如果密码中有用户名 就密码内的 用户名全部大写,否则就密码整体全部大写）4
-    SO_PASS_KEEP: False,    # 当开启密码格式处理时,依旧保留原始密码
+    SO_PASS_KEEP: False,  # 当开启密码格式处理时,依旧保留原始密码
 
     SO_ONLY_MARK_PASS: False  # 仅对 密码中包含用户名变量的密码 进行以上操作
 }
