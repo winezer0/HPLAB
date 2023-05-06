@@ -25,16 +25,15 @@ def unique_list(string_list):
 # 进行小写处理
 def lower_list(string_list):
     for index, string in enumerate(string_list):
-        if str(string).count("%")<2:
+        if str(string).count("%") < 2:
             string_list[index] = str(string).lower()
         else:
             # 需要保留替换变量
-            # 1、按照(%\w+%)进行切割
-            # 对 不符合%\w+%的元素进行小写处理
+            # 按照(%\w+%)进行切割， 对符合（%\w+%）的部分进行保留
             raw_split = re.split(r'(%[\w]+%)', string)
             raw_split = [s for s in raw_split if s != '']  # 去除空字符串
-            new_split = [item.lower() for item in raw_split if not bool(re.match(r'^%[\w]%$', item))]
-            string_list[index] = "".lower(new_split)
+            new_split = [item if bool(re.match(r'^%[\w]%$', item)) else item.lower() for item in raw_split]
+            string_list[index] = "".join(new_split)
     return string_list
 
 
@@ -65,9 +64,9 @@ def format_base_dict(dirs):
                     output(f"[*] 有效变量名: {f'%{pure_name}%'}")
                     output(f"[*] 变量名内容: {file_content}")
                     write_lines(file_path, new_content_list, encoding="utf-8", new_line=True, mode="w+")
-                    output(f"[+] 成功格式化: {file_path}",level=LOG_INFO)
+                    output(f"[+] 成功格式化: {file_path}", level=LOG_INFO)
                 else:
-                    output(f"[*] 跳过格式化: {file_path}",level=LOG_INFO)
+                    output(f"[*] 跳过格式化: {file_path}", level=LOG_INFO)
 
 
 if __name__ == '__main__':
@@ -77,8 +76,8 @@ if __name__ == '__main__':
     base_dirs = {
         GB_BASE_VAR_DIR: GB_DICT_SUFFIX,
         GB_BASE_DYNA_DIR: GB_DICT_SUFFIX,
-        # GB_BASE_NAME_DIR: GB_DICT_SUFFIX,
-        # GB_BASE_PASS_DIR: GB_DICT_SUFFIX,
+        GB_BASE_NAME_DIR: GB_DICT_SUFFIX,
+        GB_BASE_PASS_DIR: GB_DICT_SUFFIX,
     }
 
     # 格式化所有基本字典文件 小写|去重
