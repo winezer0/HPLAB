@@ -4,27 +4,11 @@
 import itertools
 
 # 替换基于用户名变量的密码
-from libs.lib_social_dict.social_const import *
-
-
-def replace_mark_user_name_base(user_pass_pair_list, mark_string):
-    # 替换基于用户名变量的密码
-    new_user_pass_pair_list = []
-    for user_pass in user_pass_pair_list:
-        name_ = user_pass[0]
-        pass_ = user_pass[1]
-        if mark_string in pass_:
-            pass_ = str(pass_).replace(mark_string, name_)
-        new_user_pass_pair_list.append((name_, pass_))
-
-    return new_user_pass_pair_list
+from libs.lib_social_dict.repl_mark_user_const import *
 
 
 # 替换基于用户名变量的密码 并且支持 在替换过程中对账号密码进行处理
-def replace_mark_user_name_itertools(user_pass_pair_list,
-                                     mark_string,
-                                     options_dict
-                                     ):
+def replace_mark_user_on_pass(user_pass_pair_list, mark_string, options_dict ):
     # 替换基于用户名变量的密码 并且支持 在替换过程中对账号密码进行处理
     new_user_pass_pair_list = []
     for base_name, base_pass in user_pass_pair_list:

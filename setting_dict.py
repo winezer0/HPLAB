@@ -8,7 +8,7 @@ import time
 from libs.lib_chinese_pinyin.chinese_const import *
 from libs.lib_dyna_rule.dyna_rule_const import *
 from libs.lib_filter_srting.filter_const import *
-from libs.lib_social_dict.social_const import *
+from libs.lib_social_dict.repl_mark_user_const import *
 
 ############################################################
 # 获取setting.py脚本所在路径作为的基本路径

@@ -4,6 +4,7 @@ import argparse
 import sys
 
 from SSDG import social_rule_handle_in_steps_two_list, social_rule_handle_in_steps_one_pairs
+from libs.lib_dyna_rule.dyna_rule_tools import remove_has_brute_user_pass_pair
 from libs.lib_file_operate.file_read import read_file_to_list, read_file_to_str
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
     search_and_get_param_value
@@ -15,7 +16,6 @@ from libs.lib_requests.requests_thread import multi_thread_requests_url_body_sig
 from libs.lib_requests.requests_tools import get_random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
-from libs.lib_social_dict.social_tools import remove_has_brute_user_pass_pair
 from setting_total import *
 
 sys.dont_write_bytecode = True  # 设置不生成pyc文件

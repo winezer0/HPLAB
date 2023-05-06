@@ -7,7 +7,7 @@ from libs.lib_chinese_encode.chinese_encode import tuple_list_chinese_encode_by_
 from libs.lib_chinese_pinyin.chinese_list_to_alphabet_list import dict_chinese_to_dict_alphabet
 from libs.lib_dyna_rule.base_key_replace import replace_list_has_key_str
 from libs.lib_dyna_rule.base_rule_parser import base_rule_render_list
-from libs.lib_dyna_rule.dyna_rule_tools import cartesian_product_merging
+from libs.lib_dyna_rule.dyna_rule_tools import cartesian_product_merging, unfrozen_tuple_list
 from libs.lib_dyna_rule.dyna_rule_tools import frozen_tuple_list
 from libs.lib_dyna_rule.set_basic_var import set_base_var_dict
 from libs.lib_dyna_rule.set_depend_var import set_dependent_var_dict
@@ -16,8 +16,7 @@ from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
 from libs.lib_filter_srting.filter_call import format_string_list, format_tuple_list
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO
-from libs.lib_social_dict.social_repl_mark import replace_mark_user_name_itertools
-from libs.lib_social_dict.social_tools import split_str_list_to_tuple
+from libs.lib_social_dict.repl_mark_user_call import replace_mark_user_on_pass
 from setting_total import *
 
 
@@ -140,9 +139,9 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
                 frozen_tuple_list(name_pass_pair_list, link_symbol=":"))
 
     # 对基于用户名变量的密码做替换处理
-    name_pass_pair_list = replace_mark_user_name_itertools(name_pass_pair_list,
-                                                           mark_string=GB_USER_NAME_MARK,
-                                                           options_dict=GB_SOCIAL_OPTIONS_DICT)
+    name_pass_pair_list = replace_mark_user_on_pass(name_pass_pair_list,
+                                                    mark_string=GB_USER_NAME_MARK,
+                                                    options_dict=GB_SOCIAL_OPTIONS_DICT)
     output(f"[*] 用户名变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
     # 进行格式化
@@ -237,7 +236,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"), name_pass_pair_list)
 
     # 拆分出账号 密码对 元祖
-    name_pass_pair_list = split_str_list_to_tuple(name_pass_pair_list, GB_PAIR_LINK_SYMBOL)
+    name_pass_pair_list = unfrozen_tuple_list(name_pass_pair_list, GB_PAIR_LINK_SYMBOL)
 
     # 如果输入了默认值列表,就组合更新的账号 列表
     if default_name_list or default_pass_list:
@@ -251,9 +250,9 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         output(f"[*] 重组账号密码列表完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
     # 对基于用户名变量的密码做综合处理
-    name_pass_pair_list = replace_mark_user_name_itertools(name_pass_pair_list,
-                                                           mark_string=GB_USER_NAME_MARK,
-                                                           options_dict=GB_SOCIAL_OPTIONS_DICT)
+    name_pass_pair_list = replace_mark_user_on_pass(name_pass_pair_list,
+                                                    mark_string=GB_USER_NAME_MARK,
+                                                    options_dict=GB_SOCIAL_OPTIONS_DICT)
     output(f"[*] 用户名变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
     # 进行格式化
