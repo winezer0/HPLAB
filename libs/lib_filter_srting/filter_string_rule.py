@@ -1,5 +1,5 @@
 from libs.lib_dyna_rule.dyna_rule_tools import list_ele_in_str
-from libs.lib_filter_srting.filter_base import analyse_string_per_char, format_rule_list
+from libs.lib_filter_srting.filter_string_char import analyse_string_per_char, format_rule_list
 
 
 # 过滤（账号,密码）元组列表

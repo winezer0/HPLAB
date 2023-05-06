@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from libs.lib_filter_srting.filter_rule import filter_pair_tuples_by_length, filter_string_list_by_length, \
+from libs.lib_filter_srting.filter_string_rule import filter_pair_tuples_by_length, filter_string_list_by_length, \
     extract_string_list_by_char_type, exclude_string_list_by_char_type, extract_tuple_list_by_char_type, \
     exclude_tuple_list_by_char_type, filter_string_list_by_symbols, filter_tuple_list_by_symbols
 from libs.lib_filter_srting.filter_const import *
