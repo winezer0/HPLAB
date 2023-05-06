@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from libs.lib_filter_srting.filter_string_rule import exclude_pair_tuples_by_length, exclude_string_list_by_length, \
-    extract_string_list_by_char_type, exclude_string_list_by_char_type, extract_tuple_list_by_char_type, \
-    exclude_tuple_list_by_char_type, exclude_string_list_by_symbols, exclude_tuple_list_by_symbols
+from libs.lib_dyna_rule.dyna_rule_tools import de_duplicate_tuple_list
 from libs.lib_filter_srting.filter_const import *
-from libs.lib_dyna_rule.dyna_rule_tools import list_ele_in_str, de_duplicate_tuple_list
+from libs.lib_filter_srting.filter_string_rule import *
 
 
 def format_string_list(string_list=[], options_dict={}):
@@ -46,6 +44,21 @@ def format_string_list(string_list=[], options_dict={}):
                                                            ignore_empty=options_dict[FT_IGNORE_EMPTY],
                                                            ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                            )
+
+        # 按格式排除
+        if options_dict[FT_EXCLUDE_REGEX_STR]:
+            string_list = exclude_string_list_by_regex(string_list=string_list,
+                                                       expected_regex_str=options_dict[FT_EXCLUDE_REGEX_STR],
+                                                       ignore_empty=options_dict[FT_IGNORE_EMPTY],
+                                                       ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
+                                                       )
+        # 按格式提取
+        if options_dict[FT_EXTRACT_REGEX_STR]:
+            string_list = extract_string_list_by_regex(string_list=string_list,
+                                                       expected_regex_str=options_dict[FT_EXTRACT_REGEX_STR],
+                                                       ignore_empty=options_dict[FT_IGNORE_EMPTY],
+                                                       ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
+                                                       )
 
     return string_list
 
@@ -94,11 +107,28 @@ def format_tuple_list(tuple_list=[], options_dict={}):
                                                          ignore_empty=options_dict[FT_IGNORE_EMPTY],
                                                          ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                          )
+
+        # 按格式排除 # 需要传递两种规则列表
+        if options_dict[FT_EXCLUDE_REGEX_NAME] or options_dict[FT_EXCLUDE_REGEX_PASS]:
+            tuple_list = exclude_tuple_list_by_regex(tuple_list=tuple_list,
+                                                         expected_regex_name=options_dict[FT_EXCLUDE_REGEX_NAME],
+                                                         expected_regex_pass=options_dict[FT_EXCLUDE_REGEX_PASS],
+                                                         ignore_empty=options_dict[FT_IGNORE_EMPTY],
+                                                         ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
+                                                         )
+        # 按格式提取 # 需要传递两种规则列表
+        if options_dict[FT_EXTRACT_REGEX_NAME] or options_dict[FT_EXTRACT_REGEX_PASS]:
+            tuple_list = extract_tuple_list_by_regex(tuple_list=tuple_list,
+                                                         expected_regex_name=options_dict[FT_EXTRACT_REGEX_NAME],
+                                                         expected_regex_pass=options_dict[FT_EXTRACT_REGEX_PASS],
+                                                         ignore_empty=options_dict[FT_IGNORE_EMPTY],
+                                                         ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
+                                                         )
     return tuple_list
 
 
 if __name__ == '__main__':
-    str_list = ["admin123","111","","猪八戒"]
+    str_list = ["admin123", "111", "", "猪八戒"]
     # OPTIONS = {
     #     FT_IGNORE_SYMBOLS: ["%%","%","}$"],
     #     FT_IGNORE_EMPTY: False,

@@ -212,10 +212,10 @@ GB_FILTER_OPTIONS_PASS = {
 
     # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXTRACT_RULES_STR: [],
-    # 正则提取规则
-    FT_EXTRACT_REGEX_STR: [],
-    # 正则排除规则
+    # 正则排除
     FT_EXCLUDE_REGEX_STR: [],
+    # 正则提取
+    FT_EXTRACT_REGEX_STR: [],
 }
 #######################
 # 对生成的账号|密码元组进行排除的选项配置
@@ -251,10 +251,10 @@ GB_FILTER_TUPLE_OPTIONS = {
     FT_EXTRACT_RULES_NAME: [],
     FT_EXTRACT_RULES_PASS: [],
 
-    # 正则排除规则
+    # 正则排除
     FT_EXCLUDE_REGEX_NAME: [],
     FT_EXCLUDE_REGEX_PASS: [],
-    # 正则提取规则
+    # 正则提取
     FT_EXTRACT_REGEX_NAME: [],
     FT_EXTRACT_REGEX_PASS: [],
 }
