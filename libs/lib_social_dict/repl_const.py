@@ -37,6 +37,11 @@ SOCIAL_USER_OPTIONS_DICT = {
 SOCIAL_PASS_OPTIONS_DICT = {
     SO_PASS_KEEP: True,  # 对密码进行格式化时, 保留原始密码
 
+    SO_PASS_REPL: [  # 密码字符替换
+        # {"o": "0"},
+        # {"o": "@"},
+    ],
+
     SO_PASS_SEGMENT: [  # 密码字母按段索引大小写
         # {0: "upper"},
         # {1: "upper"},
@@ -51,9 +56,5 @@ SOCIAL_PASS_OPTIONS_DICT = {
         # {-1: "lower", "*": "u"},
     ],
 
-    SO_PASS_REPL: [  # 密码字符替换
-        # {"o": "0"},
-        # {"o": "@"},
-    ],
 }
 #######################################
