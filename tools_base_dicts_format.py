@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
+import re
+
 from libs.lib_file_operate.file_coding import file_encoding
 from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
@@ -23,8 +25,16 @@ def unique_list(string_list):
 # 进行小写处理
 def lower_list(string_list):
     for index, string in enumerate(string_list):
-        # 需要保留替换变量
-        string_list[index] = str(string).lower()
+        if str(string).count("%")<2:
+            string_list[index] = str(string).lower()
+        else:
+            # 需要保留替换变量
+            # 1、按照(%\w+%)进行切割
+            # 对 不符合%\w+%的元素进行小写处理
+            raw_split = re.split(r'(%[\w]+%)', string)
+            raw_split = [s for s in raw_split if s != '']  # 去除空字符串
+            new_split = [item.lower() for item in raw_split if not bool(re.match(r'^%[\w]%$', item))]
+            string_list[index] = "".lower(new_split)
     return string_list
 
 
