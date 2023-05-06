@@ -37,7 +37,7 @@ def generate_brute_task_list(pair_list, mark_url, mark_body, mark_username, mark
 
 
 # 登录爆破测试
-def auto_login_packet_brute():
+def http_packet_login_auto_brute():
     # 初始化HTTP报文
     http_pkg = read_file_to_str(GB_HTTP_FILE)
 
@@ -367,4 +367,4 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # 进行登录爆破
-    auto_login_packet_brute()
+    http_packet_login_auto_brute()
