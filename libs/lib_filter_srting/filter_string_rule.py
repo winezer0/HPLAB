@@ -1,12 +1,12 @@
 from libs.lib_dyna_rule.dyna_rule_tools import list_ele_in_str
-from libs.lib_filter_srting.filter_string_char import analyse_string_per_char, format_rule_list
+from libs.lib_filter_srting.filter_func_char import analyse_string_per_char, format_rule_list
 
 
 # 过滤（账号,密码）元组列表
-def filter_pair_tuples_by_length(tuple_list,
-                                 min_len_name, max_len_name,
-                                 min_len_pass, max_len_pass,
-                                 ignore_empty, ignore_symbols):
+def exclude_pair_tuples_by_length(tuple_list,
+                                  min_len_name, max_len_name,
+                                  min_len_pass, max_len_pass,
+                                  ignore_empty, ignore_symbols):
     # 对(账号,密码)元组列表进行长度过滤
 
     # 处理max_len赋值错误的情况
@@ -27,9 +27,9 @@ def filter_pair_tuples_by_length(tuple_list,
 
 
 # 对字符串列表进行长度过滤
-def filter_string_list_by_length(string_list,
-                                 min_len_str, max_len_str,
-                                 ignore_empty, ignore_symbols):
+def exclude_string_list_by_length(string_list,
+                                  min_len_str, max_len_str,
+                                  ignore_empty, ignore_symbols):
     # 对字符串列表进行长度过滤
 
     # 处理max_len赋值错误的情况
@@ -44,9 +44,9 @@ def filter_string_list_by_length(string_list,
 
 
 # 排除包含指定符号的字符串
-def filter_string_list_by_symbols(string_list,
-                                  ban_symbols_str,
-                                  ignore_empty, ignore_symbols):
+def exclude_string_list_by_symbols(string_list,
+                                   ban_symbols_str,
+                                   ignore_empty, ignore_symbols):
     string_list = [string for string in string_list
                    if (ignore_empty and string == "")
                    or (ignore_symbols and list_ele_in_str(ignore_symbols, string, default=False))
@@ -55,9 +55,9 @@ def filter_string_list_by_symbols(string_list,
 
 
 # 排除包含指定符号的字符串
-def filter_tuple_list_by_symbols(tuple_list,
-                                 ban_symbols_name, ban_symbols_pass,
-                                 ignore_empty, ignore_symbols):
+def exclude_tuple_list_by_symbols(tuple_list,
+                                  ban_symbols_name, ban_symbols_pass,
+                                  ignore_empty, ignore_symbols):
     tuple_list = [(name_, pass_) for name_, pass_ in tuple_list
                   if ((ignore_empty and name_ == "")
                       or (ignore_symbols and list_ele_in_str(ignore_symbols, name_, default=False))
@@ -133,3 +133,4 @@ def exclude_tuple_list_by_char_type(tuple_list,
                        or (ignore_symbols and list_ele_in_str(ignore_symbols, pass_, default=False))
                        or (analyse_string_per_char(pass_) not in expected_rules_pass))]
     return tuple_list
+

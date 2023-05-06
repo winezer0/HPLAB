@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from libs.lib_filter_srting.filter_string_rule import filter_pair_tuples_by_length, filter_string_list_by_length, \
+from libs.lib_filter_srting.filter_string_rule import exclude_pair_tuples_by_length, exclude_string_list_by_length, \
     extract_string_list_by_char_type, exclude_string_list_by_char_type, extract_tuple_list_by_char_type, \
-    exclude_tuple_list_by_char_type, filter_string_list_by_symbols, filter_tuple_list_by_symbols
+    exclude_tuple_list_by_char_type, exclude_string_list_by_symbols, exclude_tuple_list_by_symbols
 from libs.lib_filter_srting.filter_const import *
 from libs.lib_dyna_rule.dyna_rule_tools import list_ele_in_str, de_duplicate_tuple_list
 
@@ -17,20 +17,20 @@ def format_string_list(string_list=[], options_dict={}):
 
         if options_dict[FT_MAX_LEN_STR]:
             # 按长度筛选
-            string_list = filter_string_list_by_length(string_list=string_list,
-                                                       min_len_str=options_dict[FT_MIN_LEN_STR],
-                                                       max_len_str=options_dict[FT_MAX_LEN_STR],
-                                                       ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                       ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
-                                                       )
-
-        if options_dict[FT_BAN_SYMBOLS_STR]:
-            # 不允许包含指定的字符列表
-            string_list = filter_string_list_by_symbols(string_list=string_list,
-                                                        ban_symbols_str=options_dict[FT_BAN_SYMBOLS_STR],
+            string_list = exclude_string_list_by_length(string_list=string_list,
+                                                        min_len_str=options_dict[FT_MIN_LEN_STR],
+                                                        max_len_str=options_dict[FT_MAX_LEN_STR],
                                                         ignore_empty=options_dict[FT_IGNORE_EMPTY],
                                                         ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
                                                         )
+
+        if options_dict[FT_BAN_SYMBOLS_STR]:
+            # 不允许包含指定的字符列表
+            string_list = exclude_string_list_by_symbols(string_list=string_list,
+                                                         ban_symbols_str=options_dict[FT_BAN_SYMBOLS_STR],
+                                                         ignore_empty=options_dict[FT_IGNORE_EMPTY],
+                                                         ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
+                                                         )
 
         # 按格式排除
         if options_dict[FT_EXCLUDE_RULES_STR]:
@@ -60,23 +60,23 @@ def format_tuple_list(tuple_list=[], options_dict={}):
 
         # 不允许包含指定的字符列表
         if options_dict[FT_BAN_SYMBOLS_NAME] or options_dict[FT_BAN_SYMBOLS_PASS]:
-            tuple_list = filter_tuple_list_by_symbols(tuple_list=tuple_list,
-                                                      ban_symbols_name=options_dict[FT_BAN_SYMBOLS_NAME],
-                                                      ban_symbols_pass=options_dict[FT_BAN_SYMBOLS_PASS],
-                                                      ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                      ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
-                                                      )
+            tuple_list = exclude_tuple_list_by_symbols(tuple_list=tuple_list,
+                                                       ban_symbols_name=options_dict[FT_BAN_SYMBOLS_NAME],
+                                                       ban_symbols_pass=options_dict[FT_BAN_SYMBOLS_PASS],
+                                                       ignore_empty=options_dict[FT_IGNORE_EMPTY],
+                                                       ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
+                                                       )
 
         if options_dict[FT_MIN_LEN_NAME] or options_dict[FT_MIN_LEN_PASS]:
             # 按长度筛选 # 需要传递两种长度
-            tuple_list = filter_pair_tuples_by_length(tuple_list=tuple_list,
-                                                      min_len_name=options_dict[FT_MIN_LEN_NAME],
-                                                      max_len_name=options_dict[FT_MAX_LEN_NAME],
-                                                      min_len_pass=options_dict[FT_MIN_LEN_PASS],
-                                                      max_len_pass=options_dict[FT_MAX_LEN_PASS],
-                                                      ignore_empty=options_dict[FT_IGNORE_EMPTY],
-                                                      ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
-                                                      )
+            tuple_list = exclude_pair_tuples_by_length(tuple_list=tuple_list,
+                                                       min_len_name=options_dict[FT_MIN_LEN_NAME],
+                                                       max_len_name=options_dict[FT_MAX_LEN_NAME],
+                                                       min_len_pass=options_dict[FT_MIN_LEN_PASS],
+                                                       max_len_pass=options_dict[FT_MAX_LEN_PASS],
+                                                       ignore_empty=options_dict[FT_IGNORE_EMPTY],
+                                                       ignore_symbols=options_dict[FT_IGNORE_SYMBOLS],
+                                                       )
 
         # 按格式排除 # 需要传递两种规则列表
         if options_dict[FT_EXCLUDE_RULES_NAME] or options_dict[FT_EXCLUDE_RULES_PASS]:
