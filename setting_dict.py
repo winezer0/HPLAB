@@ -186,7 +186,10 @@ GB_FILTER_OPTIONS_NAME = {
     ],
     # 提取规则 # has_digit, has_upper, has_lower, has_symbol, has_chinese
     FT_EXTRACT_RULES_STR: [],
-
+    # 正则排除
+    FT_EXCLUDE_REGEX_STR: [],
+    # 正则提取
+    FT_EXTRACT_REGEX_STR: [],
 }
 #######################
 # 排除列表 排除密码的配置
