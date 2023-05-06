@@ -6,7 +6,7 @@ from libs.lib_dyna_rule.base_rule_parser import RuleParser
 from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_name_remove_ext_list, \
     get_dir_path_dir_info_dict
 from libs.lib_file_operate.file_read import read_file_to_list
-from libs.lib_log_print.logger_printer import output, LOG_ERROR
+from libs.lib_log_print.logger_printer import output, LOG_ERROR, set_logger
 from setting_total import *
 
 
@@ -52,25 +52,25 @@ def check_rule_base_var_format(dirs, base_vars):
     for base_var_dir, ext_list in dirs.items():
         file_info_dict = get_dir_path_file_info_dict(base_var_dir, ext_list=ext_list)
         for file_name, file_path in file_info_dict.items():
-            # print(f"[*] 开始检查 {file_path}")
+            output(f"[*] 正在检查 {file_path}")
             # 读取字典文件到列表
             rule_content = read_file_to_list(file_path)
-            # print(f"[*] 文件 {file_name} 内容 {rule_content}")
+            # output(f"[*] 文件 {file_name} 内容 {rule_content}")
             # 遍历列表提取每一条【%XXX%】规则,并判断是否在 all_base_var 内部
             for rule in rule_content:
-                # print(f"[*] 检查规则 {rule}")
+                # output(f"[*] 检查规则 {rule}")
                 rule_vars = re.findall(base_var_pattern, rule)
                 if rule_vars:
-                    # print(f"[*] 提取变量 {rule_vars}")
+                    # output(f"[*] 提取变量 {rule_vars}")
                     # 提取其中不存在的变量
                     diff_set = set(rule_vars) - set(base_vars)
                     if diff_set:
-                        print(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 发现非预期变量【{diff_set}】")
+                        output(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 发现非预期变量【{diff_set}】",level=LOG_ERROR)
                         error_rules_dict[f"{file_path}<-->{rule}"] = f"非预期变量 {diff_set}"
                 # 进行规则解析测试
                 rule_status = base_rule_check(rule)
                 if not rule_status:
-                    print(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 进行规则解析错误")
+                    output(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 进行规则解析错误",level=LOG_ERROR)
                     error_rules_dict[f"{file_path}<-->{rule}"] = "规则解析错误"
     return error_rules_dict
 
@@ -84,19 +84,22 @@ def get_all_base_var(dirs):
             # 组装 {基本变量名: [基本变量文件内容列表]}
             base_var_pure_name = file_name_remove_ext_list(base_var_file_name, ext_list)
             base_vars.append(f"%{base_var_pure_name}%")
-            # print(f"{base_var_file_name} <--> [%{base_var_pure_name}%]")
+            # output(f"{base_var_file_name} <--> [%{base_var_pure_name}%]")
 
         dir_info_dict = get_dir_path_dir_info_dict(base_var_dir)
         for base_var_dir_name in dir_info_dict.keys():
             # 组装 {基本变量名: [基本变量文件内容列表]}
             base_vars.append(f"%{base_var_dir_name}%")
-            # print(f"{base_var_dir_name} <--> [%{base_var_dir_name}%]")
+            # output(f"{base_var_dir_name} <--> [%{base_var_dir_name}%]")
     # 去重及排序
     base_vars = sorted(list(set(base_vars)))
     return base_vars
 
 
 if __name__ == '__main__':
+    # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
+    set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, True)
+
     base_dirs = {
         GB_BASE_VAR_DIR: [".max.txt", ".txt"],
         GB_BASE_DYNA_DIR: GB_DICT_SUFFIX,
@@ -110,18 +113,18 @@ if __name__ == '__main__':
 
     # 1、获取所有基础变量
     all_base_var = get_all_base_var(base_dirs)
-    print(f"[+] 目前所有基础变量【{len(all_base_var)}】个, 详情：{all_base_var}")
+    output(f"[+] 目前所有基础变量【{len(all_base_var)}】个, 详情：{all_base_var}")
 
     # 扩充因变量字典
     all_base_var.append(GB_USER_NAME_MARK)  # 用户名替换标记变量
     all_base_var.extend(list(GB_BASE_VAR_REPLACE_DICT.keys()))  # 自定义 基本变量
     all_base_var.extend(list(GB_DEPENDENT_VAR_REPLACE_DICT.keys()))  # 动态因变量 及 自定义因变量
 
-    print(f"[+] 目前所有替换变量【{len(all_base_var)}】个")
+    output(f"[+] 目前所有替换变量【{len(all_base_var)}】个, 详情：{all_base_var}")
 
     # 2、检查每一行规则
     error_rules_info = check_rule_base_var_format(rule_dirs, all_base_var)
     if error_rules_info:
-        print(f"[-] 发现错误变量【{len(error_rules_info)}】个, 详情:{error_rules_info}")
+        output(f"[-] 发现错误变量|错误规则【{len(error_rules_info)}】个, 详情:{error_rules_info}")
     else:
-        print(f"[+] 没有发现错误变量...")
+        output(f"[+] 没有发现错误变量|错误规则...")

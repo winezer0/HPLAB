@@ -3,6 +3,7 @@
 from libs.lib_file_operate.file_coding import file_encoding
 from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
+from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO
 from setting_total import *
 
 from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_name_remove_ext_list
@@ -34,8 +35,8 @@ def format_base_dict(dirs):
     """
     for base_var_dir, ext_list in dirs.items():
         file_info_dict = get_dir_path_file_info_dict(base_var_dir, ext_list=ext_list)
-        print(f"[*] DIR:{base_var_dir} -> SUFFIX: {ext_list}")
-        print(f"[*] FILES : {list(file_info_dict.values())}")
+        output(f"[*] DIR:{base_var_dir} -> SUFFIX: {ext_list}")
+        output(f"[*] FILES : {list(file_info_dict.values())}")
 
         for file_name, file_path in file_info_dict.items():
             pure_name = file_name_remove_ext_list(file_name, ext_list)
@@ -50,15 +51,18 @@ def format_base_dict(dirs):
                 new_content_list = lower_list(file_content)
                 new_content_list = unique_list(new_content_list)
                 if len(file_content) != len(new_content_list):
-                    print(f"[*] 有效变量名: {f'%{pure_name}%'}")
-                    print(f"[*] 变量名内容: {file_content}")
+                    output(f"[*] 有效变量名: {f'%{pure_name}%'}")
+                    output(f"[*] 变量名内容: {file_content}")
                     write_lines(file_path, new_content_list, encoding="utf-8", new_line=True, mode="w+")
-                    print(f"[+] 成功格式化: {file_path}")
+                    output(f"[+] 成功格式化: {file_path}",level=LOG_INFO)
                 else:
-                    print(f"[*] 跳过格式化: {file_path}")
+                    output(f"[*] 跳过格式化: {file_path}")
 
 
 if __name__ == '__main__':
+    # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
+    set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, True)
+
     base_dirs = {
         GB_BASE_VAR_DIR: GB_DICT_SUFFIX,
         GB_BASE_DYNA_DIR: GB_DICT_SUFFIX,
