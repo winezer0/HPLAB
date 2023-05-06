@@ -8,6 +8,7 @@ from libs.lib_run_str_attr.str_attr_const import *
 STYLE_NORMAL = Style.NORMAL  # 返回完整拼音 （"中文"-> ["zhong", "wen"]）
 STYLE_FIRST = Style.FIRST_LETTER  # 返回首字母 （"中文" -> ["z", "w"]）
 STYLE_INITIALS = Style.INITIALS  # 返回声母部分 无声母用首字母补充 （ "中文"-> ["zh", "w"]）
+ALLOWED_STYLES = [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS]
 ######################################
 PY_OPTIMIZED = "PY_OPTIMIZED"  # 已优化
 PY_TEMP_SYMBOL = "PY_TEMP_SYMBOL"  # 连接字符串,不会对其他数据有影响, 使用下划线即可
