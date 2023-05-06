@@ -286,8 +286,8 @@ GB_FILTER_TUPLE_OPTIONS = {
 }
 ############################################################
 # 对密码中的用户名替换时候的一些选项
-# GB_SOCIAL_OPTIONS_DICT = copy.copy(SOCIAL_OPTIONS_DICT)
-GB_SOCIAL_OPTIONS_DICT = {
+# GB_SOCIAL_USER_OPTIONS_DICT = copy.copy(SOCIAL_USER_OPTIONS_DICT)
+GB_SOCIAL_USER_OPTIONS_DICT = {
     SO_NAME_CAPER: False,  # 用户名首字母大写
     SO_NAME_LOWER: True,  # 用户名全部小写
     SO_NAME_UPPER: False,  # 用户名全部大写
@@ -299,6 +299,27 @@ GB_SOCIAL_OPTIONS_DICT = {
     SO_PASS_KEEP: False,  # 当开启密码格式处理时,依旧保留原始密码
 
     SO_ONLY_MARK_PASS: False  # 仅对 密码中包含用户名变量的密码 进行以上操作
+}
+############################################################
+# GB_SOCIAL_PASS_OPTIONS_DICT = copy.copy(SOCIAL_PASS_OPTIONS_DICT)
+GB_SOCIAL_PASS_OPTIONS_DICT = {
+    SO_PASS_KEEP: True,  # 对密码进行格式化时, 保留原始密码
+    SO_PASS_REPL: [  # 密码字符替换
+        # {"o": "0"},
+        # {"o": "@"},
+    ],
+    SO_PASS_SEGMENT: [  # 密码字母按段索引大小写
+        # {0: "upper"},
+        # {1: "upper"},
+        # {0: "upper", 1: "upper"},
+        # {0: "upper", 2: "upper"},
+        # {0: "upper", "*": "lower"},
+    ],
+    SO_PASS_INDEXED: [  # 密码字母按字母索引大小写
+        # {1:"upper","*":"lower"},
+        # {0: "upper", "*": "lower"},
+        # {-1: "lower", "*": "u"},
+    ],
 }
 ############################################################
 # 最后爆破时，对中文账号密码进行进行中文编码
