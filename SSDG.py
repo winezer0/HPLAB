@@ -28,20 +28,24 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
 
     # 读取账号文件
     if default_name_list:
-        output(f"[*] 已输入默认账号列表 {default_name_list} 忽略读取账号字典文件", level=LOG_INFO)
         name_list = default_name_list
+        output(f"[*] 已输入默认账号列表 {default_name_list} 忽略读取账号字典文件", level=LOG_INFO)
     else:
-        output(f"[*] 读取账号字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
-        name_list = read_file_to_list(GB_USER_NAME_FILE, encoding=file_encoding(GB_USER_NAME_FILE), de_strip=True,
+        name_list = read_file_to_list(GB_USER_NAME_FILE,
+                                      encoding=file_encoding(GB_USER_NAME_FILE),
+                                      de_strip=True,
                                       de_weight=True)
+        output(f"[*] 读取账号字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
 
     # 读取密码文件
     if default_pass_list:
-        output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
         pass_list = default_pass_list
+        output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
     else:
         output(f"[*] 读取密码字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
-        pass_list = read_file_to_list(GB_USER_PASS_FILE, encoding=file_encoding(GB_USER_PASS_FILE), de_strip=True,
+        pass_list = read_file_to_list(GB_USER_PASS_FILE,
+                                      encoding=file_encoding(GB_USER_PASS_FILE),
+                                      de_strip=True,
                                       de_weight=True)
 
     output(f"[*] 读取账号|密码文件完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
@@ -61,8 +65,9 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.name.txt"), name_list)
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.render_base.pass.txt"), pass_list)
 
-    # 获取基本变量字典
+    # 基本变量替换处理
     if True:
+        # 获取基本变量字典
         base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
         output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
@@ -108,8 +113,9 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.name.txt"), name_list)
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pass.txt"), pass_list)
 
-    # 获取因变量
+    # 因变量替换处理
     if True:
+        # 获取因变量
         dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
                                                             base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
                                                             ignore_ip_format=GB_IGNORE_IP_FORMAT,
