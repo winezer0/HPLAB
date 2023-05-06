@@ -27,9 +27,7 @@ def exclude_pair_tuples_by_length(tuple_list,
 
 
 # 对字符串列表进行长度过滤
-def exclude_string_list_by_length(string_list,
-                                  min_len_str, max_len_str,
-                                  ignore_empty, ignore_symbols):
+def exclude_string_list_by_length(string_list, min_len_str, max_len_str, ignore_empty, ignore_symbols):
     # 对字符串列表进行长度过滤
 
     # 处理max_len赋值错误的情况
@@ -44,9 +42,7 @@ def exclude_string_list_by_length(string_list,
 
 
 # 排除包含指定符号的字符串
-def exclude_string_list_by_symbols(string_list,
-                                   ban_symbols_str,
-                                   ignore_empty, ignore_symbols):
+def exclude_string_list_by_symbols(string_list, ban_symbols_str, ignore_empty, ignore_symbols):
     string_list = [string for string in string_list
                    if (ignore_empty and string == "")
                    or (ignore_symbols and list_ele_in_str(ignore_symbols, string, default=False))
@@ -55,9 +51,7 @@ def exclude_string_list_by_symbols(string_list,
 
 
 # 排除包含指定符号的字符串
-def exclude_tuple_list_by_symbols(tuple_list,
-                                  ban_symbols_name, ban_symbols_pass,
-                                  ignore_empty, ignore_symbols):
+def exclude_tuple_list_by_symbols(tuple_list, ban_symbols_name, ban_symbols_pass, ignore_empty, ignore_symbols):
     tuple_list = [(name_, pass_) for name_, pass_ in tuple_list
                   if ((ignore_empty and name_ == "")
                       or (ignore_symbols and list_ele_in_str(ignore_symbols, name_, default=False))
@@ -70,9 +64,7 @@ def exclude_tuple_list_by_symbols(tuple_list,
 
 
 # 基于输入的规则列表判断字符是否被提取
-def extract_string_list_by_char_type(string_list,
-                                     expected_rules_str,
-                                     ignore_empty, ignore_symbols):
+def extract_string_list_by_char_type(string_list, expected_rules_str, ignore_empty, ignore_symbols):
     # 基于输入的规则列表判断字符是否被提取
     # has_digit, has_upper, has_lower, has_symbol
     expected_rules_str = format_rule_list(expected_rules_str)
@@ -84,9 +76,7 @@ def extract_string_list_by_char_type(string_list,
 
 
 # 基于输入的规则列表判断字符是否被提取
-def extract_tuple_list_by_char_type(tuple_list,
-                                    expected_rules_name, expected_rules_pass,
-                                    ignore_empty, ignore_symbols):
+def extract_tuple_list_by_char_type(tuple_list, expected_rules_name, expected_rules_pass, ignore_empty, ignore_symbols):
     # 基于输入的规则列表判断字符是否被提取
     expected_rules_name = format_rule_list(expected_rules_name)
     expected_rules_pass = format_rule_list(expected_rules_pass)
@@ -104,9 +94,7 @@ def extract_tuple_list_by_char_type(tuple_list,
 
 
 # 基于输入的规则列表判断字符是否被排除
-def exclude_string_list_by_char_type(string_list,
-                                     expected_rules_str,
-                                     ignore_empty, ignore_symbols):
+def exclude_string_list_by_char_type(string_list, expected_rules_str, ignore_empty, ignore_symbols):
     # 基于输入的规则列表判断字符是否被排除
     expected_rules_str = format_rule_list(expected_rules_str)
     # has_digit, has_upper, has_lower, has_symbol
@@ -118,9 +106,7 @@ def exclude_string_list_by_char_type(string_list,
 
 
 # 基于输入的规则列表判断字符是否被排除
-def exclude_tuple_list_by_char_type(tuple_list,
-                                    expected_rules_name, expected_rules_pass,
-                                    ignore_empty, ignore_symbols):
+def exclude_tuple_list_by_char_type(tuple_list, expected_rules_name, expected_rules_pass, ignore_empty, ignore_symbols):
     expected_rules_name = format_rule_list(expected_rules_name)
     expected_rules_pass = format_rule_list(expected_rules_pass)
 
