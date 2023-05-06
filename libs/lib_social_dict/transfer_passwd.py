@@ -5,6 +5,7 @@ import itertools
 import re
 
 from libs.lib_log_print.logger_printer import output, LOG_ERROR
+from libs.lib_run_str_attr.str_attr_const import *
 from libs.lib_social_dict.repl_const import SO_PASS_KEEP, SO_PASS_SEGMENT, SO_PASS_INDEXED, SO_PASS_REPL
 
 
@@ -23,7 +24,7 @@ def replace_symbol_by_dict(raw_string, action_dict_list):
 # 对动作简写进行还原 # U -> upper | L -> lower | C -> cap | T ->title
 def repair_shorthand_action_dict(action_dict):
     # 对动作简写进行还原 # U -> upper | L -> lower | C -> cap | T ->title
-    long_actions = ["upper", "lower", "title", "capitalize"]
+    long_actions = [ATTR_UPPER, ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
     for seg, short_action in action_dict.items():
         for long_action in long_actions:
             if long_action.startswith(str(short_action).lower()):
@@ -35,7 +36,7 @@ def repair_shorthand_action_dict(action_dict):
 def is_allowed_action_dict(action_dict):
     # 检查规则的动作是否正确
     status = True
-    allow_actions = ["upper", "lower", "title", "capitalize"]
+    allow_actions = [ATTR_UPPER, ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
     for action in list(action_dict.values()):
         if action not in allow_actions:
             output(f"[!] 动作错误 {action_dict} <--> {action} not in {allow_actions}", level=LOG_ERROR)
@@ -68,7 +69,7 @@ def handle_alpha_by_seg(base_pass, action_dict_list):
                     action = action_dict["*"]
                     copy_split = [getattr(x, action)() for x in copy_split]
                 for seg, action in action_dict.items():
-                    if isinstance(seg,int) and seg < len(copy_split):
+                    if isinstance(seg, int) and seg < len(copy_split):
                         # getattr 函数可以根据传入的对象和属性名获取属性值，而字符串的内置方法 upper 可以将字符串转换为大写。
                         copy_split[seg] = getattr(copy_split[seg], action)()
                 str_list.append("".join(copy_split))
@@ -94,7 +95,7 @@ def handle_alpha_by_index(base_pass, action_dict_list):
                 action = action_dict["*"]
                 copy_pass = getattr(copy_pass, action)()
             for seg, action in action_dict.items():
-                if isinstance(seg,int) and seg < len(copy_pass):
+                if isinstance(seg, int) and seg < len(copy_pass):
                     copy_split = list(copy_pass)
                     # getattr 函数可以根据传入的对象和属性名获取属性值，而字符串的内置方法 upper 可以将字符串转换为大写。
                     copy_split[seg] = getattr(copy_split[seg], action)()

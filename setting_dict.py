@@ -8,7 +8,7 @@ import time
 from libs.lib_chinese_pinyin.chinese_const import *
 from libs.lib_dyna_rule.dyna_rule_const import *
 from libs.lib_filter_srting.filter_const import *
-from libs.lib_run_attr.attr_const import *
+from libs.lib_run_str_attr.str_attr_const import *
 from libs.lib_social_dict.repl_const import *
 
 ############################################################
@@ -91,7 +91,7 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_LINK_SYMBOLS: [""],
     PY_CN_NAME_MAX_LEN: 4,
 
-    PY_SY_CASE:[ATTR_LOWER],
+    PY_SY_CASE: [ATTR_LOWER],
 
     PY_CN_USE_JIEBA: True,
 
@@ -107,21 +107,15 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_FT_MAX_LEN: GB_USER_NAME_MAX_LEN,
     PY_IGNORE_SYMBOL: GB_IGNORE_SYMBOLS,
 
-    PY_NORMAL_UNI: True,
-    PY_FIRST_UNI: True,
-    PY_INITIALS_UNI: True,
+    PY_UNI_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
     PY_UNI_CASE: [ATTR_LOWER],
 
-    PY_NORMAL_XIN: True,
-    PY_FIRST_XIN: True,
-    PY_INITIALS_XIN: True,
+    PY_XIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
     PY_XIN_CASE: [ATTR_LOWER],
 
-    PY_NORMAL_MIN: True,
-    PY_FIRST_MIN: True,
-    PY_INITIALS_MIN: True,
+    PY_MIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
     PY_MIN_CASE: [ATTR_LOWER],
 
@@ -149,23 +143,17 @@ GB_CHINESE_OPTIONS_PASS = {
     PY_FT_MAX_LEN: GB_USER_NAME_MAX_LEN,
     PY_IGNORE_SYMBOL: GB_IGNORE_SYMBOLS,
 
-    PY_NORMAL_UNI: True,
-    PY_FIRST_UNI: True,
-    PY_INITIALS_UNI: True,
+    PY_UNI_STYLES:[STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
     PY_UNI_CASE: [ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
 
-    PY_NORMAL_XIN: True,
-    PY_FIRST_XIN: True,
-    PY_INITIALS_XIN: True,
+    PY_XIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
     PY_XIN_CASE: [ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
 
-    PY_NORMAL_MIN: True,
-    PY_FIRST_MIN: True,
-    PY_INITIALS_MIN: True,
+    PY_MIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
-    PY_MIN_CASE:[ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
+    PY_MIN_CASE: [ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
 
 }
 #######################
@@ -264,7 +252,7 @@ GB_FILTER_TUPLE_OPTIONS = {
 # 对密码中的用户名替换时候的一些选项
 # GB_SOCIAL_USER_OPTIONS_DICT = copy.copy(SOCIAL_USER_OPTIONS_DICT)
 GB_SOCIAL_USER_OPTIONS_DICT = {
-    SO_NAME_CASE:[ATTR_LOWER],  # 用户名大小写处理
+    SO_NAME_CASE: [ATTR_LOWER],  # 用户名大小写处理
     SO_NAME_KEEP: False,  # 当开启用户名格式处理时,依旧保留原始用户名
 
     SO_PASS_CASE: [],  # 密码用户名 大小写处理 （如果密码中有用户名 就密码内的 用户名全部大小写处理,否则就密码整体全部大小写处理）

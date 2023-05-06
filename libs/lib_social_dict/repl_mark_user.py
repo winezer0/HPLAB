@@ -7,7 +7,7 @@ import itertools
 from libs.lib_social_dict.repl_const import *
 
 # 替换基于用户名变量的密码 并且支持 在替换过程中对账号密码进行处理
-from libs.lib_run_attr.run_attr import string_run_attr
+from libs.lib_run_str_attr.str_attr_run import string_run_attr
 
 
 def replace_mark_user_on_pass(user_pass_pair_list, mark_string, options_dict):

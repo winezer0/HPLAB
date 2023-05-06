@@ -1,7 +1,14 @@
 # -*- coding: utf-8 -*-
+from pypinyin import Style
 
 ######################################
 # 定义一些通用常量
+from libs.lib_run_str_attr.str_attr_const import *
+
+STYLE_NORMAL = Style.NORMAL  # 返回完整拼音 （"中文"-> ["zhong", "wen"]）
+STYLE_FIRST = Style.FIRST_LETTER  # 返回首字母 （"中文" -> ["z", "w"]）
+STYLE_INITIALS = Style.INITIALS  # 返回声母部分 无声母用首字母补充 （ "中文"-> ["zh", "w"]）
+######################################
 PY_OPTIMIZED = "PY_OPTIMIZED"  # 已优化
 PY_TEMP_SYMBOL = "PY_TEMP_SYMBOL"  # 连接字符串,不会对其他数据有影响, 使用下划线即可
 ######################################
@@ -26,25 +33,19 @@ PY_XM2CH = "PY_XM2CH"  # 把姓名也当作词汇，再作做一遍字典生成
 PY_CH2XM = "PY_CH2XM"  # 把词汇也当做姓名处理,第一个字作为姓氏处理 （小于2的长度的好像没有意义,需要测试）
 
 # 普通词汇的 基本拼接元素的生成
-PY_NORMAL_UNI = "PY_NORMAL_UNI"  # 返回完整拼音 （"中文"-> ["zhong", "wen"]）
-PY_FIRST_UNI = "PY_FIRST_UNI"  # 返回首字母 （"中文" -> ["z", "w"]）
-PY_INITIALS_UNI = "PY_INITIALS_UNI"  # 返回声母部分 无声母用首字母补充 （ "中文"-> ["zh", "w"]）
+PY_UNI_STYLES = "PY_UNI_STYLES"
 
 # 对 普通词汇的 每个组合的姓名字典做大小写等处理
 PY_UNI_CASE = "PY_UNI_CASE"
 ######################################
 # 姓名的姓氏的 基本拼接元素的生成
-PY_NORMAL_XIN = "PY_NORMAL_XIN"  # 返回完整拼音 （"中文"-> ["zhong", "wen"]）
-PY_FIRST_XIN = "PY_FIRST_XIN"  # 返回首字母 （"中文" -> ["z", "w"]）
-PY_INITIALS_XIN = "PY_INITIALS_XIN"  # 返回声母部分 无声母用首字母补充 （ "中文"-> ["zh", "w"]）
+PY_XIN_STYLES = "PY_XIN_STYLES"
 
 # 姓名的名字的  每个组合的姓名字典做大小写等处理
 PY_XIN_CASE = "PY_XIN_CASE"
 ##################
 # 姓名的姓氏的 基本拼接元素的生成
-PY_NORMAL_MIN = "PY_NORMAL_MIN"  # 返回完整拼音 （"中文"-> ["zhong", "wen"]）
-PY_FIRST_MIN = "PY_FIRST_MIN"  # 返回首字母 （"中文" -> ["z", "w"]）
-PY_INITIALS_MIN = "PY_INITIALS_MIN"  # 返回声母部分 无声母用首字母补充 （ "中文"-> ["zh", "w"]）
+PY_MIN_STYLES = "PY_MIN_STYLES"
 
 # 姓名的名字的  每个组合的姓名字典做大小写等处理
 PY_MIN_CASE = "PY_XIN_CASE"
@@ -64,7 +65,7 @@ PY_MAX_OPTIONS = {
     PY_LINK_SYMBOLS: ["_", ".", ""],
     PY_CN_NAME_MAX_LEN: 4,
 
-    PY_SY_CASE:["upper","lower","title","caper"],
+    PY_SY_CASE: [ATTR_UPPER, ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 
     PY_CN_USE_JIEBA: True,
     PY_POSITIVE: True,
@@ -78,23 +79,17 @@ PY_MAX_OPTIONS = {
     PY_FT_MAX_LEN: 12,
     PY_IGNORE_SYMBOL: ["%%", "%", "}$"],
 
-    PY_NORMAL_UNI: True,
-    PY_FIRST_UNI: True,
-    PY_INITIALS_UNI: True,
+    PY_UNI_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
-    PY_UNI_CASE: ["upper","lower","title","caper"],
+    PY_UNI_CASE: [ATTR_UPPER, ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 
-    PY_NORMAL_XIN: True,
-    PY_FIRST_XIN: True,
-    PY_INITIALS_XIN: True,
+    PY_XIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
-    PY_XIN_CASE:["lower","upper","title","caper"],
+    PY_XIN_CASE: [ATTR_UPPER, ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 
-    PY_NORMAL_MIN: True,
-    PY_FIRST_MIN: True,
-    PY_INITIALS_MIN: True,
+    PY_MIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
-    PY_MIN_CASE: ["lower", "upper", "title", "caper"],
+    PY_MIN_CASE: [ATTR_UPPER, ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 }
 
 PY_BASE_OPTIONS = {
@@ -102,7 +97,7 @@ PY_BASE_OPTIONS = {
     PY_LINK_SYMBOLS: [""],
     PY_CN_NAME_MAX_LEN: 4,
 
-    PY_SY_CASE:["lower","title","caper"],
+    PY_SY_CASE: [ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 
     PY_CN_USE_JIEBA: False,
 
@@ -118,23 +113,17 @@ PY_BASE_OPTIONS = {
     PY_FT_MAX_LEN: 12,
     PY_IGNORE_SYMBOL: ["%%", "%", "}$"],
 
-    PY_NORMAL_UNI: True,
-    PY_FIRST_UNI: True,
-    PY_INITIALS_UNI: True,
+    PY_UNI_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
-    PY_UNI_CASE: ["lower", "title", "caper"],
+    PY_UNI_CASE:  [ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 
-    PY_NORMAL_XIN: True,
-    PY_FIRST_XIN: True,
-    PY_INITIALS_XIN: True,
+    PY_XIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
-    PY_XIN_CASE: ["lower", "title", "caper"],
+    PY_XIN_CASE:  [ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 
-    PY_NORMAL_MIN: True,
-    PY_FIRST_MIN: True,
-    PY_INITIALS_MIN: True,
+    PY_MIN_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
-    PY_MIN_CASE: ["lower", "title", "caper"],
+    PY_MIN_CASE: [ATTR_LOWER, ATTR_TITLE, ATTR_CAPER],
 
 }
 ######################################

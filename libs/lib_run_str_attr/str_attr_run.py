@@ -1,4 +1,5 @@
 from libs.lib_log_print.logger_printer import output, LOG_ERROR
+from libs.lib_run_str_attr.str_attr_const import *
 
 
 def repair_shorthand_action_list(action_list, long_actions):
@@ -23,7 +24,7 @@ def is_allowed_action_list(action_list, allow_actions):
 def string_run_attr(string, action_list):
     """执行字符串的属性方法"""
     new_value = []
-    allow_actions = ["upper", "lower", "title", "capitalize"]
+    allow_actions = [ATTR_UPPER, ATTR_LOWER, ATTR_TITLE, ATTR_CAPER]
     action_list = repair_shorthand_action_list(action_list, allow_actions)
     if is_allowed_action_list(action_list, allow_actions):
         for action in action_list:

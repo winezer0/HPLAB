@@ -8,7 +8,7 @@ from libs.lib_chinese_pinyin.chinese_string_handle import gen_chinese_to_pinyin_
 
 
 # 优化离线翻译字典处理  目前为空
-from libs.lib_run_attr.run_attr import string_run_attr
+from libs.lib_run_str_attr.str_attr_run import string_run_attr
 
 
 def optimize_translate_dict(translate_dict,
