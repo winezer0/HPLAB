@@ -16,7 +16,7 @@ from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
 from libs.lib_filter_srting.filter_call import format_string_list, format_tuple_list
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO
-from libs.lib_social_dict.repl_mark_user_call import replace_mark_user_on_pass
+from libs.lib_social_dict.repl_mark_user import replace_mark_user_on_pass
 from setting_total import *
 
 

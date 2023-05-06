@@ -4,7 +4,7 @@
 import itertools
 
 # 替换基于用户名变量的密码
-from libs.lib_social_dict.repl_mark_user_const import *
+from libs.lib_social_dict.repl_const import *
 
 
 # 替换基于用户名变量的密码 并且支持 在替换过程中对账号密码进行处理
