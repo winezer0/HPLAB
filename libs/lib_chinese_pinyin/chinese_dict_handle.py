@@ -3,11 +3,14 @@
 import copy
 
 # 离线翻译字典
-from libs.lib_chinese_pinyin.chinese_const import PY_SY_LOWER, PY_SY_UPPER, PY_SY_TITLE, PY_SY_CAPER, PY_OPTIMIZED
+from libs.lib_chinese_pinyin.chinese_const import PY_OPTIMIZED, PY_SY_CASE
 from libs.lib_chinese_pinyin.chinese_string_handle import gen_chinese_to_pinyin_mark_dict
 
 
 # 优化离线翻译字典处理  目前为空
+from libs.lib_run_attr.run_attr import string_run_attr
+
+
 def optimize_translate_dict(translate_dict,
                             options_dict,
                             deep_copy=False):
@@ -22,16 +25,11 @@ def optimize_translate_dict(translate_dict,
     for key, value in translate_dict.items():
         new_value = copy.copy(value)
         for v in value:
-            if options_dict[PY_SY_LOWER]:
-                new_value.append(str(v).lower())
-            if options_dict[PY_SY_UPPER]:
-                new_value.append(str(v).upper())
-            if options_dict[PY_SY_TITLE]:
-                # v.title() 将字符串中每个单词的首字母都变成大写字母
-                new_value.append(str(v).title())
-            if options_dict[PY_SY_CAPER]:
-                # v.capitalize() 只将字符串的第一个字符变成大写字母，
-                new_value.append(str(v).capitalize())
+            # 优化为动作列表处理
+            if options_dict[PY_SY_CASE]:
+                values = string_run_attr(v, options_dict[PY_SY_CASE])
+                new_value.extend(values)
+
         # 更新列表值
         if new_value:
             translate_dict[key] = list(set(new_value))

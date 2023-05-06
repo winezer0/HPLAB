@@ -2,10 +2,13 @@
 
 # 拼接并且格式化获取到的姓、名的拼音
 from pypinyin import lazy_pinyin, Style
+
+from libs.lib_run_attr.run_attr import string_run_attr
 from libs.lib_log_print.logger_printer import output, LOG_DEBUG
 
 
 def get_word_base_ele_list(name_str, py_normal, py_first, py_initials):
+    # Pinyin extraction
     # 获取每个字的 全拼、首字母等 对整体进行操作
     pinyin_list = []
 
@@ -39,30 +42,14 @@ def get_word_base_ele_list(name_str, py_normal, py_first, py_initials):
     return pinyin_list
 
 
-def merge_base_ele_list(pinyin_list, temp_symbol, py_upper, py_lower, py_title, py_caper):
+def merge_base_ele_list(pinyin_list, temp_symbol, py_case_list):
     # 组合基本字符串
     str_list = []
     temp_string = temp_symbol.join(pinyin_list)
 
-    if py_upper:
-        temp_string_upper = str(temp_string).upper()
-        # print("temp_string_upper", temp_string_upper)  # 全部大写
-        str_list.append(temp_string_upper)
-
-    if py_lower:
-        temp_string_lower = str(temp_string).lower()
-        # print("temp_string_lower", temp_string_lower)  # 全部小写
-        str_list.append(temp_string_lower)
-
-    if py_title:
-        temp_string_title = str(temp_string).title()
-        # print("temp_string_title", temp_string_title)  # 每个单词的首字母大写
-        str_list.append(temp_string_title)
-
-    if py_caper:
-        temp_string_caper = str(temp_string).capitalize()
-        # print("temp_string_caper", temp_string_caper)  # 合并后的字符串 首字母大写
-        str_list.append(temp_string_caper)
+    if py_case_list:
+        values = string_run_attr(temp_string, py_case_list)
+        str_list.extend(values)
 
     if str_list:
         str_list = list(set(str_list))

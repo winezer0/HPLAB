@@ -8,12 +8,10 @@ import time
 from libs.lib_chinese_pinyin.chinese_const import *
 from libs.lib_dyna_rule.dyna_rule_const import *
 from libs.lib_filter_srting.filter_const import *
+from libs.lib_run_attr.attr_const import *
 from libs.lib_social_dict.repl_const import *
 
 ############################################################
-# 获取setting.py脚本所在路径作为的基本路径
-GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
-##################################################################
 # 获取setting.py脚本所在路径作为的基本路径
 GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 ############################################################
@@ -93,10 +91,7 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_LINK_SYMBOLS: [""],
     PY_CN_NAME_MAX_LEN: 4,
 
-    PY_SY_LOWER: True,
-    PY_SY_UPPER: False,
-    PY_SY_TITLE: False,
-    PY_SY_CAPER: False,
+    PY_SY_CASE:[ATTR_LOWER],
 
     PY_CN_USE_JIEBA: True,
 
@@ -116,28 +111,20 @@ GB_CHINESE_OPTIONS_NAME = {
     PY_FIRST_UNI: True,
     PY_INITIALS_UNI: True,
 
-    PY_LOWER_UNI: True,
-    PY_UPPER_UNI: False,
-    PY_TITLE_UNI: False,
-    PY_CAPER_UNI: False,
+    PY_UNI_CASE: [ATTR_LOWER],
 
     PY_NORMAL_XIN: True,
     PY_FIRST_XIN: True,
     PY_INITIALS_XIN: True,
 
-    PY_LOWER_XIN: True,
-    PY_UPPER_XIN: False,
-    PY_TITLE_XIN: False,
-    PY_CAPER_XIN: False,
+    PY_XIN_CASE: [ATTR_LOWER],
 
     PY_NORMAL_MIN: True,
     PY_FIRST_MIN: True,
     PY_INITIALS_MIN: True,
 
-    PY_LOWER_MIN: True,
-    PY_UPPER_MIN: False,
-    PY_TITLE_MIN: False,
-    PY_CAPER_MIN: False,
+    PY_MIN_CASE: [ATTR_LOWER],
+
 }
 #######################
 # 对密码中依赖的中文处理方案
@@ -146,10 +133,7 @@ GB_CHINESE_OPTIONS_PASS = {
     PY_LINK_SYMBOLS: [""],
     PY_CN_NAME_MAX_LEN: 4,
 
-    PY_SY_LOWER: True,
-    PY_SY_UPPER: True,
-    PY_SY_TITLE: True,
-    PY_SY_CAPER: True,
+    PY_SY_CASE: [ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
 
     PY_CN_USE_JIEBA: True,
 
@@ -169,28 +153,20 @@ GB_CHINESE_OPTIONS_PASS = {
     PY_FIRST_UNI: True,
     PY_INITIALS_UNI: True,
 
-    PY_LOWER_UNI: True,
-    PY_UPPER_UNI: True,
-    PY_TITLE_UNI: True,
-    PY_CAPER_UNI: True,
+    PY_UNI_CASE: [ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
 
     PY_NORMAL_XIN: True,
     PY_FIRST_XIN: True,
     PY_INITIALS_XIN: True,
 
-    PY_LOWER_XIN: True,
-    PY_UPPER_XIN: True,
-    PY_TITLE_XIN: True,
-    PY_CAPER_XIN: True,
+    PY_XIN_CASE: [ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
 
     PY_NORMAL_MIN: True,
     PY_FIRST_MIN: True,
     PY_INITIALS_MIN: True,
 
-    PY_LOWER_MIN: True,
-    PY_UPPER_MIN: True,
-    PY_TITLE_MIN: True,
-    PY_CAPER_MIN: True,
+    PY_MIN_CASE:[ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
+
 }
 #######################
 # 中文转拼音处理时，对元组列表处理时的配置字典
@@ -288,14 +264,10 @@ GB_FILTER_TUPLE_OPTIONS = {
 # 对密码中的用户名替换时候的一些选项
 # GB_SOCIAL_USER_OPTIONS_DICT = copy.copy(SOCIAL_USER_OPTIONS_DICT)
 GB_SOCIAL_USER_OPTIONS_DICT = {
-    SO_NAME_CAPER: False,  # 用户名首字母大写
-    SO_NAME_LOWER: True,  # 用户名全部小写
-    SO_NAME_UPPER: False,  # 用户名全部大写
+    SO_NAME_CASE:[ATTR_LOWER],  # 用户名大小写处理
     SO_NAME_KEEP: False,  # 当开启用户名格式处理时,依旧保留原始用户名
 
-    SO_PASS_CAPER: False,  # 密码 首字母大写（如果密码中有用户名 就密码内的 用户名首字母大写,否则就密码整体首字母大写）
-    SO_PASS_LOWER: False,  # 密码用户名 全部小写（如果密码中有用户名 就密码内的 用户名全部小写,否则就密码整体全部小写）
-    SO_PASS_UPPER: False,  # 密码用户名 全部大写 （如果密码中有用户名 就密码内的 用户名全部大写,否则就密码整体全部大写）4
+    SO_PASS_CASE: [],  # 密码用户名 大小写处理 （如果密码中有用户名 就密码内的 用户名全部大小写处理,否则就密码整体全部大小写处理）
     SO_PASS_KEEP: False,  # 当开启密码格式处理时,依旧保留原始密码
 
     SO_ONLY_MARK_PASS: False  # 仅对 密码中包含用户名变量的密码 进行以上操作
@@ -311,14 +283,14 @@ GB_SOCIAL_PASS_OPTIONS_DICT = {
     SO_PASS_SEGMENT: [  # 密码字母按段索引大小写
         # {0: "upper"},
         # {1: "upper"},
-        # {0: "upper", 1: "upper"},
-        # {0: "upper", 2: "upper"},
-        # {0: "upper", "*": "lower"},
+        # {0: "upper", 1: ATTR_UPPER},
+        # {0: "upper", 2: ATTR_UPPER},
+        # {0: ATTR_UPPER, "*": ATTR_LOWER},
     ],
     SO_PASS_INDEXED: [  # 密码字母按字母索引大小写
-        # {1:"upper","*":"lower"},
+        # {1:ATTR_UPPER,"*":ATTR_LOWER},
         # {0: "upper", "*": "lower"},
-        # {-1: "lower", "*": "u"},
+        # {-1: ATTR_UPPER, "*": "u"},
     ],
 }
 ############################################################

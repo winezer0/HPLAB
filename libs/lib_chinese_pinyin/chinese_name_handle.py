@@ -62,17 +62,11 @@ def chinese_name_tuple_list_format(pinyin_tuple_list, options_dict, link_symbol)
     for xin_ele_list, min_ele_list in pinyin_tuple_list:
         xin_ele_list = merge_base_ele_list(pinyin_list=xin_ele_list,
                                            temp_symbol=options_dict[PY_TEMP_SYMBOL],
-                                           py_upper=options_dict[PY_UPPER_XIN],
-                                           py_lower=options_dict[PY_LOWER_XIN],
-                                           py_title=options_dict[PY_TITLE_XIN],
-                                           py_caper=options_dict[PY_CAPER_XIN],
+                                           py_case_list=options_dict[PY_XIN_CASE],
                                            )
         min_ele_list = merge_base_ele_list(pinyin_list=min_ele_list,
                                            temp_symbol=options_dict[PY_TEMP_SYMBOL],
-                                           py_upper=options_dict[PY_UPPER_MIN],
-                                           py_lower=options_dict[PY_LOWER_MIN],
-                                           py_title=options_dict[PY_TITLE_MIN],
-                                           py_caper=options_dict[PY_CAPER_MIN],
+                                           py_case_list=options_dict[PY_MIN_CASE],
                                            )
         xin_name_list.extend(xin_ele_list)
         min_name_list.extend(min_ele_list)
@@ -105,10 +99,11 @@ def chinese_string_basic_list_format(pinyin_list_list, options_dict, link_symbol
     for pinyin_list in pinyin_list_list:
         pinyin_list = merge_base_ele_list(pinyin_list=pinyin_list,
                                           temp_symbol=options_dict[PY_TEMP_SYMBOL],
-                                          py_upper=options_dict[PY_UPPER_UNI],
-                                          py_lower=options_dict[PY_LOWER_UNI],
-                                          py_title=options_dict[PY_TITLE_UNI],
-                                          py_caper=options_dict[PY_CAPER_UNI],
+                                          py_case_list= options_dict[PY_UNI_CASE],
+                                          # py_upper=options_dict[PY_UPPER_UNI],
+                                          # py_lower=options_dict[PY_LOWER_UNI],
+                                          # py_title=options_dict[PY_TITLE_UNI],
+                                          # py_caper=options_dict[PY_CAPER_UNI],
                                           )
         pinyin_str_list.extend(pinyin_list)
 

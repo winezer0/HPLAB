@@ -8,17 +8,6 @@ from libs.lib_log_print.logger_printer import output, LOG_ERROR
 from libs.lib_social_dict.repl_const import SO_PASS_KEEP, SO_PASS_SEGMENT, SO_PASS_INDEXED, SO_PASS_REPL
 
 
-# 对动作简写进行还原 # U -> upper | L -> lower | C -> cap | T ->title
-def repair_shorthand_action(action_dict):
-    # 对动作简写进行还原 # U -> upper | L -> lower | C -> cap | T ->title
-    long_actions = ["upper", "lower", "title", "capitalize"]
-    for seg, short_action in action_dict.items():
-        for long_action in long_actions:
-            if long_action.startswith(str(short_action).lower()):
-                action_dict[seg] = long_action
-    return action_dict
-
-
 # 对字符串进行进行指定字符替换
 def replace_symbol_by_dict(raw_string, action_dict_list):
     str_list = []
@@ -31,7 +20,19 @@ def replace_symbol_by_dict(raw_string, action_dict_list):
     return str_list
 
 
-def action_is_allowed(action_dict):
+# 对动作简写进行还原 # U -> upper | L -> lower | C -> cap | T ->title
+def repair_shorthand_action_dict(action_dict):
+    # 对动作简写进行还原 # U -> upper | L -> lower | C -> cap | T ->title
+    long_actions = ["upper", "lower", "title", "capitalize"]
+    for seg, short_action in action_dict.items():
+        for long_action in long_actions:
+            if long_action.startswith(str(short_action).lower()):
+                action_dict[seg] = long_action
+    return action_dict
+
+
+# 检查规则的动作是否正确
+def is_allowed_action_dict(action_dict):
     # 检查规则的动作是否正确
     status = True
     allow_actions = ["upper", "lower", "title", "capitalize"]
@@ -57,9 +58,9 @@ def handle_alpha_by_seg(base_pass, action_dict_list):
     if raw_alphas:
         for action_dict in action_dict_list:
             # 还原简写规则
-            action_dict = repair_shorthand_action(action_dict)
+            action_dict = repair_shorthand_action_dict(action_dict)
             # 判断规则动作是否合法
-            if action_is_allowed(action_dict):
+            if is_allowed_action_dict(action_dict):
                 # 保留原始元素
                 copy_split = copy.copy(raw_split)
                 # 当存在*的情况要求将所有元素先进行小写处理
@@ -83,9 +84,9 @@ def handle_alpha_by_index(base_pass, action_dict_list):
 
     for action_dict in action_dict_list:
         # 还原简写规则
-        action_dict = repair_shorthand_action(action_dict)
+        action_dict = repair_shorthand_action_dict(action_dict)
         # 判断规则动作是否合法
-        if action_is_allowed(action_dict):
+        if is_allowed_action_dict(action_dict):
             # 保留原始元素
             copy_pass = copy.copy(base_pass)
             # 当存在*的情况要求将所有元素先进行小写处理

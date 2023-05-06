@@ -169,3 +169,4 @@ def replace_chinese_list_to_pinyin_list(chinese_string_list, options_dict, link_
         new_string_list.extend(chinese_string_gen_list)
     return new_string_list
 
+

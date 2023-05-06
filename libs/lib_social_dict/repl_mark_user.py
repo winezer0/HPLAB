@@ -6,9 +6,11 @@ import itertools
 # 替换基于用户名变量的密码
 from libs.lib_social_dict.repl_const import *
 
-
 # 替换基于用户名变量的密码 并且支持 在替换过程中对账号密码进行处理
-def replace_mark_user_on_pass(user_pass_pair_list, mark_string, options_dict ):
+from libs.lib_run_attr.run_attr import string_run_attr
+
+
+def replace_mark_user_on_pass(user_pass_pair_list, mark_string, options_dict):
     # 替换基于用户名变量的密码 并且支持 在替换过程中对账号密码进行处理
     new_user_pass_pair_list = []
     for base_name, base_pass in user_pass_pair_list:
@@ -23,17 +25,10 @@ def replace_mark_user_on_pass(user_pass_pair_list, mark_string, options_dict ):
         if options_dict[SO_NAME_KEEP]:
             user_name_list.append(str(base_name))
 
-        # 首字母大写用户名
-        if options_dict[SO_NAME_CAPER]:
-            user_name_list.append(str(base_name).capitalize())
-
-        # 全部小写用户名
-        if options_dict[SO_NAME_LOWER]:
-            user_name_list.append(str(base_name).lower())
-
-        # 全部大写用户名
-        if options_dict[SO_NAME_UPPER]:
-            user_name_list.append(str(base_name).upper())
+        # 优化为动作列表处理
+        if options_dict[SO_NAME_CASE]:
+            names = string_run_attr(base_name, options_dict[SO_NAME_CASE])
+            user_name_list.extend(names)
 
         # 保留原始密码|同时进行原始用户名的替换
         if options_dict[SO_PASS_KEEP]:
@@ -41,31 +36,19 @@ def replace_mark_user_on_pass(user_pass_pair_list, mark_string, options_dict ):
 
         # 替换密码内的用户名标记
         if mark_string in base_pass:
-            # 用户名首字母大写的密码
-            if options_dict[SO_PASS_CAPER]:
-                user_pass_list.append(base_pass.replace(mark_string, str(base_name).capitalize()))
+            # 优化为动作列表处理
+            if options_dict[SO_PASS_CASE]:
+                names = string_run_attr(base_name, options_dict[SO_PASS_CASE])
+                values = [base_pass.replace(mark_string, name) for name in names]
+                user_pass_list.extend(values)
 
-            # 用户名全部小写的密码
-            if options_dict[SO_PASS_LOWER]:
-                user_pass_list.append(base_pass.replace(mark_string, str(base_name).lower()))
-
-            # 用户名全部大写的密码
-            if options_dict[SO_PASS_UPPER]:
-                user_pass_list.append(base_pass.replace(mark_string, str(base_name).upper()))
         else:
             # 并非 仅处理密码中包含用户名变量的密码
             if not options_dict[SO_ONLY_MARK_PASS]:
-                # 首字母大写的密码
-                if options_dict[SO_PASS_CAPER]:
-                    user_pass_list.append(str(base_pass).capitalize())
-
-                # 全部小写的密码
-                if options_dict[SO_PASS_LOWER]:
-                    user_pass_list.append(str(base_pass).lower())
-
-                # 全部大写的密码
-                if options_dict[SO_PASS_UPPER]:
-                    user_pass_list.append(str(base_pass).upper())
+                # 优化为动作列表处理
+                if options_dict[SO_PASS_CASE]:
+                    values = string_run_attr(base_pass, options_dict[SO_PASS_CASE])
+                    user_pass_list.extend(values)
 
         # 去重和填充用户名密码元素
         user_name_list = list(set(user_name_list)) if user_name_list else [base_name]
