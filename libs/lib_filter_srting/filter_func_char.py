@@ -102,3 +102,8 @@ def format_rule_list(tuple_list):
         for has_digit, has_upper, has_lower, has_symbol, has_chinese in new_tuple_list
     ]
     return tuple_list
+
+
+# 正则列表匹配
+def regex_is_matched(pattern_list, string):
+    return any(re.search(pattern, string) for pattern in pattern_list)

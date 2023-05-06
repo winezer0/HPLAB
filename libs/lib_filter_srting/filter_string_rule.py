@@ -1,5 +1,5 @@
 from libs.lib_dyna_rule.dyna_rule_tools import list_ele_in_str
-from libs.lib_filter_srting.filter_func_char import analyse_string_per_char, format_rule_list
+from libs.lib_filter_srting.filter_func_char import analyse_string_per_char, format_rule_list, regex_is_matched
 
 
 # 过滤（账号,密码）元组列表
@@ -133,4 +133,57 @@ def exclude_tuple_list_by_char_type(tuple_list,
                        or (ignore_symbols and list_ele_in_str(ignore_symbols, pass_, default=False))
                        or (analyse_string_per_char(pass_) not in expected_rules_pass))]
     return tuple_list
+
+
+# 基于输入的正则规则列表判断字符是否被提取
+def extract_string_list_by_regex(string_list, expected_rules_str, ignore_empty, ignore_symbols):
+    # 基于输入的正则规则列表判断字符是否被提取
+    string_list = [string for string in string_list
+                   if (ignore_empty and string == "")
+                   or (ignore_symbols and list_ele_in_str(ignore_symbols, string, default=False))
+                   or regex_is_matched(expected_rules_str, string)
+                   ]
+    return string_list
+
+
+# 基于输入的正则规则列表判断字符是否被提取
+def extract_tuple_list_by_regex(tuple_list, expected_rules_name, expected_rules_pass, ignore_empty, ignore_symbols):
+    # 基于输入的正则规则列表判断字符是否被提取
+    tuple_list = [(name_, pass_) for name_, pass_ in tuple_list
+                  if ((ignore_empty and name_ == "")
+                      or (ignore_symbols and list_ele_in_str(ignore_symbols, name_, default=False))
+                      or regex_is_matched(expected_rules_name, name_)
+                      )
+                  and ((ignore_empty and pass_ == "")
+                       or (ignore_symbols and list_ele_in_str(ignore_symbols, pass_, default=False))
+                       or regex_is_matched(expected_rules_pass, pass_)
+                       )]
+
+    return tuple_list
+
+
+# 基于输入的正则规则列表判断字符是否被排除
+def exclude_string_list_by_regex(string_list, expected_rules_str, ignore_empty, ignore_symbols):
+    # 基于输入的正则规则列表判断字符是否被排除
+    string_list = [string for string in string_list
+                   if (ignore_empty and string == "")
+                   or (ignore_symbols and list_ele_in_str(ignore_symbols, string, default=False))
+                   or not regex_is_matched(expected_rules_str, string)
+                   ]
+    return string_list
+
+
+# 基于输入的正则规则列表判断字符是否被排除
+def exclude_tuple_list_by_regex(tuple_list, expected_rules_name, expected_rules_pass, ignore_empty, ignore_symbols):
+    tuple_list = [(name_, pass_) for name_, pass_ in tuple_list
+                  if ((ignore_empty and name_ == "")
+                      or (ignore_symbols and list_ele_in_str(ignore_symbols, name_, default=False))
+                      or not regex_is_matched(expected_rules_name, name_)
+                      )
+                  and ((ignore_empty and pass_ == "")
+                       or (ignore_symbols and list_ele_in_str(ignore_symbols, pass_, default=False))
+                       or not regex_is_matched(expected_rules_pass, pass_)
+                       )]
+    return tuple_list
+
 
