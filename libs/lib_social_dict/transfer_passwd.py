@@ -55,6 +55,9 @@ def handle_alpha_by_seg(base_pass, action_dict_list):
     # 仅获取其中字母元素,用于按字母段定位
     raw_split = re.split(r'([a-zA-Z]+)', base_pass)
     raw_split = [s for s in raw_split if s != '']  # 去除空字符串
+
+    raw_split = split_keyboard_string(raw_split)
+
     raw_alphas = [item for item in raw_split if bool(re.match(r'^[a-zA-Z]+$', item))]  # 不能用 isalpha()
     if raw_alphas:
         for action_dict in action_dict_list:
@@ -74,6 +77,40 @@ def handle_alpha_by_seg(base_pass, action_dict_list):
                         copy_split[seg] = getattr(copy_split[seg], action)()
                 str_list.append("".join(copy_split))
     return str_list
+
+
+def split_keyboard_string(raw_split):
+    # 切割类似 qaz wsx的键盘字符串
+    def list_to_re_str(replace_list, bracket=True):
+        # 将列表转换为正则规则
+        if replace_list:
+            # 使用列表推导式和re.escape()自动转义为正则表达式中的文字字符
+            regexp = '|'.join(re.escape(item) for item in replace_list)
+        else:
+            regexp = ""
+
+        if bracket:
+            replace_str = f'({regexp})'
+        else:
+            replace_str = f'{regexp}'
+        return replace_str
+
+    regex_list = ['qaz', 'wsx', 'edc', 'qwe', 'asd', 'zxc', 'qwer', 'asdf', 'zxcv', ]
+    min_len = len(min(regex_list, key=len))
+
+    # 按照长度从长到短排序
+    regex_list = sorted(regex_list, key=lambda x: len(x), reverse=True)
+    regex_str = list_to_re_str(regex_list, bracket=True)
+
+    new_split = []
+    for string in raw_split:
+        if len(string) > min_len * 2 and bool(re.match(r'^[a-zA-Z]+$', string)):
+            tmp_split = re.split(r'{}'.format(regex_str), string)
+            tmp_split = [s for s in tmp_split if s != '']  # 去除空字符串
+            new_split.extend(tmp_split)
+        else:
+            new_split.append(string)
+    return new_split
 
 
 # 对字符串进行指定索引的字母大小写处理
