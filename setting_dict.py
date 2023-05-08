@@ -143,7 +143,7 @@ GB_CHINESE_OPTIONS_PASS = {
     PY_FT_MAX_LEN: GB_USER_NAME_MAX_LEN,
     PY_IGNORE_SYMBOL: GB_IGNORE_SYMBOLS,
 
-    PY_UNI_STYLES:[STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
+    PY_UNI_STYLES: [STYLE_NORMAL, STYLE_FIRST, STYLE_INITIALS],
 
     PY_UNI_CASE: [ATTR_LOWER, ATTR_UPPER, ATTR_TITLE, ATTR_CAPER],
 
@@ -271,6 +271,7 @@ GB_SOCIAL_USER_OPTIONS_DICT = {
     SO_PASS_CASE: [],  # 密码用户名 大小写处理 （如果密码中有用户名 就密码内的 用户名全部大小写处理,否则就密码整体全部大小写处理）
     SO_PASS_KEEP: False,  # 当开启密码格式处理时,依旧保留原始密码
 
+    SO_PASS_REVERSE: False,  # 增加用户名的反向序列作为密码
     SO_ONLY_MARK_PASS: False  # 仅对 密码中包含用户名变量的密码 进行以上操作
 }
 ############################################################
