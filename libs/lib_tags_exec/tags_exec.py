@@ -32,7 +32,7 @@ def process_tag(tag_string, func_dict):
             tag_string = dynamic_function_call(func_name, param, func_dict)
             return tag_string
         except Exception:
-            print(f"[!] 处理出错 {tag_string}")
+            output(f"[!] 处理出错 {tag_string}", level=LOG_ERROR)
     return tag_string
 
 
