@@ -50,7 +50,7 @@ def _function_names_():
     # 获取当前文件中定义的所有函数列表
     current_module = inspect.getmodule(inspect.currentframe())
     functions = inspect.getmembers(current_module, inspect.isfunction)
-    function_names = [f[0] for f in functions]
+    function_names = [f[0] for f in functions if f[0] != "_function_names_"]
     return function_names
 
 
