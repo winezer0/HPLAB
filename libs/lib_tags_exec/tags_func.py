@@ -52,16 +52,19 @@ def str_capitalize(string=""):
     return str(string).capitalize()
 
 
-def func_js2py(string=""):
+def func_js2py(string="", js_file_path=None):
     # 动态调用js代码进行执行
-    js_file_path = TAG_EXEC_CUSTOM_JS_FILE
-    if file_is_exist(js_file_path):
+    if not js_file_path:
+        js_file_path = TAG_EXEC_CUSTOM_JS_FILE
+    # 检查调用JS代码
+    if js_file_path and file_is_exist(js_file_path):
         js_func_code = read_file_to_str(js_file_path, encoding=None, de_strip=False, de_unprintable=False)
         try:
             js2py_func = js2py.eval_js(js_func_code)
             return js2py_func(string)
         except Exception as error:
             output(f"[!]  JS FILE [{js_file_path}] EVAL ERROR!!! {str(error)}", level=LOG_ERROR)
+            exit()
     else:
         output(f"[!] JS FILE [{js_file_path}] NOT FOUND !!!", level=LOG_ERROR)
         exit()
