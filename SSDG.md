@@ -1,4 +1,6 @@
-# SocialRuleHandle
+# Super Social Dict GEN
+
+超级社工口令生成工具
 
 基于规则的动态账号密码生成模块
 
