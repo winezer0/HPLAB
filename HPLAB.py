@@ -4,7 +4,7 @@ import argparse
 import sys
 
 from SSDG import social_rule_handle_in_steps_two_list, social_rule_handle_in_steps_one_pairs
-from libs.lib_dyna_rule.dyna_rule_tools import reduce_name_pass_tuple_list, unfrozen_tuple_list
+from libs.lib_dyna_rule.dyna_rule_tools import reduce_str_str_tuple_list, unfrozen_tuple_list
 from libs.lib_file_operate.file_read import read_file_to_list, read_file_to_str
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
     search_and_get_param_value
@@ -185,9 +185,9 @@ def http_packet_login_auto_brute():
                                                    de_unprintable=True)
         # 移除已经被爆破过得账号密码
         history_tuple_list = unfrozen_tuple_list(history_user_pass_list, GB_CONST_SIGN_LINK)
-        name_pass_pair_list = reduce_name_pass_tuple_list(name_pass_pair_list,
-                                                          history_tuple_list,
-                                                          GB_CONST_SIGN_LINK)
+        name_pass_pair_list = reduce_str_str_tuple_list(name_pass_pair_list,
+                                                        history_tuple_list,
+                                                        GB_CONST_SIGN_LINK)
         if len(name_pass_pair_list) > 0:
             output(f"[*] 历史爆破记录过滤完毕, 剩余元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
         else:

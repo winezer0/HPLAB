@@ -117,15 +117,12 @@ def get_key_list_with_frequency(frequency_dict, frequency_min):
 
 
 # 去除已经爆破过的元素
-def reduce_name_pass_tuple_list(name_pass_tuple_list, history_tuple_list, str_link_symbol):
+def reduce_str_str_tuple_list(str_str_tuple_list, history_tuple_list, str_link_symbol):
     """去除已经爆破过的元素"""
-
-    # 去重 user_name_pass_pair_list 中 被  history_user_pass_tuple_list包含的元素
-    history_tuple_list = frozen_tuple_list(history_tuple_list, link_symbol=str_link_symbol)
-    name_pass_tuple_list = frozen_tuple_list(name_pass_tuple_list, link_symbol=str_link_symbol)
-
-    if name_pass_tuple_list and history_tuple_list:
-        name_pass_tuple_list = list(set(name_pass_tuple_list) - set(history_tuple_list))
-
-    name_pass_tuple_list = unfrozen_tuple_list(name_pass_tuple_list, link_symbol=str_link_symbol)
-    return name_pass_tuple_list
+    if str_str_tuple_list and history_tuple_list:
+        # 去重 user_name_pass_pair_list 中 被  history_user_pass_tuple_list包含的元素
+        history_tuple_list = frozen_tuple_list(history_tuple_list, link_symbol=str_link_symbol)
+        str_str_tuple_list = frozen_tuple_list(str_str_tuple_list, link_symbol=str_link_symbol)
+        str_str_tuple_list = list(set(str_str_tuple_list) - set(history_tuple_list))
+        str_str_tuple_list = unfrozen_tuple_list(str_str_tuple_list, link_symbol=str_link_symbol)
+    return str_str_tuple_list
