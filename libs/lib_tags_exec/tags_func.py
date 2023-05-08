@@ -7,6 +7,7 @@ import js2py
 from libs.lib_file_operate.file_path import file_is_exist
 from libs.lib_file_operate.file_read import read_file_to_str
 from libs.lib_log_print.logger_printer import output, LOG_ERROR
+from setting_total import TAG_EXEC_CUSTOM_JS_FILE
 
 
 def base64_encode(string=""):
@@ -53,13 +54,16 @@ def str_capitalize(string=""):
 
 def func_js2py(string=""):
     # 动态调用js代码进行执行
-    js_file_path = "custom.js"
+    js_file_path = TAG_EXEC_CUSTOM_JS_FILE
     if file_is_exist(js_file_path):
         js_func_code = read_file_to_str(js_file_path, encoding=None, de_strip=False, de_unprintable=False)
-        js2py_func = js2py.eval_js(js_func_code)
-        return js2py_func(string)
+        try:
+            js2py_func = js2py.eval_js(js_func_code)
+            return js2py_func(string)
+        except Exception as error:
+            output(f"[!]  JS FILE [{js_file_path}] EVAL ERROR!!! {str(error)}", level=LOG_ERROR)
     else:
-        output(f"[!] ERROR!!! JS FILE [{js_file_path}] NOT FOUND !!!", level=LOG_ERROR)
+        output(f"[!] JS FILE [{js_file_path}] NOT FOUND !!!", level=LOG_ERROR)
         exit()
 
 
