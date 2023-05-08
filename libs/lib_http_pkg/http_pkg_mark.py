@@ -4,7 +4,7 @@ import sys
 
 from libs.lib_http_pkg.parse_http_pkg import parse_diff_content_type_body_simple, update_http_param_value, \
     parsed_query_params
-from libs.lib_http_pkg.parse_tools import list_ele_in_str
+from libs.lib_http_pkg.parse_tools import list_ele_in_str, freeze_headers, unfreeze_headers
 from libs.lib_log_print.logger_printer import output, LOG_INFO, LOG_ERROR
 from libs.lib_tags_exec.tags_exec import match_exec_repl_loop
 
@@ -102,8 +102,13 @@ def parse_http_params(req_path, req_method, req_body, req_content_type):
 
 
 # 替换payload标记
-def replace_payload_sign(req_url, req_body, mark_repl_str_dict, func_dict):
+def replace_payload_sign(req_url, req_body, req_headers, mark_repl_str_dict, func_dict):
     # mark_repl_str_dict('$$$username$$$', 'DUIF23fKtnc'), ('$$$password$$$', '2Pqzhn79AAq')
+
+    # 冻结headers
+    if req_headers:
+        req_headers = freeze_headers(req_headers)
+
     for mark_string, replace_string in mark_repl_str_dict.items():
         # 判断注入标记是否在URL中
         if mark_string in req_url:
@@ -111,12 +116,20 @@ def replace_payload_sign(req_url, req_body, mark_repl_str_dict, func_dict):
         # 判断注入标记是否在Body中
         if req_body and mark_string in req_body:
             req_body = req_body.replace(mark_string, replace_string)
-
-    # 解析 req_url req_body 中的标签
+        # 判断注入标记是否在headers中
+        if mark_string in req_headers:
+            req_headers = req_headers.replace(mark_string, replace_string)
+    # 解析 req_url req_body req_headers中的标签
     req_url = match_exec_repl_loop(req_url, func_dict=func_dict)
     req_body = match_exec_repl_loop(req_body, func_dict=func_dict)
+    req_headers = match_exec_repl_loop(req_headers, func_dict=func_dict)
 
     # 修复Body中的换行符
     if req_body and "\r\n" not in req_body and "\n" in req_body:
         req_body = req_body.replace("\n", "\r\n")
-    return req_url, req_body
+
+    # 恢复headers
+    if req_headers:
+        req_headers = unfreeze_headers(req_headers)
+
+    return req_url, req_body, req_headers

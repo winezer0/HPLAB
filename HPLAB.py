@@ -12,7 +12,7 @@ from libs.lib_http_pkg.parse_http_pkg import parse_http_pkg_by_email_simple
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO, LOG_DEBUG, LOG_ERROR
 from libs.lib_requests.check_protocol import check_protocol
 from libs.lib_requests.requests_const import *
-from libs.lib_requests.requests_thread import multi_thread_requests_url_body_sign
+from libs.lib_requests.requests_thread import multi_thread_requests_url_body_headers_sign
 from libs.lib_requests.requests_tools import get_random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
@@ -22,16 +22,18 @@ sys.dont_write_bytecode = True  # 设置不生成pyc文件
 
 
 # 组合请求任务列表
-def generate_brute_task_list(pair_list, mark_url, mark_body, mark_username, mark_password, const_sign_link):
+def generate_brute_task_list(pair_list, mark_url, mark_body, mark_headers, mark_username, mark_password,
+                             const_sign_link):
     all_task_list = []
     for user_name, user_pass in pair_list:
         mark_repl_str_dict = {mark_username: user_name, mark_password: user_pass}
-        new_url, new_body = replace_payload_sign(req_url=mark_url,
-                                                 req_body=mark_body,
-                                                 mark_repl_str_dict=mark_repl_str_dict,
-                                                 func_dict=TAG_FUNC_DICT)
+        new_url, new_body, new_headers = replace_payload_sign(req_url=mark_url,
+                                                              req_body=mark_body,
+                                                              req_headers=mark_headers,
+                                                              mark_repl_str_dict=mark_repl_str_dict,
+                                                              func_dict=TAG_FUNC_DICT)
 
-        task = (new_url, new_body, f"{user_name}{const_sign_link}{user_pass}")
+        task = (new_url, new_body, new_headers, f"{user_name}{const_sign_link}{user_pass}")
         all_task_list.append(task)
     return all_task_list
 
@@ -56,6 +58,8 @@ def http_packet_login_auto_brute():
     # 标记请求body和请求path中的路径
     mark_body = parse_body
     mark_path = parse_path
+    mark_headers = parse_headers
+
     default_name_list = []  # 默认账号列表
     default_pass_list = []  # 默认密码列表
     # 判断用户是否手动添加了用户名密码标记 如果存在就直接跳过查找 直接进行替换
@@ -70,7 +74,8 @@ def http_packet_login_auto_brute():
         # 已标记密码参数,因此需要设置默认用户名的值
         output(f"[*] 开始请求报文参数标记操作...", level=LOG_INFO)
         # 解析请求中的参数列表。
-        req_params = parse_http_params(req_path=parse_path, req_method=parse_method,
+        req_params = parse_http_params(req_path=parse_path,
+                                       req_method=parse_method,
                                        req_body=parse_body,
                                        req_content_type=parse_content_type,
                                        )
@@ -113,10 +118,13 @@ def http_packet_login_auto_brute():
 
     output(f"[*] mark req path: {mark_path}", level=LOG_DEBUG)
     output(f"[*] mark req body: {mark_body}", level=LOG_DEBUG)
+    output(f"[*] mark req headers: {mark_headers}", level=LOG_DEBUG)
 
     # 进行动态函数处理标签格式检查
     if GB_CHECK_TAGS:
-        if find_string_tag_error([mark_path, mark_body], TAG_FUNC_DICT):
+        # 需要检查tag的部分
+        check_tag_list = [str(mark_path), str(mark_body), str(mark_headers)]
+        if find_string_tag_error(check_tag_list, TAG_FUNC_DICT):
             output("[!] 发现错误标签 继续(按键C)/退出(任意键):", level=LOG_ERROR)
             if input().strip().upper() != 'C':
                 return
@@ -167,9 +175,9 @@ def http_packet_login_auto_brute():
     path_no_symbol = parse_path.split('?', 1)[0].replace('/', '_')
     history_file = os.path.join(GB_LOG_FILE_DIR, f"history_{host_no_symbol}.{path_no_symbol}.log")
 
+    # 读取已爆破的账号密码 不进行多次爆破
     if GB_EXCLUDE_HISTORY_RECORD:
         output(f"[*] 历史爆破记录过滤开始, 原始元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
-        # 读取已爆破的账号密码 不进行多次爆破
         history_user_pass_list = read_file_to_list(history_file,
                                                    encoding='utf-8',
                                                    de_strip=True,
@@ -190,12 +198,13 @@ def http_packet_login_auto_brute():
     dynamic_exclude_dict = gen_dynamic_exclude_dict(mark_url=mark_url,
                                                     req_method=parse_method,
                                                     mark_body=mark_body,
-                                                    req_headers=parse_headers)
+                                                    mark_headers=mark_headers)
 
     # 生成爆破任务列表
     brute_task_list = generate_brute_task_list(pair_list=name_pass_pair_list,
                                                mark_url=mark_url,
                                                mark_body=mark_body,
+                                               mark_headers=mark_headers,
                                                mark_username=GB_MARK_USERNAME,
                                                mark_password=GB_MARK_PASSWORD,
                                                const_sign_link=GB_CONST_SIGN_LINK)
@@ -219,21 +228,20 @@ def http_packet_login_auto_brute():
     # 循环多线程请求操作
     for sub_task_index, sub_task_list in enumerate(brute_task_list):
         output(f"[*] 任务进度 {sub_task_index + 1}/{len(brute_task_list)}", level=LOG_INFO)
-        result_dict_list = multi_thread_requests_url_body_sign(task_list=sub_task_list,
-                                                               threads_count=GB_THREADS_COUNT,
-                                                               thread_sleep=GB_THREAD_SLEEP,
-                                                               req_method=parse_method,
-                                                               req_headers=parse_headers,
-                                                               req_proxies=GB_PROXIES,
-                                                               req_timeout=GB_TIMEOUT,
-                                                               verify_ssl=GB_SSL_VERIFY,
-                                                               req_allow_redirects=GB_ALLOW_REDIRECTS,
-                                                               req_stream=False,
-                                                               retry_times=GB_RETRY_TIMES,
-                                                               add_host_header=True,
-                                                               add_refer_header=True,
-                                                               ignore_encode_error=GB_CHINESE_ENCODE_CODING
-                                                               )
+        result_dict_list = multi_thread_requests_url_body_headers_sign(task_list=sub_task_list,
+                                                                       threads_count=GB_THREADS_COUNT,
+                                                                       thread_sleep=GB_THREAD_SLEEP,
+                                                                       req_method=parse_method,
+                                                                       req_proxies=GB_PROXIES,
+                                                                       req_timeout=GB_TIMEOUT,
+                                                                       verify_ssl=GB_SSL_VERIFY,
+                                                                       req_allow_redirects=GB_ALLOW_REDIRECTS,
+                                                                       req_stream=False,
+                                                                       retry_times=GB_RETRY_TIMES,
+                                                                       add_host_header=True,
+                                                                       add_refer_header=True,
+                                                                       ignore_encode_error=GB_CHINESE_ENCODE_CODING
+                                                                       )
 
         stop_run, hit_result_list = access_result_handle(result_dict_list=result_dict_list,
                                                          dynamic_exclude_dict=dynamic_exclude_dict,
@@ -256,7 +264,7 @@ def http_packet_login_auto_brute():
 
 
 # 生成动态测试结果
-def gen_dynamic_exclude_dict(mark_url, req_method, mark_body, req_headers):
+def gen_dynamic_exclude_dict(mark_url, req_method, mark_body, mark_headers):
     # 组合测试任务
     test_name_pass_pair_list = [(get_random_str(12), get_random_str(12)),
                                 (get_random_str(11), get_random_str(11)),
@@ -265,27 +273,27 @@ def gen_dynamic_exclude_dict(mark_url, req_method, mark_body, req_headers):
     test_task_list = generate_brute_task_list(pair_list=test_name_pass_pair_list,
                                               mark_url=mark_url,
                                               mark_body=mark_body,
+                                              mark_headers=mark_headers,
                                               mark_username=GB_MARK_USERNAME,
                                               mark_password=GB_MARK_PASSWORD,
                                               const_sign_link=GB_CONST_SIGN_LINK)
 
     # 执行测试任务
     output(f"[+] 动态测试 分析动态结果排除字典", level=LOG_INFO)
-    test_result_dict_list = multi_thread_requests_url_body_sign(task_list=test_task_list,
-                                                                threads_count=GB_THREADS_COUNT,
-                                                                thread_sleep=GB_THREAD_SLEEP,
-                                                                req_method=req_method,
-                                                                req_headers=req_headers,
-                                                                req_proxies=GB_PROXIES,
-                                                                req_timeout=GB_TIMEOUT,
-                                                                verify_ssl=GB_SSL_VERIFY,
-                                                                req_allow_redirects=GB_ALLOW_REDIRECTS,
-                                                                req_stream=False,
-                                                                retry_times=GB_RETRY_TIMES,
-                                                                add_host_header=True,
-                                                                add_refer_header=True,
-                                                                ignore_encode_error=GB_CHINESE_ENCODE_CODING
-                                                                )
+    test_result_dict_list = multi_thread_requests_url_body_headers_sign(task_list=test_task_list,
+                                                                        threads_count=GB_THREADS_COUNT,
+                                                                        thread_sleep=GB_THREAD_SLEEP,
+                                                                        req_method=req_method,
+                                                                        req_proxies=GB_PROXIES,
+                                                                        req_timeout=GB_TIMEOUT,
+                                                                        verify_ssl=GB_SSL_VERIFY,
+                                                                        req_allow_redirects=GB_ALLOW_REDIRECTS,
+                                                                        req_stream=False,
+                                                                        retry_times=GB_RETRY_TIMES,
+                                                                        add_host_header=True,
+                                                                        add_refer_header=True,
+                                                                        ignore_encode_error=GB_CHINESE_ENCODE_CODING
+                                                                        )
     # 分析测试结果
     dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list, HTTP_FILTER_VALUE_DICT)
     output(f"[+] 当前目标 {mark_url} 动态结果排除字典内容:[{dynamic_exclude_dict}]", level=LOG_INFO)
