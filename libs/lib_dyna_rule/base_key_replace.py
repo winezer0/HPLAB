@@ -90,6 +90,24 @@ def replace_list_has_key_str(will_replace_list=[],
     return result_list_, replace_count_, running_time
 
 
+def remove_not_used_key(replace_used_dict_, rule_str_list):
+    """
+    清空不会被字典规则使用的键
+    :param replace_used_dict_:
+    :param rule_str_list:
+    :return:
+    """
+    # 处理输入的是二维数组的情况
+    for index, str_ in enumerate(rule_str_list):
+        if isinstance(rule_str_list, list):
+            rule_str_list[index] = str(str_)
+    # 逐个判断字典的键值对是否在规则字典内
+    for key in replace_used_dict_.keys():
+        if str(key) not in str(rule_str_list):
+            replace_used_dict_[key] = []
+    return replace_used_dict_
+
+
 if __name__ == '__main__':
     replace_dict = {'%EXT%': ['aspx', 'php', 'jsp'],
                     '%BAK%': ['zip', 'rar', 'tar.gz'],
