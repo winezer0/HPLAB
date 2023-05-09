@@ -103,7 +103,7 @@ def empty_not_used_key(replace_used_dict_, rule_str_list):
             rule_str_list[index] = str(str_)
     # 逐个判断字典的键值对是否在规则字典内
     for key in replace_used_dict_.keys():
-        if str(key) not in str(rule_str_list):
+        if replace_used_dict_[key] and str(key) not in str(rule_str_list):
             replace_used_dict_[key] = []
     return replace_used_dict_
 

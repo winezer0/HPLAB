@@ -127,6 +127,9 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
                                                             not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
         output(f"[*] 获取因变量完成 dependent_var_replace_dict:{dependent_var_replace_dict}")
 
+        # 清空没有被使用的键
+        dependent_var_replace_dict = empty_not_used_key(dependent_var_replace_dict, [name_list,pass_list])
+
         # 因变量替换
         name_list, _, _ = replace_list_has_key_str(name_list, dependent_var_replace_dict)
         pass_list, _, _ = replace_list_has_key_str(pass_list, dependent_var_replace_dict)
@@ -233,10 +236,11 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
         output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        # base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        # output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
-        # base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        # output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        
+        base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # 清空不被需要的字典键
         base_var_replace_dict = empty_not_used_key(base_var_replace_dict, name_pass_pair_list)
@@ -262,6 +266,9 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
                                                             ignore_ip_format=GB_IGNORE_IP_FORMAT,
                                                             symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
                                                             not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
+
+        # 清空没有被使用的键
+        dependent_var_replace_dict = empty_not_used_key(dependent_var_replace_dict, name_pass_pair_list)
 
         # 因变量替换
         name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, dependent_var_replace_dict)
