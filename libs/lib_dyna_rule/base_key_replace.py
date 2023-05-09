@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
+import copy
 import itertools
 import sys
 import time
@@ -90,10 +91,10 @@ def replace_list_has_key_str(will_replace_list=[],
     return result_list_, replace_count_, running_time
 
 
-def empty_not_used_key(replace_used_dict_, rule_str_list):
+def remove_not_used_key(replace_used_dict, rule_str_list):
     """
-    清空不会被字典规则使用的键
-    :param replace_used_dict_:
+    删除不会被字典规则使用的键
+    :param replace_used_dict:
     :param rule_str_list:
     :return:
     """
@@ -101,11 +102,15 @@ def empty_not_used_key(replace_used_dict_, rule_str_list):
     for index, str_ in enumerate(rule_str_list):
         if isinstance(rule_str_list, list):
             rule_str_list[index] = str(str_)
+
+    # 深度拷贝原始字典
+    new_replace_used_dict = copy.deepcopy(replace_used_dict)
+
     # 逐个判断字典的键值对是否在规则字典内
-    for key in replace_used_dict_.keys():
-        if replace_used_dict_[key] and str(key) not in str(rule_str_list):
-            replace_used_dict_[key] = []
-    return replace_used_dict_
+    for key in replace_used_dict.keys():
+        if replace_used_dict[key] and str(key) not in str(rule_str_list):
+            del new_replace_used_dict[key]
+    return new_replace_used_dict
 
 
 if __name__ == '__main__':
