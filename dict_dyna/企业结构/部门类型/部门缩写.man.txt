@@ -1,7 +1,0 @@
-company
-coop
-cooper
-ctx
-csp
-mod
-ord
