@@ -8,8 +8,7 @@ from setting_dict import *
 
 ##################################################################
 # 版本号配置
-GB_VERSION = "Ver 0.1.6 2023-05-09 07:15"
-# 增加标签处理功能,便于对标记的数据自动进行（加密|编码）操作 目前支持<none><md5><url><base64>
+GB_VERSION = "Ver 0.1.7 2023-05-09 08:08"
 ##################################################################
 # 程序开始运行时间  %Y-%m-%d-%H-%M-%S
 GB_RUN_TIME = time.strftime("%Y-%m-%d", time.localtime())
@@ -20,8 +19,12 @@ GB_DEBUG_FLAG = True
 # 仅生成字典,不进行爆破
 GB_ONLY_GENERATE_DICT = False
 ##################################################################
+# 增加标签处理功能,便于对标记的数据自动进行（加密|编码）操作
+# 目前支持功能请查看 libs/lib_tags_exec/tags_const.py 的 TAG_FUNC_DICT
 # 标签执行时调用的自定义js文件路径
-TAG_EXEC_CUSTOM_JS_FILE = r"custom.js"
+TAG_EXEC_CUSTOM_JS_FILE = r"libs/lib_tags_exec/demo/custom.js"
+# 标签执行时调用的自定义py文件路径
+TAG_EXEC_CUSTOM_PY_FILE = r"libs/lib_tags_exec/demo/custom.py"
 ##################################################################
 # 设置日志输出文件路径 #目录不存在会自动创建
 GB_LOG_FILE_DIR = str(GB_BASE_DIR.joinpath("runtime"))

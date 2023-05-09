@@ -1,5 +1,6 @@
 import base64
 import hashlib
+import importlib.util
 import inspect
 import urllib.parse
 import js2py
@@ -7,7 +8,7 @@ import js2py
 from libs.lib_file_operate.file_path import file_is_exist
 from libs.lib_file_operate.file_read import read_file_to_str
 from libs.lib_log_print.logger_printer import output, LOG_ERROR
-from setting_total import TAG_EXEC_CUSTOM_JS_FILE
+from setting_total import TAG_EXEC_CUSTOM_JS_FILE, TAG_EXEC_CUSTOM_PY_FILE
 
 
 def base64_encode(string=""):
@@ -70,11 +71,35 @@ def func_js2py(string="", js_file_path=None):
         exit()
 
 
+def func_mypy(string="", py_file_path=None):
+    # 动态调用PY代码进行执行
+    if not py_file_path:
+        py_file_path = TAG_EXEC_CUSTOM_PY_FILE
+    # 检查调用PY代码
+    if py_file_path and file_is_exist(py_file_path):
+        try:
+            # 获取模块名称
+            module_name = "my_module"
+            # 使用 importlib 动态导入模块
+            spec = importlib.util.spec_from_file_location(module_name, py_file_path)
+            my_module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(my_module)
+            return my_module.run(string)
+        except Exception as error:
+            output(f"[!]  PY FILE [{py_file_path}] EVAL ERROR!!! {str(error)}", level=LOG_ERROR)
+            exit()
+    else:
+        output(f"[!] PY FILE [{py_file_path}] NOT FOUND !!!", level=LOG_ERROR)
+        exit()
+
+
 def _function_names_():
     # 获取当前文件中定义的所有函数列表
     current_module = inspect.getmodule(inspect.currentframe())
     functions = inspect.getmembers(current_module, inspect.isfunction)
-    function_names = [f[0] for f in functions if f[0] != "_function_names_"]
+    # 需要被排除的函数
+    exclude_list = ['_function_names_', 'file_is_exist','output', 'read_file_to_str']
+    function_names = [f[0] for f in functions if f[0] not in exclude_list]
     return function_names
 
 

@@ -31,8 +31,14 @@ def process_tag(tag_string, func_dict):
         try:
             tag_string = dynamic_function_call(func_name, param, func_dict)
             return tag_string
-        except Exception:
-            output(f"[!] 处理出错 {tag_string}", level=LOG_ERROR)
+        except Exception as error:
+            if "object is not callable" in str(error):
+                output(f"[!] 执行解析标签出错 [{tag_string}] func_name:[{func_name}] param:[{param}] "
+                       f"error:[TAG_FUNC_DICT 格式错误]", level=LOG_ERROR)
+            else:
+                output(f"[!] 执行解析标签出错 [{tag_string}] func_name:[{func_name}] param:[{param}] "
+                       f"error:[{str(error)}]",level=LOG_ERROR)
+            exit()
     return tag_string
 
 
@@ -87,7 +93,7 @@ def find_string_tag_error(string_list, func_dict):
 
 # 循环提取和解析字符串内的标签
 def match_exec_repl_loop(string, func_dict):
-    if string and string.count("</") >= 1:
+    if string and string.count("<") > 2 and string.count("</") >= 1:
         while True:
             legal_tags = get_legal_tags(string, func_dict)
             # 不存在合法标签时结束

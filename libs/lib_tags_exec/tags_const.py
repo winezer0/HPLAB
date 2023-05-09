@@ -11,9 +11,15 @@ TAG_UPPER = "upper"
 TAG_LOWER = "lower"
 TAG_CAPER = "caper"
 TAG_JS2PY = "js2py"
+TAG_MYPY = "mypy"
+##################################
+# # 标签执行时调用的自定义js文件路径
+# TAG_EXEC_CUSTOM_JS_FILE = r"demo/custom.js"
+# # 标签执行时调用的自定义py文件路径
+# TAG_EXEC_CUSTOM_PY_FILE = r"demo/custom.py"
 ##################################
 # 支持的字符串常量和实际调用的函数的对应关系
-# key=在报文中使用的名字,  value=被调用的函数名
+# key=在报文中使用的名字,  value=被调用的函数名 不要带括号,会报错
 TAG_FUNC_DICT = {
     TAG_B64: base64_encode,
     TAG_B64S: base64_safe_encode,
@@ -23,6 +29,7 @@ TAG_FUNC_DICT = {
     TAG_UPPER: str_upper,
     TAG_LOWER: str_lower,
     TAG_CAPER: str_capitalize,
-    TAG_JS2PY: func_js2py
+    TAG_JS2PY: func_js2py,
+    TAG_MYPY: func_mypy,
 }
 ##################################

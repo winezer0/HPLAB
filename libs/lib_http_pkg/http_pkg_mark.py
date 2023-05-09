@@ -119,6 +119,7 @@ def replace_payload_sign(req_url, req_body, req_headers, mark_repl_str_dict, fun
         # 判断注入标记是否在headers中
         if mark_string in req_headers:
             req_headers = req_headers.replace(mark_string, replace_string)
+
     # 解析 req_url req_body req_headers中的标签
     req_url = match_exec_repl_loop(req_url, func_dict=func_dict)
     req_body = match_exec_repl_loop(req_body, func_dict=func_dict)
