@@ -90,7 +90,7 @@ def replace_list_has_key_str(will_replace_list=[],
     return result_list_, replace_count_, running_time
 
 
-def remove_not_used_key(replace_used_dict_, rule_str_list):
+def empty_not_used_key(replace_used_dict_, rule_str_list):
     """
     清空不会被字典规则使用的键
     :param replace_used_dict_:

@@ -5,7 +5,7 @@ import argparse
 
 from libs.lib_chinese_encode.chinese_encode import tuple_list_chinese_encode_by_char
 from libs.lib_chinese_pinyin.chinese_list_to_alphabet_list import dict_chinese_to_dict_alphabet
-from libs.lib_dyna_rule.base_key_replace import replace_list_has_key_str, remove_not_used_key
+from libs.lib_dyna_rule.base_key_replace import replace_list_has_key_str, empty_not_used_key
 from libs.lib_dyna_rule.base_rule_parser import base_rule_render_list
 from libs.lib_dyna_rule.dyna_rule_tools import cartesian_product_merging, unfrozen_tuple_list
 from libs.lib_dyna_rule.dyna_rule_tools import frozen_tuple_list
@@ -82,8 +82,8 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # 清空不被需要的字典键
-        name_base_var_replace_dict = remove_not_used_key(name_base_var_replace_dict, name_list)
-        pass_base_var_replace_dict = remove_not_used_key(pass_base_var_replace_dict, pass_list)
+        name_base_var_replace_dict = empty_not_used_key(name_base_var_replace_dict, name_list)
+        pass_base_var_replace_dict = empty_not_used_key(pass_base_var_replace_dict, pass_list)
 
         # 进行基本变量字典替换 及 其中的中文词汇处理
         if GB_CHINESE_TO_PINYIN:
@@ -239,7 +239,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         # output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # 清空不被需要的字典键
-        base_var_replace_dict = remove_not_used_key(base_var_replace_dict, name_pass_pair_list)
+        base_var_replace_dict = empty_not_used_key(base_var_replace_dict, name_pass_pair_list)
 
         # 对基本变量字典中的列表值进行中文处理
         if GB_CHINESE_TO_PINYIN:
