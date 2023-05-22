@@ -1,9 +1,4 @@
-用户
 man
-hdman
 user
-homer
 account
-works
 visor
-visr

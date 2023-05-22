@@ -1,4 +1,2 @@
-系统
 sys
 system
-confirm
