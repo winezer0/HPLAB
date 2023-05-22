@@ -12,6 +12,16 @@ TAG_LOWER = "lower"
 TAG_CAPER = "caper"
 TAG_JS2PY = "js2py"
 TAG_MYPY = "mypy"
+
+TAG_SP_4 = "sp4"
+TAG_SP_6 = "sp6"
+TAG_SP_8 = "sp8"
+
+TAG_RSP_4 = "rsp4"
+TAG_RSP_6 = "rsp6"
+TAG_RSP_8 = "rsp8"
+
+TAG_REVERSE = "revs"
 ##################################
 # # 标签执行时调用的自定义js文件路径
 # TAG_EXEC_CUSTOM_JS_FILE = r"demo/custom.js"
@@ -31,5 +41,14 @@ TAG_FUNC_DICT = {
     TAG_CAPER: str_capitalize,
     TAG_JS2PY: func_js2py,
     TAG_MYPY: func_mypy,
+
+    TAG_SP_4: str_split_4,
+    TAG_SP_6: str_split_6,
+    TAG_SP_8: str_split_8,
+    TAG_RSP_4: str_split_4,
+    TAG_RSP_6: str_split_6,
+    TAG_RSP_8: str_split_8,
+
+    TAG_REVERSE: str_reverse,
 }
 ##################################

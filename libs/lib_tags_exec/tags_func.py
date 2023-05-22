@@ -11,6 +11,11 @@ from libs.lib_log_print.logger_printer import output, LOG_ERROR
 from setting_total import TAG_EXEC_CUSTOM_JS_FILE, TAG_EXEC_CUSTOM_PY_FILE
 
 
+def none_encode(string=""):
+    # 原样返回
+    return string
+
+
 def base64_encode(string=""):
     # base64编码
     return base64.b64encode(string.encode("utf-8")).decode("utf-8")
@@ -33,11 +38,6 @@ def url_encode(string=""):
     return urllib.parse.quote(string)
 
 
-def none_encode(string=""):
-    # 原样返回
-    return string
-
-
 def str_upper(string=""):
     # 全部大写
     return str(string).upper()
@@ -51,6 +51,41 @@ def str_lower(string=""):
 def str_capitalize(string=""):
     # 首字母大写
     return str(string).capitalize()
+
+
+def str_split_4(string=""):
+    # 截取前4个字符
+    return string[:4]
+
+
+def str_split_6(string=""):
+    # 截取前6个字符
+    return string[:6]
+
+
+def str_split_8(string=""):
+    # 截取前8个字符
+    return string[:8]
+
+
+def str_rsplit_4(string=""):
+    # 截取后4个字符
+    return string[-4:]
+
+
+def str_rsplit_6(string=""):
+    # 截取后6个字符
+    return string[-6:]
+
+
+def str_rsplit_8(string=""):
+    # 截取后6个字符
+    return string[-8:]
+
+
+def str_reverse(string=""):
+    # 字符串倒序
+    return string[::-1]
 
 
 def func_js2py(string="", js_file_path=None):
@@ -98,7 +133,7 @@ def _function_names_():
     current_module = inspect.getmodule(inspect.currentframe())
     functions = inspect.getmembers(current_module, inspect.isfunction)
     # 需要被排除的函数
-    exclude_list = ['_function_names_', 'file_is_exist','output', 'read_file_to_str']
+    exclude_list = ['_function_names_', 'file_is_exist', 'output', 'read_file_to_str']
     function_names = [f[0] for f in functions if f[0] not in exclude_list]
     return function_names
 

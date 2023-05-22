@@ -11,6 +11,8 @@ from setting_total import *
 from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_name_remove_ext_list
 
 
+# 批量进行格式化 【全部小写、去重】
+
 # 列表去重并保持原始顺序
 def unique_list(string_list):
     unique_lst = []

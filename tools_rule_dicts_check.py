@@ -10,6 +10,9 @@ from libs.lib_log_print.logger_printer import output, LOG_ERROR, set_logger, LOG
 from setting_total import *
 
 
+# 检查每一行规则，是否符合基本变量替换规则 % XXX % 的形式
+# 符合的话，看其在不在当前基本字典内, 不在的话提出警告
+
 def base_rule_check(rule_line):
     status = True
     # 直接判断规则应该有的多个元素同时在列表内   # issubset 用于判断一个集合是否是另一个集合的子集。
@@ -65,12 +68,12 @@ def check_rule_base_var_format(dirs, base_vars):
                     # 提取其中不存在的变量
                     diff_set = set(rule_vars) - set(base_vars)
                     if diff_set:
-                        output(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 发现非预期变量【{diff_set}】",level=LOG_ERROR)
+                        output(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 发现非预期变量【{diff_set}】", level=LOG_ERROR)
                         error_rules_dict[f"{file_path}<-->{rule}"] = f"非预期变量 {diff_set}"
                 # 进行规则解析测试
                 rule_status = base_rule_check(rule)
                 if not rule_status:
-                    output(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 进行规则解析错误",level=LOG_ERROR)
+                    output(f"[!] 警告: 字典文件【{file_path}】 字典规则【{rule}】 进行规则解析错误", level=LOG_ERROR)
                     error_rules_dict[f"{file_path}<-->{rule}"] = "规则解析错误"
     return error_rules_dict
 
@@ -101,7 +104,7 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, False)
 
     base_dirs = {
-        GB_BASE_VAR_DIR:  [".max.txt", ".txt"],
+        GB_BASE_VAR_DIR: [".max.txt", ".txt"],
         GB_BASE_DYNA_DIR: [".max.txt", ".txt"],
         GB_BASE_NAME_DIR: [".max.txt", ".txt"],
         GB_BASE_PASS_DIR: [".max.txt", ".txt"],
@@ -125,6 +128,6 @@ if __name__ == '__main__':
     # 2、检查每一行规则
     error_rules_info = check_rule_base_var_format(rule_dirs, all_base_var)
     if error_rules_info:
-        output(f"[-] 发现错误变量|错误规则【{len(error_rules_info)}】个, 详情:{error_rules_info}",level=LOG_ERROR)
+        output(f"[-] 发现错误变量|错误规则【{len(error_rules_info)}】个, 详情:{error_rules_info}", level=LOG_ERROR)
     else:
-        output(f"[+] 没有发现错误变量|错误规则...",level=LOG_INFO)
+        output(f"[+] 没有发现错误变量|错误规则...", level=LOG_INFO)

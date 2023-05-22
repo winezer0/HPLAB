@@ -37,7 +37,7 @@ def process_tag(tag_string, func_dict):
                        f"error:[TAG_FUNC_DICT 格式错误]", level=LOG_ERROR)
             else:
                 output(f"[!] 执行解析标签出错 [{tag_string}] func_name:[{func_name}] param:[{param}] "
-                       f"error:[{str(error)}]",level=LOG_ERROR)
+                       f"error:[{str(error)}]", level=LOG_ERROR)
             exit()
     return tag_string
 
@@ -105,6 +105,20 @@ def match_exec_repl_loop(string, func_dict):
         return string
     else:
         return string
+
+
+def match_exec_repl_loop_batch(string_list, func_dict):
+    """
+    对字符串列表进行批量标签执行
+    :param string_list:
+    :param func_dict:
+    :return: 返回新的字符串列表
+    """
+    new_string_list = []
+    for string in string_list:
+        new_string = match_exec_repl_loop(string, func_dict)
+        new_string_list.append(new_string)
+    return new_string_list
 
 
 if __name__ == '__main__':

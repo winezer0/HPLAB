@@ -4,6 +4,8 @@ from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, get_dir
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_ERROR, LOG_INFO
 from setting_total import *
 
+# 判断是否存在重复的属性名称,不能够存在重复【文件名|目录名】的
+# 如果存在目录和文件名相同也需要警告
 
 # 查找重复元素
 def find_duplicates(string_list):

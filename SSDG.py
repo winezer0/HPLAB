@@ -18,6 +18,8 @@ from libs.lib_filter_srting.filter_string_call import format_string_list, format
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO
 from libs.lib_social_dict.repl_mark_user import replace_mark_user_on_pass
 from libs.lib_social_dict.transfer_passwd import transfer_passwd
+from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
+from libs.lib_tags_exec.tags_exec import match_exec_repl_loop_batch
 from setting_total import *
 
 
@@ -145,6 +147,21 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.name.txt"), name_list)
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pass.txt"), pass_list)
 
+    # 调用tag exec来进行操作,实现字符串反序 实现1221等格式
+    if True:
+        name_list = match_exec_repl_loop_batch(name_list, TAG_FUNC_DICT)
+        pass_list = match_exec_repl_loop_batch(pass_list, TAG_FUNC_DICT)
+
+        # 进行格式化
+        name_list = format_string_list(string_list=name_list, options_dict=GB_FILTER_OPTIONS_NAME)
+        pass_list = format_string_list(string_list=pass_list, options_dict=GB_FILTER_OPTIONS_PASS)
+        output(f"[*] 列表过滤格式化完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
+
+        # 写入当前结果
+        step += 1
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.tag_exec.name.txt"), name_list)
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.tag_exec.pass.txt"), pass_list)
+
     # 组合用户名列表和密码列表
     if True:
         name_pass_pair_list = cartesian_product_merging(name_list, pass_list)
@@ -223,60 +240,73 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
     # 动态规则解析和基本变量替换过程 默认取消
     if GB_USE_PAIR_BASE_REPL:
         # 动态规则解析
-        name_pass_pair_list, _, _ = base_rule_render_list(name_pass_pair_list)
-        output(f"[*] 元组动态规则解析完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
-        # 写入当前结果
-        step += 1
-        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.base_render.pair.txt"), name_pass_pair_list)
+        if True:
+            name_pass_pair_list, _, _ = base_rule_render_list(name_pass_pair_list)
+            output(f"[*] 元组动态规则解析完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+            # 写入当前结果
+            step += 1
+            write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.base_render.pair.txt"), name_pass_pair_list)
 
-        # 获取基本变量字典
-        base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
-        output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+        # 基本变量处理
+        if True:
+            # 获取基本变量字典
+            base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
+            output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+            base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+            output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+            base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+            output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
-        output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
+            base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+            output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        # 清空不被需要的字典键
-        base_var_replace_dict = remove_not_used_key(base_var_replace_dict, name_pass_pair_list)
+            # 清空不被需要的字典键
+            base_var_replace_dict = remove_not_used_key(base_var_replace_dict, name_pass_pair_list)
 
-        # 对基本变量字典中的列表值进行中文处理
-        if GB_CHINESE_TO_PINYIN:
-            output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
-            base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
-                                                                  options_dict=GB_CHINESE_OPTIONS_TUPLE,
-                                                                  store_chinese=GB_STORE_CHINESE)
-            output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+            # 对基本变量字典中的列表值进行中文处理
+            if GB_CHINESE_TO_PINYIN:
+                output(f"[*] 中文列表处理转换开始 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
+                base_var_replace_dict = dict_chinese_to_dict_alphabet(string_dict=base_var_replace_dict,
+                                                                      options_dict=GB_CHINESE_OPTIONS_TUPLE,
+                                                                      store_chinese=GB_STORE_CHINESE)
+                output(f"[*] 中文列表处理转换完成 base_var_replace_dict:{len(str(base_var_replace_dict))}", level=LOG_INFO)
 
-        # 基本变量替换
-        name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
-        output(f"[*] 元组基本变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
-        # 写入当前结果
-        step += 1
-        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
+            # 基本变量替换
+            name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, base_var_replace_dict)
+            output(f"[*] 元组基本变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+            # 写入当前结果
+            step += 1
+            write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_base.pair.txt"), name_pass_pair_list)
 
-        # 获取因变量
-        dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
-                                                            base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
-                                                            ignore_ip_format=GB_IGNORE_IP_FORMAT,
-                                                            symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
-                                                            not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
+        # 因变量处理
+        if True:
+            # 获取因变量
+            dependent_var_replace_dict = set_dependent_var_dict(target_url=target_url,
+                                                                base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
+                                                                ignore_ip_format=GB_IGNORE_IP_FORMAT,
+                                                                symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
+                                                                not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
 
-        # 清空没有被使用的键
-        dependent_var_replace_dict = remove_not_used_key(dependent_var_replace_dict, name_pass_pair_list)
+            # 清空没有被使用的键
+            dependent_var_replace_dict = remove_not_used_key(dependent_var_replace_dict, name_pass_pair_list)
 
-        # 因变量替换
-        name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, dependent_var_replace_dict)
-        output(f"[*] 元组因变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
+            # 因变量替换
+            name_pass_pair_list, _, _ = replace_list_has_key_str(name_pass_pair_list, dependent_var_replace_dict)
+            output(f"[*] 元组因变量替换完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
-        # 写入当前结果
-        step += 1
-        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"), name_pass_pair_list)
+            # 写入当前结果
+            step += 1
+            write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"), name_pass_pair_list)
+
+        # 调用tag exec来进行操作,实现字符串反序 实现1221等格式
+        if True:
+            name_pass_pair_list = match_exec_repl_loop_batch(name_pass_pair_list, TAG_FUNC_DICT)
+
+            # 写入当前结果
+            step += 1
+            write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.tag_exec.pair.txt"), name_pass_pair_list)
 
     # 拆分出账号 密码对 元祖
     name_pass_pair_list = unfrozen_tuple_list(name_pass_pair_list, GB_PAIR_LINK_SYMBOL)
