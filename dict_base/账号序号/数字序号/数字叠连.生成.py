@@ -3,6 +3,7 @@
 import os
 import sys
 
+
 def write_lines(file_path, data_list, encoding="utf-8", new_line=True, mode="w+"):
     """
     文本文件列表写入数据
@@ -47,13 +48,13 @@ if __name__ == '__main__':
         f"{script_name}.max.txt": {
             "letters": range(10),  # 基本字符
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
-            "starts": [],  # 过滤 需要以指定字符开头
+            "starts": [],  # 过滤 仅需要以指定字符开头
             "counts": [2, 3],  # 叠词的长度
         },
         f"{script_name}.min.txt": {
             "letters": range(10),  # 基本字符
-            "length": [2, 3,],  # 生成的长度需求
-            "starts": [1,4,7],  # 过滤 需要以指定字符开头
+            "length": [2, 3, ],  # 生成的长度需求
+            "starts": [1, 7],  # 过滤 仅需要以指定字符开头
             "counts": [2, 3],  # 叠词的长度
         },
     }

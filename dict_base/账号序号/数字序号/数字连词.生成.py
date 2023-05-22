@@ -4,7 +4,6 @@ import os
 import sys
 
 
-
 def write_lines(file_path, data_list, encoding="utf-8", new_line=True, mode="w+"):
     """
     文本文件列表写入数据
@@ -40,22 +39,23 @@ if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
     # 生成一个包含 a-z 的所有小写字母的列表
-    base_numbers = range(10)
 
     base_dict = {
         f"{script_name}.max.txt": {
+            "numbers": range(10),
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
             "starts": [],  # 过滤 需要以指定字符开头
         },
         f"{script_name}.min.txt": {
-            "length": [3,],  # 生成的长度需求
-            "starts": [1,4,7],  # 过滤 需要以指定字符开头
+            "numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
+            "length": [3, 4, 5, 6, 7, 8, 9],  # 生成的长度需求
+            "starts": [1, 7],  # 过滤 需要以指定字符开头
         },
     }
     for file_path, options in base_dict.items():
         data_list = []
         for length in options["length"]:
-            base_numbers = [str(number) for number in base_numbers]
+            base_numbers = [str(number) for number in options["numbers"]]
             results = consecutive_letters(base_numbers, length, options["starts"])
             data_list.extend(results)
         # 写入文件

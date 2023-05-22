@@ -48,7 +48,7 @@ if __name__ == '__main__':
             "counts": [2, 3],  # 叠词的长度
         },
         f"{script_name}.min.txt": {
-            "length": [2, 3,],  # 生成的长度需求
+            "length": [2, 3, ],  # 生成的长度需求
             "starts": ["a", "x"],  # 过滤 需要以指定字符开头
             "counts": [2],  # 叠词的长度
         },

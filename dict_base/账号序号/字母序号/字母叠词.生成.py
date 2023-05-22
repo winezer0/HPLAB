@@ -38,12 +38,12 @@ def gen_overlap_ele(letter_list, count):
 
 
 if __name__ == '__main__':
-    script_name = os.path.basename(sys.argv[0]).split(".",1)[0]
+    script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
     # 定义基本元素
     base_letters_dict = {
-        f"{script_name}.min.txt": ["a", "b", "c", "s", "x"],
         f"{script_name}.max.txt": get_base_ele(),
+        f"{script_name}.min.txt": ["a", "b", "c", "d", "s", "x"],
     }
 
     repeat_times = [1, 2, 3]

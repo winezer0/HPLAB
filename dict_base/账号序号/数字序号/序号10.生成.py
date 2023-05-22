@@ -2,6 +2,8 @@
 # encoding: utf-8
 import os
 import sys
+
+
 def write_lines(file_path, data_list, encoding="utf-8", new_line=True, mode="w+"):
     """
     文本文件列表写入数据

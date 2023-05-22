@@ -41,7 +41,7 @@ def consecutive_letters(letter_list, length, starts=[]):
 
 
 if __name__ == '__main__':
-    script_name = os.path.basename(sys.argv[0]).split(".",1)[0]
+    script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
     # 生成一个包含 a-z 的所有小写字母的列表
     base_letters = list(string.ascii_lowercase)
@@ -53,8 +53,8 @@ if __name__ == '__main__':
             "counts": [2, 3],  # 叠词的长度
         },
         f"{script_name}.min.txt": {
-            "length": [2, 3,],  # 生成的长度需求
-            "starts": ["a", "b", "x"],  # 过滤 需要以指定字符开头
+            "length": [2, 3, ],  # 生成的长度需求
+            "starts": ["a", "x"],  # 过滤 需要以指定字符开头
             "counts": [2],  # 叠词的长度
         },
     }

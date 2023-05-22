@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-import string
 import os
+import string
 import sys
+
 
 def write_lines(file_path, data_list, encoding="utf-8", new_line=True, mode="w+"):
     """
@@ -47,8 +48,8 @@ if __name__ == '__main__':
             "repeats": [2, 3, 4],  # 重复次数
         },
         f"{script_name}.min.txt": {
-            "letters": range(10),  # 基本字符
-            "repeats": [2, 3],  # 重复次数
+            "letters": [0, 1, 2, 6, 8, 9],  # 基本字符
+            "repeats": [2, 3, 4],  # 重复次数
         },
     }
 

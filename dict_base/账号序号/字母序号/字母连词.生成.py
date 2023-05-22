@@ -41,7 +41,6 @@ if __name__ == '__main__':
     # 生成一个包含 a-z 的所有小写字母的列表
     base_letters = list(string.ascii_lowercase)
 
-
     base_dict = {
         f"{script_name}.max.txt": {
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
@@ -49,7 +48,7 @@ if __name__ == '__main__':
         },
         f"{script_name}.min.txt": {
             "length": [2, 3, 4, ],  # 生成的长度需求
-            "starts": ["a", "b", "x"],  # 过滤 需要以指定字符开头
+            "starts": ["a", "x"],  # 过滤 需要以指定字符开头
         },
     }
     for file_path, options in base_dict.items():
