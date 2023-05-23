@@ -103,11 +103,12 @@ if __name__ == '__main__':
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, False)
 
+    base_dict_ext = [".min.txt", ".max.txt", ".man.txt"]
     base_dirs = {
-        GB_BASE_VAR_DIR: [".max.txt", ".txt"],
-        GB_BASE_DYNA_DIR: [".max.txt", ".txt"],
-        GB_BASE_NAME_DIR: [".max.txt", ".txt"],
-        GB_BASE_PASS_DIR: [".max.txt", ".txt"],
+        GB_BASE_VAR_DIR: base_dict_ext,
+        GB_BASE_DYNA_DIR: base_dict_ext,
+        GB_BASE_NAME_DIR: base_dict_ext,
+        GB_BASE_PASS_DIR: base_dict_ext,
     }
 
     rule_dirs = {
