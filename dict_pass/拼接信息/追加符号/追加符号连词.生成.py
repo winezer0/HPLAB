@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import os
-import string
 import sys
 
 
@@ -40,7 +39,7 @@ if __name__ == '__main__':
 
     base_dict = {
         f"{script_name}.max.gen.txt": {
-            "letters":  list("~!@#$%^&*()_+"),
+            "letters": list("~!@#$%^&*()_+"),
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
             "starts": ["!", "@"],  # 过滤 需要以指定字符开头
         },

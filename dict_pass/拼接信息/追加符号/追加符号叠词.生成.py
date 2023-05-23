@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import os
-import string
 import sys
 
 
@@ -29,7 +28,6 @@ def gen_overlap_ele(letter_list, count):
 
 if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
-
 
     # 定义基本元素
     base_letters_dict = {

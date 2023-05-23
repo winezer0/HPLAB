@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import os
-import string
 import sys
 
 
@@ -44,7 +43,7 @@ if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
     base_dict = {
         f"{script_name}.max.gen.txt": {
-            "letters":  list("~!@#$%^&*()_+"),
+            "letters": list("~!@#$%^&*()_+"),
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
             "starts": ["!", "@"],  # 过滤 需要以指定字符开头
             "counts": [2, 3],  # 叠词的长度
@@ -60,7 +59,7 @@ if __name__ == '__main__':
         data_list = []
         for length in options["length"]:
             for count in options["counts"]:
-                base_letters= options["letters"]
+                base_letters = options["letters"]
                 letters = gen_overlap_ele(base_letters, count)
                 results = consecutive_letters(letters, length, options["starts"])
                 data_list.extend(results)
