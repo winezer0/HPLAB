@@ -4,5 +4,5 @@
 %%DOMAIN%% 变量能够自动从网站域名获取这些信息进行填充.
 
 假设网站域名为 http://demo.study.com，可能的密码组合方式包括：
-企业域名、企业域名+高频数字、企业域名+账号单词等、
+企业域名、企业域名+高频数字、企业域名+高频词汇等、
 例如：demo、study、demo123、demoadmin、demo@admin、study123、study666等等

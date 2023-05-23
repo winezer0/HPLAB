@@ -22,16 +22,6 @@ def write_lines(file_path, data_list, encoding="utf-8", new_line=True, mode="w+"
         f_open.close()
 
 
-def get_base_ele(start_symbol=0, end_symbol=26):
-    # 生成一个包含 a-z 的所有小写字母的列表
-    letter_list = list(string.ascii_lowercase)
-
-    # 判断是字符定位还是数字定位标记
-    start = letter_list.index(start_symbol) if isinstance(start_symbol, str) else start_symbol
-    end = letter_list.index(end_symbol) if isinstance(end_symbol, str) else end_symbol
-    return letter_list[start:end]
-
-
 def gen_overlap_ele(letter_list, count):
     # 基于基本元素列表，生成迭代字符列表
     return [str(letter) * count for letter in letter_list]
@@ -40,10 +30,11 @@ def gen_overlap_ele(letter_list, count):
 if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
+
     # 定义基本元素
     base_letters_dict = {
-        f"{script_name}.max.txt": get_base_ele(),
-        f"{script_name}.min.txt": ["a", "b", "c", "d", "s", "x"],
+        f"{script_name}.max.gen.txt": list("~!@#$%^&*()_+."),
+        f"{script_name}.min.gen.txt": list("!@#$*+."),
     }
 
     repeat_times = [1, 2, 3]

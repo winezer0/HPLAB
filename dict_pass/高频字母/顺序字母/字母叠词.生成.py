@@ -42,8 +42,8 @@ if __name__ == '__main__':
 
     # 定义基本元素
     base_letters_dict = {
-        f"{script_name}.max.txt": get_base_ele(),
-        f"{script_name}.min.txt": ["a", "b", "c", "d", "s", "x"],
+        f"{script_name}.max.gen.txt": get_base_ele(),
+        f"{script_name}.min.gen.txt": ["a", "b", "c", "d", "s", "x"],
     }
 
     repeat_times = [1, 2, 3]

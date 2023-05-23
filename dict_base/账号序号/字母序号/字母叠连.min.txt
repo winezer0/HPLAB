@@ -1,4 +1,0 @@
-aabb
-xxyy
-aabbcc
-xxyyzz

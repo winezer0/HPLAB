@@ -43,11 +43,11 @@ if __name__ == '__main__':
 
     # 定义基本元素
     base_dict = {
-        f"{script_name}.max.txt": {
+        f"{script_name}.max.gen.txt": {
             "letters": range(10),  # 基本字符
             "repeats": [2, 3, 4],  # 重复次数
         },
-        f"{script_name}.min.txt": {
+        f"{script_name}.min.gen.txt": {
             "letters": [0, 1, 2, 6, 8, 9],  # 基本字符
             "repeats": [2, 3, 4],  # 重复次数
         },

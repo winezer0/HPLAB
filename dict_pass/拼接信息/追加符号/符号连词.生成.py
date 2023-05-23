@@ -38,31 +38,24 @@ def consecutive_letters(letter_list, length, starts=[]):
 if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
-    # 生成一个包含 a-z 的所有小写字母的列表
-    base_letters = list(string.ascii_lowercase)
-
     base_dict = {
-        f"{script_name}.max.txt": {
+        f"{script_name}.max.gen.txt": {
+            "letters":  list("~!@#$%^&*()_+"),
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
-            "starts": ["a", "b", "c", "x"],  # 过滤 需要以指定字符开头
-            "counts": [2, 3],  # 叠词的长度
+            "starts": ["!", "@"],  # 过滤 需要以指定字符开头
         },
-        f"{script_name}.min.txt": {
+        f"{script_name}.min.gen.txt": {
+            "letters": list("~!@#$%^&*()_+"),
             "length": [2, 3, ],  # 生成的长度需求
-            "starts": ["a", "x"],  # 过滤 需要以指定字符开头
-            "counts": [2],  # 叠词的长度
+            "starts": ["!", "@"],  # 过滤 需要以指定字符开头
         },
     }
-
     for file_path, options in base_dict.items():
         data_list = []
         for length in options["length"]:
+            base_letters = options["letters"]
             results = consecutive_letters(base_letters, length, options["starts"])
-            # 扩充
-            for data in results:
-                for count in options["counts"]:
-                    data_list.append(data * count)
-
+            data_list.extend(results)
         # 写入文件
         write_lines(file_path, data_list, encoding="utf-8", new_line=True, mode="w+")
         print(f"[*] gen file {file_path}")
