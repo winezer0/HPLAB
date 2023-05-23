@@ -1,7 +1,0 @@
-s3cret
-secret
-password
-masterkey
-master
-changeme
-default
