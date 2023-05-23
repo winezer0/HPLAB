@@ -1,7 +1,8 @@
-服务
-service
-serv
-ipc
+网站应用的分类描述信息：
+网站
+www
+web
 http
-host
-shell
+site
+cms
+cgi
