@@ -47,9 +47,6 @@ operator
 service
 allin1
 allinone
-laser
-sa
-weblogic
 一些通用的邮箱用户名：
 noreply
 hr
