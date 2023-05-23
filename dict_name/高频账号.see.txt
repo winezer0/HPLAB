@@ -1,7 +1,8 @@
 较常用的一些账号信息.
+常见系统账号:
+%BLANK%
 root
 administrator
-
 admin
 admin01
 admin1
