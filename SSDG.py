@@ -44,7 +44,7 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         pass_list = default_pass_list
         output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
     else:
-        output(f"[*] 读取密码字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
+        output(f"[*] 读取密码字典文件 {GB_USER_PASS_FILE}...", level=LOG_INFO)
         pass_list = read_file_to_list(GB_USER_PASS_FILE,
                                       encoding=file_encoding(GB_USER_PASS_FILE),
                                       de_strip=True,
