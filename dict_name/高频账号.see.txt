@@ -1,4 +1,9 @@
-较常用的一些账号信息.
+较常用的一些账号信息,
+常用的字符串： root admin system 等等
+高频账号收集：
+1 fuzzDicts等字典集合项目频率 筛选
+2 日常渗透测试时 记录和筛选
+===========
 常见系统账号:
 %BLANK%
 root
@@ -47,6 +52,8 @@ operator
 service
 allin1
 allinone
+hello
+
 一些通用的邮箱用户名：
 noreply
 hr
@@ -131,7 +138,6 @@ jira
 zabbix
 kaifa
 chandao
-hello
 一些网站还使用手机号登录，此时可以使用测试手机号：
 可以使用代码或者规则生成
 13000000000
