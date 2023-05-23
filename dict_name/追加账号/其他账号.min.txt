@@ -1,7 +1,0 @@
-cdn
-git
-jenkins
-jira
-zabbix
-kaifa
-chandao

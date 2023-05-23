@@ -25,7 +25,7 @@ GB_BASE_NAME_DIR = GB_BASE_DIR.joinpath("dict_name")
 GB_BASE_PASS_DIR = GB_BASE_DIR.joinpath("dict_pass")
 
 # 基本变量字典文件的后缀名列表 通过file.endswith匹配
-GB_DICT_SUFFIX = [".min.txt"]
+GB_DICT_SUFFIX = [".min.txt", ".man.txt"]
 # 存储 自定义 基本变量
 GB_BASE_VAR_REPLACE_DICT = {"%BLANK%": ['']}
 ###################
