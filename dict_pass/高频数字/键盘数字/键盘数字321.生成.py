@@ -53,10 +53,12 @@ if __name__ == '__main__':
     # 1、生成 qwerty 这样的键盘字符串
     base_dict = {
         f"{script_name}.max.gen.txt": {
-            "length": [2,3],
+            "length": [3],
+            "ends": [],
         },
         f"{script_name}.min.gen.txt": {
             "length": [3],
+            "ends": [1],
         },
     }
 
@@ -64,6 +66,11 @@ if __name__ == '__main__':
         data_list = gen_key_list(keyboard_x2d, options["length"])
         # 仅包含纯字母选项
         data_list = [data for data in data_list if '-' not in str(data)]
+
+        # 进行过滤 判断是否以列表内的字符结果
+        if len(options["ends"]) > 0:
+            data_list = [string for string in data_list if any(string.endswith(str(end)) for end in options["ends"])]
+
         print(data_list)
         # 写入文件
         write_lines(file_path, data_list, encoding="utf-8", new_line=True, mode="w+")
