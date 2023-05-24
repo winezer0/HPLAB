@@ -71,9 +71,9 @@ GB_PAIR_FILE_FLAG = False
 GB_USE_PAIR_BASE_REPL = False
 ###################
 # 实际调用的字典级别设置
-GB_RULE_LEVEL_NAME = "1"
-GB_RULE_LEVEL_PASS = "1"
-GB_RULE_LEVEL_PAIR = "1"
+GB_RULE_LEVEL_NAME = "1"  # 调用 level1.mode1_name.txt
+GB_RULE_LEVEL_PASS = "1"  # 调用 level1.mode1_pass.txt
+GB_RULE_LEVEL_PAIR = "1"  # 调用 level1.mode2_pairs.txt
 ##################################################################
 # 设置输出结果文件目录
 GB_RESULT_DIR = GB_BASE_DIR.joinpath("result")
