@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68a987c5-a959-4436-bdad-2ddce21de896" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/dict_rule/level2/mode1_name.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_rule/level2/mode1_pass.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_rule/level3/mode1_name.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_rule/level3/mode1_pass.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_rule/level7/mode1_name.动态.min.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_rule/level7/mode1_name.通用.min.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level2/mode1_name.动态.min.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level2/mode1_name.通用.min.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level3/mode1_name.动态.mid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level8/mode1_name.动态.mid.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level3/mode1_name.通用.mid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level8/mode1_name.通用.mid.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level4/mode1_name.动态.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level9/mode1_name.动态.max.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level4/mode1_name.通用.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level9/mode1_name.通用.max.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +137,7 @@
       <updated>1684909429290</updated>
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
-      <workItem from="1684911685805" duration="10559000" />
+      <workItem from="1684911685805" duration="10660000" />
     </task>
     <servers />
   </component>
