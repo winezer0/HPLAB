@@ -67,7 +67,7 @@ GB_PAIR_FILE_STR = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode2_pairs.txt"
 GB_RULE_LEVEL_NAME = 1  # 调用 level1.mode1_name.txt
 GB_RULE_LEVEL_PASS = 1  # 调用 level1.mode1_pass.txt
 GB_RULE_LEVEL_PAIR = 1  # 调用 level1.mode2_pairs.txt
-GB_RULE_LEVEL_EXACT = False  # 是否仅调用精确的字典级别,不调用更下级的字典
+GB_RULE_LEVEL_EXACT = True  # 是否仅调用精确的字典级别,不调用更下级的字典
 ###################
 # 直接输入账号密码对文件
 # 账号密码对文件 连接符号

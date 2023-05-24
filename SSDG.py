@@ -53,12 +53,13 @@ def social_rule_handle_in_steps_two_list(target_url, user_name_files, user_pass_
         output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
     else:
         pass_list = []
+        output(f"[*] 读取密码字典文件 {user_pass_files}...", level=LOG_INFO)
         for pass_file in user_pass_files:
             lines = read_file_to_list(pass_file, encoding=file_encoding(pass_file), de_strip=True, de_weight=True)
             pass_list.extend(lines)
         if pass_list:
             # 保持原始顺序去重
-            name_list = [x for i, x in enumerate(pass_list) if x not in pass_list[:i]]
+            pass_list = [x for i, x in enumerate(pass_list) if x not in pass_list[:i]]
         else:
             output(f"[!] 未输入任何有效密码字典文件!!!", level=LOG_ERROR)
             return []
@@ -440,10 +441,10 @@ def parse_input():
     argument_parser.add_argument("-ll", "--rule_level_pair", default=GB_RULE_LEVEL_PAIR, type=int,
                                  help=f"Specifies the pair rule file level or prefix, Default is {GB_RULE_LEVEL_PAIR}")
 
-    argument_parser.add_argument("-lf", "--rule_level_exact", default=GB_RULE_LEVEL_EXACT, action="store_true",
+    argument_parser.add_argument("-lf", "--rule_level_exact", default=GB_RULE_LEVEL_EXACT, action="store_false",
                                  help=f"Specifies Exact call level dictionary, Default is [{GB_RULE_LEVEL_EXACT}]", )
 
-    argument_parser.add_argument("-af", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
+    argument_parser.add_argument("-af", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_false",
                                  help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
 
     argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
