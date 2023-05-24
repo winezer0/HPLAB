@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
-from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, get_dir_path_dir_info_dict
+from libs.lib_file_operate.file_path import get_dir_path_info_dict, get_dir_path_dir_info_dict, \
+    file_name_remove_ext_list
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_ERROR, LOG_INFO
 from setting_total import *
 
@@ -42,60 +43,30 @@ def check_base_var_duplicates(dirs):
     dirs_list = [name_dirs, pass_dirs]
 
     for temp_dirs in dirs_list:
-        # 获取所有文件名
-        all_file_list = []
-        all_file_dict = {}
+        # 获取所有文件名和目录名
+        all_path_dict = {}
         for base_var_dir, ext_list in temp_dirs.items():
-            file_info_dict = get_dir_path_file_info_dict(base_var_dir, ext_list=ext_list)
-            # get_dir_path_dir_info_dict 存在BUG,同一个目录下的文件会自动覆盖
-            all_file_list.extend(list(file_info_dict.keys()))
-            all_file_dict[base_var_dir] = list(file_info_dict.keys())
+            path_info_dict = get_dir_path_info_dict(base_var_dir, ext_list=ext_list)
+            all_path_dict.update(path_info_dict)
 
-        # 获取所有目录名
-        all_dir_list = []
-        all_dir_dict = {}
-        for base_var_dir, ext_list in temp_dirs.items():
-            # get_dir_path_dir_info_dict 存在BUG,同一个目录下的文件会自动覆盖
-            dir_info_dict = get_dir_path_dir_info_dict(base_var_dir)
-            all_dir_list.extend(list(dir_info_dict.keys()))
-            all_dir_dict[base_var_dir] = list(dir_info_dict.keys())
-        duplicates_dir_list = find_duplicates(all_dir_list)
+        # 组装 [基本变量名]
+        all_base_vars = []
+        for path_name in list(all_path_dict.values()):
+            base_var_name = f'%{file_name_remove_ext_list(path_name, ext_list)}%'
+            all_base_vars.append(base_var_name)
+        output(f"[*] all_base_vars: len:{len(all_base_vars)} {all_base_vars}", level=LOG_INFO)
 
-        # 输出所有文件名
-        output(f"[*] all_file_dict: {all_file_dict}", level=LOG_INFO)
-        # 输出所有目录名
-        output(f"[*] all_dir_dict: {all_dir_dict}", level=LOG_INFO)
-
-        # 判断是否存在重复文件名
-        duplicates_file_list = find_duplicates(all_file_list)
+        # 判断是否存在重复文件名或目录名
+        duplicates_file_list = find_duplicates(all_base_vars)
         if duplicates_file_list:
-            output(f"[-] 发现 (基本变量) 重复文件|建议修改名称: {duplicates_file_list}", level=LOG_ERROR)
+            output(f"[-] 发现 重复基本变量 建议修改名称: {duplicates_file_list}", level=LOG_ERROR)
             # 反向查找文件所在目录
             for duplicates_file in duplicates_file_list:
-                for k, v in all_file_dict.items():
-                    if duplicates_file in v:
-                        output(f"[-] (基本变量) 重复文件 {duplicates_file} 位于 {k}", level=LOG_ERROR)
+                for k, v in all_path_dict.items():
+                    if duplicates_file.strip("%") in str(k):
+                        output(f"[-] 重复基本变量 [{duplicates_file}] 位于 {k}", level=LOG_ERROR)
         else:
-            output(f"[*] 未发现 (基本变量) 重复文件...{list(temp_dirs.keys())}", level=LOG_INFO)
-
-        # 分析是否存在重复目录
-        if duplicates_dir_list:
-            output(f"[-] 发现 (基本变量) 重复目录|建议修改名称: {duplicates_dir_list}", level=LOG_ERROR)
-            # 反向查找文件所在目录
-            for duplicates_dir in duplicates_dir_list:
-                for k, v in all_dir_dict.items():
-                    if duplicates_dir in v:
-                        output(f"[-] (基本变量) 重复目录 {duplicates_dir} 位于 {k}", level=LOG_ERROR)
-        else:
-            output(f"[*] 未发现 (基本变量) 重复目录...{list(temp_dirs.keys())}", level=LOG_INFO)
-
-        # 分析是否存在目录和文件名重复的情况
-        for dir_var in all_dir_list:
-            for file_var in all_file_list:
-                if str(dir_var) in str(file_var):
-                    output(f"[-] 发现 (基本变量) 重复目录文件|建议修改名称: {dir_var} <--> {file_var}", level=LOG_ERROR)
-        else:
-            output(f"[*] 未发现 (基本变量) 重复目录文件...{list(temp_dirs.keys())}", level=LOG_INFO)
+            output(f"[*] 未发现 重复基本变量...{list(temp_dirs.keys())}", level=LOG_INFO)
 
 
 if __name__ == '__main__':
@@ -104,17 +75,6 @@ if __name__ == '__main__':
 
     # 检查max文件变量
     base_dict_ext = [".man.txt", ".max.txt"]
-    base_dirs = {
-        GB_BASE_VAR_DIR: base_dict_ext,
-        GB_BASE_DYNA_DIR: base_dict_ext,
-        GB_BASE_NAME_DIR: base_dict_ext,
-        GB_BASE_PASS_DIR: base_dict_ext,
-    }
-    # 检查基本变量是否重复
-    check_base_var_duplicates(base_dirs)
-
-    # 检查min文件变量
-    base_dict_ext = [".man.txt",".min.txt"]
     base_dirs = {
         GB_BASE_VAR_DIR: base_dict_ext,
         GB_BASE_DYNA_DIR: base_dict_ext,

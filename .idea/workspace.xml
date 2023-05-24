@@ -5,19 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68a987c5-a959-4436-bdad-2ddce21de896" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频含义数字.max.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频含义数字.min.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频频率数字.参考.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母含义.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频含义字母.max.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母含义.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频含义字母.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母含义.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频含义字母.参考.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频频率字母.max.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频频率字母.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频频率字母.参考.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/高频数字频率.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频频率数字.max.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/高频数字频率.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频频率数字.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/高频数字频率.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频含义数字.参考.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools_base_dicts_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools_base_dicts_check.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dict_pass/高频数字" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dict_base" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -51,11 +40,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_base" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频数字" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频字母" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_rule\level3" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_rule" />
-      <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_rule\level2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_rule\level7" />
@@ -65,7 +54,7 @@
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_rule\level2" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.SSDG">
+  <component name="RunManager" selected="Python.tools_base_dicts_check">
     <configuration name="HPLAB" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -132,8 +121,54 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tools_base_dicts_check" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HPLAB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools_base_dicts_check.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tools_base_dicts_format" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HPLAB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools_base_dicts_format.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tools_base_dicts_check" />
+        <item itemvalue="Python.tools_base_dicts_format" />
         <item itemvalue="Python.SSDG" />
         <item itemvalue="Python.setting_dict" />
         <item itemvalue="Python.HPLAB" />
@@ -151,7 +186,7 @@
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
       <workItem from="1684911685805" duration="10660000" />
-      <workItem from="1684940660912" duration="1276000" />
+      <workItem from="1684940660912" duration="2941000" />
     </task>
     <servers />
   </component>
@@ -170,8 +205,10 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/HPLAB$tools_base_dicts_check.coverage" NAME="tools_base_dicts_check 覆盖结果" MODIFIED="1684943635337" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$HPLAB.coverage" NAME="HPLAB 覆盖结果" MODIFIED="1684918135138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$SSDG.coverage" NAME="SSDG 覆盖结果" MODIFIED="1684921535047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$setting_dict.coverage" NAME="setting_dict 覆盖结果" MODIFIED="1684921483895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HPLAB$tools_base_dicts_format.coverage" NAME="tools_base_dicts_format 覆盖结果" MODIFIED="1684942077703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
