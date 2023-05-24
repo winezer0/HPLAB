@@ -53,7 +53,7 @@ GB_IGNORE_IP_FORMAT = True
 GB_TARGET_URL = None
 ###################
 # 指定用户名变量字符串 # 在密码字典中用这个变量表示用户名
-GB_USER_NAME_MARK = "%USERNAME%"
+GB_USER_NAME_MARK = "%%USERNAME%%"
 ############################################################
 # 账号密码目录
 GB_RULE_DICT_DIR = GB_BASE_DIR.joinpath("dict_rule", "{LEVEL}")

@@ -25,7 +25,8 @@ from setting_total import *
 
 
 # 分割写法 基于 用户名和密码规则生成 元组列表
-def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, default_pass_list=None, exclude_file=None):
+def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, default_pass_list=None,
+                                         exclude_file=None):
     mode = "mode1"
     step = 0
 
@@ -478,10 +479,8 @@ if __name__ == '__main__':
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_PAIR_FILE_FLAG:
-        user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL,
-                                                              exclude_file=GB_EXCLUDE_FILE)
+        user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL, exclude_file=GB_EXCLUDE_FILE)
     else:
-        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_TARGET_URL,
-                                                               exclude_file=GB_EXCLUDE_FILE)
+        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_TARGET_URL, exclude_file=GB_EXCLUDE_FILE)
 
     output(f"[*] 最终生成账号密码对数量: {len(user_pass_dict)}", level=LOG_INFO)

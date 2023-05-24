@@ -5,11 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68a987c5-a959-4436-bdad-2ddce21de896" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/dict_rule/level0/mode1_name.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dict_rule/level0/mode1_pass.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dict_rule/level0/mode2_pairs.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HPLAB.py" beforeDir="false" afterPath="$PROJECT_DIR$/HPLAB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SSDG.py" beforeDir="false" afterPath="$PROJECT_DIR$/SSDG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频密码.man.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频密码.man.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频密码.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频密码.min.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level1/mode1_name.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1/mode1_name.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level1/mode1_pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1/mode1_pass.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level1/mode2_pairs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1/mode2_pairs.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/setting_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting_total.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_total.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/动态规则编写.md" beforeDir="false" afterPath="$PROJECT_DIR$/动态规则编写.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +38,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dict_rule" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dict_rule/level0" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -43,6 +50,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_rule\level0" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_rule" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -137,7 +145,7 @@
       <updated>1684909429290</updated>
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
-      <workItem from="1684911685805" duration="8616000" />
+      <workItem from="1684911685805" duration="9353000" />
     </task>
     <servers />
   </component>
@@ -157,7 +165,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HPLAB$HPLAB.coverage" NAME="HPLAB 覆盖结果" MODIFIED="1684918135138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HPLAB$SSDG.coverage" NAME="SSDG 覆盖结果" MODIFIED="1684921487570" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HPLAB$SSDG.coverage" NAME="SSDG 覆盖结果" MODIFIED="1684921535047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$setting_dict.coverage" NAME="setting_dict 覆盖结果" MODIFIED="1684921483895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
