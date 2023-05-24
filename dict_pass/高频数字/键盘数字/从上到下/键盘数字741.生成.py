@@ -62,7 +62,7 @@ if __name__ == '__main__':
         '789',
         '456',
         '123',
-        '-0-',
+        '-0-'
     ]
     # 0、生成 二维 键盘列表
     keyboard_x2d = get_keyboard_x2d(keyboard_rules)
@@ -75,8 +75,8 @@ if __name__ == '__main__':
             "starts": [],
         },
         f"{script_name}.min.txt": {
-            "length": [3, 4],
-            "starts": [],
+            "length": [3],
+            "starts": [7,8,5],
         },
     }
 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
         # 仅已指定字符开头的元素
         starts = options["starts"]
         if len(starts) > 0:
-            data_list = [string for string in data_list if any(string.startswith(start) for start in starts)]
+            data_list = [string for string in data_list if any(string.startswith(str(start)) for start in starts)]
 
         # 仅包含纯字母选项
         data_list = [data for data in data_list if '-' not in str(data)]
