@@ -83,7 +83,7 @@ def check_base_var_duplicates(dirs):
         # 分析是否存在目录和文件名重复的情况
         for dir_var in all_dir_list:
             for file_var in all_file_list:
-                if str(dir_var) in str(file_var):
+                if str(dir_var) == str(file_var).split(".",1)[0]:
                     output(f"[-] 发现 (基本变量) 重复目录文件|建议修改名称: {dir_var} <--> {file_var}", level=LOG_ERROR)
         else:
             output(f"[*] 未发现 (基本变量) 重复目录文件...{list(temp_dirs.keys())}", level=LOG_INFO)
@@ -93,13 +93,24 @@ if __name__ == '__main__':
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, False)
 
-    base_dict_ext = [".min.txt", ".max.txt", ".man.txt"]
+    # 检查max文件变量
+    base_dict_ext = [".man.txt", ".max.txt"]
     base_dirs = {
         GB_BASE_VAR_DIR: base_dict_ext,
         GB_BASE_DYNA_DIR: base_dict_ext,
         GB_BASE_NAME_DIR: base_dict_ext,
         GB_BASE_PASS_DIR: base_dict_ext,
     }
+    # 检查基本变量是否重复
+    check_base_var_duplicates(base_dirs)
 
+    # 检查min文件变量
+    base_dict_ext = [".man.txt",".min.txt"]
+    base_dirs = {
+        GB_BASE_VAR_DIR: base_dict_ext,
+        GB_BASE_DYNA_DIR: base_dict_ext,
+        GB_BASE_NAME_DIR: base_dict_ext,
+        GB_BASE_PASS_DIR: base_dict_ext,
+    }
     # 检查基本变量是否重复
     check_base_var_duplicates(base_dirs)

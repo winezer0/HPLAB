@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="781a756d-46c5-4db0-9ab2-8cd44b5395b5" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.max.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.min.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.参考.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/高频数字.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频数字频率.max.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/高频数字.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频数字频率.min.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/高频数字.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频数字频率.参考.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘频率.max.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘频率.min.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘频率.参考.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools_base_dicts_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools_base_dicts_check.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +91,7 @@
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频字母\键盘字母\左右键盘" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.数字上下顺序叠加.生成">
+  <component name="RunManager" selected="Python.tools_base_dicts_check">
     <configuration name="789456" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -102,28 +106,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频数字\键盘数字\789456.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="数字下上顺序.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="HPLAB" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序.生成.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -440,13 +422,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="tools_base_dicts_check" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HPLAB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools_base_dicts_check.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.tools_base_dicts_check" />
         <item itemvalue="Python.数字上下顺序叠加.生成" />
         <item itemvalue="Python.数字上下顺序.生成" />
         <item itemvalue="Python.数字上下交叉.生成" />
         <item itemvalue="Python.数字下上交叉.生成" />
-        <item itemvalue="Python.数字下上顺序.生成" />
       </list>
     </recent_temporary>
   </component>
@@ -488,7 +492,7 @@
       <workItem from="1684720868944" duration="927000" />
       <workItem from="1684724531086" duration="29546000" />
       <workItem from="1684830951972" duration="24183000" />
-      <workItem from="1684891471525" duration="6280000" />
+      <workItem from="1684891471525" duration="6956000" />
     </task>
     <servers />
   </component>
@@ -545,8 +549,8 @@
     <SUITE FILE_PATH="coverage/HPLAB$qweasd__1_.coverage" NAME="qweasd (1) 覆盖结果" MODIFIED="1684893005020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频字母/键盘字母生成" />
     <SUITE FILE_PATH="coverage/HPLAB$qweasd.coverage" NAME="qweasd 覆盖结果" MODIFIED="1684893104929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频字母/键盘字母生成" />
     <SUITE FILE_PATH="coverage/HPLAB$set_basic_var.coverage" NAME="set_basic_var 覆盖结果" MODIFIED="1683257176097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/libs/lib_dyna_rule" />
-    <SUITE FILE_PATH="coverage/HPLAB$tools_base_dicts_check.coverage" NAME="tools_base_dicts_check 覆盖结果" MODIFIED="1683384786394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$test.coverage" NAME="test 覆盖结果" MODIFIED="1683429092272" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testdata" />
+    <SUITE FILE_PATH="coverage/HPLAB$tools_base_dicts_check.coverage" NAME="tools_base_dicts_check 覆盖结果" MODIFIED="1684898741167" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$147852_.coverage" NAME="147852.生成 覆盖结果" MODIFIED="1684893660842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频数字/键盘数字" />
     <SUITE FILE_PATH="coverage/HPLAB$_____1_.coverage" NAME="连接符号叠词++.生成 (1) 覆盖结果" MODIFIED="1684893802837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/拼接信息/连接符号" />
     <SUITE FILE_PATH="coverage/HPLAB$format_dict_base.coverage" NAME="format_dict_base 覆盖结果" MODIFIED="1682240275148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

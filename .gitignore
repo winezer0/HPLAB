@@ -1,3 +1,5 @@
-.idea\*
-result\*
-*\temp\*
+.idea*
+result*
+*temp*
+*__pycache__*
+*runtime*
