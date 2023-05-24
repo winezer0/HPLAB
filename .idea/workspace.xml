@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="68a987c5-a959-4436-bdad-2ddce21de896" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.max.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.min.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.参考.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +141,7 @@
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
       <workItem from="1684911685805" duration="10660000" />
+      <workItem from="1684940660912" duration="332000" />
     </task>
     <servers />
   </component>

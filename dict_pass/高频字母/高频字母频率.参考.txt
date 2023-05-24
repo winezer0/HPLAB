@@ -57,8 +57,9 @@ mm	1417
 dd	673
 love	600
 woaini	551
+wo  500
+nb  495
 ok	490
-caonima
-nihao
-sb
-nb
+sb  450
+caonima 128
+nihao   101
