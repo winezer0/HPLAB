@@ -130,6 +130,7 @@
       <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序叠加.生成.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序连续上下.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/数字符号!@12.生成.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序连续下上.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/数字符号12!@.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libs/lib_file_operate/file_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/lib_file_operate/file_path.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools_base_dicts_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools_base_dicts_check.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -209,7 +210,7 @@
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频键盘\键盘字母数字" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.数字符号12!@.生成">
+  <component name="RunManager" selected="Python.file_path">
     <configuration name="数字符号12!@.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -224,28 +225,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频键盘\键盘数字符号\数字符号12!@.生成.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="数字符号1!2@.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="HPLAB" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频键盘\键盘数字符号\数字符号1!2@.生成.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -562,13 +541,35 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="file_path" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HPLAB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/libs/lib_file_operate" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/libs/lib_file_operate/file_path.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.file_path" />
         <item itemvalue="Python.数字符号12!@.生成" />
         <item itemvalue="Python.数字符号!@12.生成" />
         <item itemvalue="Python.键盘左右顺序.生成" />
         <item itemvalue="Python.数字符号1!@2.生成" />
-        <item itemvalue="Python.数字符号1!2@.生成" />
       </list>
     </recent_temporary>
   </component>
@@ -610,7 +611,7 @@
       <workItem from="1684720868944" duration="927000" />
       <workItem from="1684724531086" duration="29546000" />
       <workItem from="1684830951972" duration="24183000" />
-      <workItem from="1684891471525" duration="13321000" />
+      <workItem from="1684891471525" duration="14052000" />
     </task>
     <servers />
   </component>
@@ -639,6 +640,7 @@
     <SUITE FILE_PATH="coverage/HPLAB$123456_.coverage" NAME="键盘数字123456.生成 覆盖结果" MODIFIED="1684905324534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右" />
     <SUITE FILE_PATH="coverage/HPLAB$test_key__1_.coverage" NAME="test_key (1) 覆盖结果" MODIFIED="1683433146526" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testdata" />
     <SUITE FILE_PATH="coverage/HPLAB$base_rule_parser.coverage" NAME="base_rule_parser 覆盖结果" MODIFIED="1682240959060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/libs/lib_dyna_rule" />
+    <SUITE FILE_PATH="coverage/HPLAB$file_path.coverage" NAME="file_path 覆盖结果" MODIFIED="1684908023341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/libs/lib_file_operate" />
     <SUITE FILE_PATH="coverage/HPLAB$tools_test_custom_py.coverage" NAME="tools_test_custom_py 覆盖结果" MODIFIED="1683590903827" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$qaz_.coverage" NAME="qaz.生成 覆盖结果" MODIFIED="1684893258582" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频字母/键盘字母生成" />
     <SUITE FILE_PATH="coverage/HPLAB$123123_.coverage" NAME="顺序数字123123.生成 覆盖结果" MODIFIED="1684904273246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右" />
