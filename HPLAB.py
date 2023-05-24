@@ -4,8 +4,8 @@ import argparse
 import sys
 
 from SSDG import social_rule_handle_in_steps_two_list, social_rule_handle_in_steps_one_pairs
-from libs.lib_dyna_rule.dyna_rule_tools import reduce_str_str_tuple_list, unfrozen_tuple_list
-from libs.lib_file_operate.file_read import read_file_to_list, read_file_to_str
+from libs.lib_file_operate.file_path import auto_create_file, file_is_empty
+from libs.lib_file_operate.file_read import read_file_to_str
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
     search_and_get_param_value
 from libs.lib_http_pkg.parse_http_pkg import parse_http_pkg_by_email_simple
@@ -40,6 +40,12 @@ def generate_brute_task_list(pair_list, mark_url, mark_body, mark_headers, mark_
 
 # 登录爆破测试
 def http_packet_login_auto_brute():
+    # 检查请求报文是否存在
+    if file_is_empty(GB_HTTP_FILE):
+        output(f"[!] [{GB_HTTP_FILE}] is Empty, Please Fill Data to File!!!", level=LOG_ERROR)
+        auto_create_file(GB_HTTP_FILE)
+        return
+
     # 初始化HTTP报文
     http_pkg = read_file_to_str(GB_HTTP_FILE)
 
@@ -153,46 +159,36 @@ def http_packet_login_auto_brute():
     # 重新发送HTTP请求
     output(f"[*] 进行字典替换和多线程请求...", level=LOG_INFO)
 
+    # 存储已爆破的账号密码文件
+    host_no_symbol = parse_host.replace(':', '_')
+    path_no_symbol = parse_path.split('?', 1)[0].replace('/', '_')
+    history_file = os.path.join(GB_LOG_FILE_DIR, f"history_{host_no_symbol}.{path_no_symbol}.log")
+
     # 动态生成账号密码字典
     if GB_USE_PAIR_FILE:
         # 使用【用户名:密码对】字典
         name_pass_pair_list = social_rule_handle_in_steps_one_pairs(target_url=req_url,
                                                                     default_name_list=default_name_list,
-                                                                    default_pass_list=default_pass_list
+                                                                    default_pass_list=default_pass_list,
+                                                                    exclude_file=history_file
                                                                     )
     else:
         # 使用【用户名字典】和【密码字典】
         name_pass_pair_list = social_rule_handle_in_steps_two_list(target_url=req_url,
                                                                    default_name_list=default_name_list,
                                                                    default_pass_list=default_pass_list,
+                                                                   exclude_file=history_file
                                                                    )
+
+    if len(name_pass_pair_list) > 0:
+        output(f"[*] 历史爆破记录过滤完毕, 剩余元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
+    else:
+        output(f"[*] 所有账号密码字典已过滤, 退出本次操作", level=LOG_INFO)
+        return
+
     # 仅生成口令字典
     if GB_ONLY_GENERATE_DICT:
         return
-
-    # 存储已爆破的账号密码文件
-    host_no_symbol = parse_host.replace(':', '_')
-    path_no_symbol = parse_path.split('?', 1)[0].replace('/', '_')
-    history_file = os.path.join(GB_LOG_FILE_DIR, f"history_{host_no_symbol}.{path_no_symbol}.log")
-
-    # 读取已爆破的账号密码 不进行多次爆破
-    if GB_EXCLUDE_HISTORY_RECORD:
-        output(f"[*] 历史爆破记录过滤开始, 原始元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
-        history_user_pass_list = read_file_to_list(history_file,
-                                                   encoding='utf-8',
-                                                   de_strip=True,
-                                                   de_weight=True,
-                                                   de_unprintable=True)
-        # 移除已经被爆破过得账号密码
-        history_tuple_list = unfrozen_tuple_list(history_user_pass_list, GB_CONST_SIGN_LINK)
-        name_pass_pair_list = reduce_str_str_tuple_list(name_pass_pair_list,
-                                                        history_tuple_list,
-                                                        GB_CONST_SIGN_LINK)
-        if len(name_pass_pair_list) > 0:
-            output(f"[*] 历史爆破记录过滤完毕, 剩余元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
-        else:
-            output(f"[*] 所有账号密码字典已过滤, 退出本次操作", level=LOG_INFO)
-            return
 
     # 生成动态排除字典
     dynamic_exclude_dict = gen_dynamic_exclude_dict(mark_url=mark_url,
@@ -207,7 +203,7 @@ def http_packet_login_auto_brute():
                                                mark_headers=mark_headers,
                                                mark_username=GB_MARK_USERNAME,
                                                mark_password=GB_MARK_PASSWORD,
-                                               const_sign_link=GB_CONST_SIGN_LINK)
+                                               const_sign_link=GB_CONST_LINK)
 
     # 将任务列表拆分为多个任务列表 再逐步进行爆破,便于统一处理结果
     task_size = GB_TASK_CHUNK_SIZE
@@ -276,7 +272,7 @@ def gen_dynamic_exclude_dict(mark_url, req_method, mark_body, mark_headers):
                                               mark_headers=mark_headers,
                                               mark_username=GB_MARK_USERNAME,
                                               mark_password=GB_MARK_PASSWORD,
-                                              const_sign_link=GB_CONST_SIGN_LINK)
+                                              const_sign_link=GB_CONST_LINK)
 
     # 执行测试任务
     output(f"[+] 动态测试 分析动态结果排除字典", level=LOG_INFO)
@@ -339,6 +335,15 @@ def parse_input():
 
     argument_parser.add_argument("-x", dest="proxies", default=GB_PROXIES,
                                  help=f"Specifies http|https|socks5 proxies, Default is [{GB_PROXIES}]")
+
+    argument_parser.add_argument("-e", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
+                                 help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
+
+    argument_parser.add_argument("-E", "--exclude_file", default=GB_EXCLUDE_FILE,
+                                 help=f"Specifies exclude history file name, Default is {GB_EXCLUDE_FILE}", )
+
+    argument_parser.add_argument("-c", "--const_link", default=GB_CONST_LINK,
+                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_CONST_LINK}", )
 
     # epilog 程序额外信息
     argument_parser.epilog = f"""Examples:\npython3 {argument_parser.prog} -f http.txt\n\nVersion: {GB_VERSION}\n\n更多参数可通过[setting.py]进行配置"""

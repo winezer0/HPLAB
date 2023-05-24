@@ -8,7 +8,7 @@ from setting_dict import *
 
 ##################################################################
 # 版本号配置
-GB_VERSION = "Ver 0.1.9 2023-05-22 12:00"
+GB_VERSION = "Ver 0.1.9 2023-05-24 18:30"
 ##################################################################
 # 程序开始运行时间  %Y-%m-%d-%H-%M-%S
 GB_RUN_TIME = time.strftime("%Y-%m-%d", time.localtime())
@@ -36,10 +36,9 @@ GB_INFO_LOG_FILE = str(GB_LOG_FILE_PATH).replace('module', 'info')
 GB_DBG_LOG_FILE = str(GB_LOG_FILE_PATH).replace('module', 'debug')
 GB_ERR_LOG_FILE = str(GB_LOG_FILE_PATH).replace('module', 'error')
 ##################################################################
-# 设置输出结果文件目录
-GB_RESULT_DIR = GB_BASE_DIR.joinpath("result")
+# # 设置输出结果文件目录
 # RESULT_FILE_PATH = f"{RESULT_DIR_PATH}/result_{GB_RUN_TIME}.csv"
-GB_RESULT_FILE_PATH = "auto"  # auto 根据主机名和时间戳自动生成
+GB_RESULT_FILE_PATH = "auto"  # auto 根据主机名和时间戳自动生成爆破结果
 ##################################################################
 # 默认调用的流量
 GB_HTTP_FILE = "http_packet.txt"
@@ -91,11 +90,6 @@ GB_EXCLUDE_REGEXP = r"页面不存在|未找到|not[ -]found|403|404|410"
 ############################################################
 # 最大错误次数
 GB_MAX_ERROR_NUM = 20
-############################################################
-# 排除历史爆破记录的功能
-GB_EXCLUDE_HISTORY_RECORD = False
-# 记录历史账号密码时的const_sign 的 连接符号 # 无需修改
-GB_CONST_SIGN_LINK = '<-->'
 ############################################################
 # 仅爆破一个账号密码,成功后退出 很少使用
 GB_ONLY_BRUTE_ONE_PASS = True

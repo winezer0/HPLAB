@@ -15,6 +15,13 @@ from libs.lib_social_dict.repl_const import *
 # 获取setting.py脚本所在路径作为的基本路径
 GB_BASE_DIR = pathlib.Path(__file__).parent.resolve()
 ############################################################
+# 排除历史爆破记录的功能
+GB_EXCLUDE_FLAG = True
+# 排除历史爆破文件名称
+GB_EXCLUDE_FILE = "history_file.txt"
+# 记录历史账号密码时的const_sign 的 连接符号 # 无需修改
+GB_CONST_LINK = '<-->'
+############################################################
 # 基本变量文件夹 里面的每个文件都代表一个替换变量
 GB_BASE_VAR_DIR = GB_BASE_DIR.joinpath("dict_base")
 # 存储 需要用户的输入的基本变量, 防止文件太多所以进行分离
@@ -62,10 +69,11 @@ GB_PAIR_LINK_SYMBOL = ':'
 GB_USE_PAIR_FILE = False
 # 使用账号:密码对文件进行爆破时,是否进行基本变量替换
 GB_USE_PAIR_BASE_REPL = False
-############################################################
+##################################################################
+# 设置输出结果文件目录
+GB_RESULT_DIR = GB_BASE_DIR.joinpath("result")
 # 指定记录字典文件的目录
-# GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime())}")
-GB_TEMP_DICT_DIR = os.path.join(GB_RULE_DICT_DIR, f"temp.dict.{time.strftime('%Y-%m-%d', time.localtime())}")
+GB_TEMP_DICT_DIR = os.path.join(GB_RESULT_DIR, f"dict.{time.strftime('%Y-%m-%d-%H-%M', time.localtime())}")
 ############################################################
 # 用户名中的中文转拼音处理
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作

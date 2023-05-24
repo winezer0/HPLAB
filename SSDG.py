@@ -7,11 +7,12 @@ from libs.lib_chinese_encode.chinese_encode import tuple_list_chinese_encode_by_
 from libs.lib_chinese_pinyin.chinese_list_to_alphabet_list import dict_chinese_to_dict_alphabet
 from libs.lib_dyna_rule.base_key_replace import replace_list_has_key_str, remove_not_used_key
 from libs.lib_dyna_rule.base_rule_parser import base_rule_render_list
-from libs.lib_dyna_rule.dyna_rule_tools import cartesian_product_merging, unfrozen_tuple_list
+from libs.lib_dyna_rule.dyna_rule_tools import cartesian_product_merging, unfrozen_tuple_list, reduce_str_str_tuple_list
 from libs.lib_dyna_rule.dyna_rule_tools import frozen_tuple_list
 from libs.lib_dyna_rule.set_basic_var import set_base_var_dict
 from libs.lib_dyna_rule.set_depend_var import set_dependent_var_dict
 from libs.lib_file_operate.file_coding import file_encoding
+from libs.lib_file_operate.file_path import file_is_empty
 from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
 from libs.lib_filter_srting.filter_string_call import format_string_list, format_tuple_list
@@ -24,7 +25,7 @@ from setting_total import *
 
 
 # 分割写法 基于 用户名和密码规则生成 元组列表
-def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, default_pass_list=None):
+def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, default_pass_list=None, exclude_file=None):
     mode = "mode1"
     step = 0
 
@@ -173,7 +174,7 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         # 写入当前结果
         step += 1
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.cartesian.pair.txt"),
-                    frozen_tuple_list(name_pass_pair_list, link_symbol=":"))
+                    frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK))
 
     # 对基于用户名变量的密码做替换处理
     if True:
@@ -189,7 +190,7 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         # 写入当前结果
         step += 1
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_mark.pair.txt"),
-                    frozen_tuple_list(name_pass_pair_list, link_symbol=":"))
+                    frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK))
 
     # 对密码做动态处理
     if True:
@@ -203,7 +204,7 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
 
         # 写入当前结果
         step += 1
-        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=":")
+        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK)
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.transfer_pass.pair.txt"), frozen_tuple_list_)
 
     # 对元组列表进行 中文编码处理
@@ -220,16 +221,27 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         # 写入当前结果
         step += 1
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.chinese_encode.pair.txt"),
-                    frozen_tuple_list(name_pass_pair_list, link_symbol=":"))
+                    frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK))
 
+    # 排除历史文件内的账号密码对
+    if GB_EXCLUDE_FLAG and not file_is_empty(exclude_file):
+        output(f"[*] 历史爆破记录过滤开始, 原始元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
+        history_user_pass_list = read_file_to_list(exclude_file, encoding='utf-8', de_strip=True, de_weight=True, de_unprintable=True)
+        # 移除已经被爆破过得账号密码
+        history_tuple_list = unfrozen_tuple_list(history_user_pass_list, GB_CONST_LINK)
+        name_pass_pair_list = reduce_str_str_tuple_list(name_pass_pair_list, history_tuple_list, GB_CONST_LINK)
+
+        # 写入当前结果
+        step += 1
+        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK)
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.exclude_history.txt"), frozen_tuple_list_)
     return name_pass_pair_list
 
 
 # 分割写法 基于 用户名:密码对 规则生成 元组列表
-def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, default_pass_list=None):
+def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, default_pass_list=None, exclude_file=None):
     mode = "mode2"
     step = 0
-
     # 读取用户账号文件
     name_pass_pair_list = read_file_to_list(GB_USER_PASS_PAIR_FILE,
                                             encoding=file_encoding(GB_USER_PASS_PAIR_FILE),
@@ -335,7 +347,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
 
         # 写入当前结果
         step += 1
-        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=":")
+        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK)
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_mark.pair.txt"), frozen_tuple_list_)
 
     # 对密码做动态处理
@@ -350,7 +362,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
 
         # 写入当前结果
         step += 1
-        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=":")
+        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK)
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.transfer_pass.pair.txt"), frozen_tuple_list_)
 
     # 对元组列表进行 中文编码处理
@@ -366,8 +378,21 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         output(f"[*] 元组过滤格式化完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
         # 写入当前结果
         step += 1
-        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=":")
+        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK)
         write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.chinese_encode.pair.txt"), frozen_tuple_list_)
+
+    # 排除历史文件内的账号密码对
+    if GB_EXCLUDE_FLAG and not file_is_empty(exclude_file):
+        output(f"[*] 历史爆破记录过滤开始, 原始元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
+        history_user_pass_list = read_file_to_list(exclude_file, encoding='utf-8', de_strip=True, de_weight=True, de_unprintable=True)
+        # 移除已经被爆破过得账号密码
+        history_tuple_list = unfrozen_tuple_list(history_user_pass_list, GB_CONST_LINK)
+        name_pass_pair_list = reduce_str_str_tuple_list(name_pass_pair_list, history_tuple_list, GB_CONST_LINK)
+
+        # 写入当前结果
+        step += 1
+        frozen_tuple_list_ = frozen_tuple_list(name_pass_pair_list, link_symbol=GB_CONST_LINK)
+        write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.exclude_history.txt"), frozen_tuple_list_)
     return name_pass_pair_list
 
 
@@ -384,10 +409,20 @@ def parse_input():
     argument_parser.add_argument("-P", "--user_pass_file", default=GB_USER_PASS_FILE,
                                  help=f"Specifies the password rule file, Default is {GB_USER_PASS_FILE}")
 
+    argument_parser.add_argument("-a", "--use_pair_file", default=GB_USE_PAIR_FILE, action="store_true",
+                                 help=f"Specifies use use_pair_file, Default is {GB_USE_PAIR_FILE}", )
+
     argument_parser.add_argument("-A", "--user_pass_pair_file", default=GB_USER_PASS_PAIR_FILE,
                                  help=f"Specifies the password rule file, Default is {GB_USER_PASS_PAIR_FILE}")
-    argument_parser.add_argument("-a", "--use_pair_file", default=GB_USE_PAIR_FILE, action="store_true",
-                                 help=f"Specifies Display Debug Info, Default is {GB_USE_PAIR_FILE}", )
+
+    argument_parser.add_argument("-e", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
+                                 help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
+
+    argument_parser.add_argument("-E", "--exclude_file", default=GB_EXCLUDE_FILE,
+                                 help=f"Specifies exclude history file name, Default is {GB_EXCLUDE_FILE}", )
+
+    argument_parser.add_argument("-c", "--const_link", default=GB_CONST_LINK,
+                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_CONST_LINK}", )
 
     argument_parser.add_argument("-d", "--debug_flag", default=GB_DEBUG_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is {GB_DEBUG_FLAG}", )
@@ -417,8 +452,10 @@ if __name__ == '__main__':
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_USE_PAIR_FILE:
-        user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL)
+        user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL,
+                                                              exclude_file=GB_EXCLUDE_FILE)
     else:
-        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_TARGET_URL)
+        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_TARGET_URL,
+                                                               exclude_file=GB_EXCLUDE_FILE)
 
     output(f"[*] 最终生成账号密码对数量: {len(user_pass_dict)}", level=LOG_INFO)
