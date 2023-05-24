@@ -309,6 +309,9 @@ def parse_input():
     argument_parser.add_argument("-P", "--protocol", default=GB_PROTOCOL,
                                  help=f"Specifies HTTP Request Protocol, Default is [{GB_PROTOCOL}]")
 
+    argument_parser.add_argument("-l", "--rule_level", default=GB_RULE_LEVEL,
+                                 help=f"Specifies the rule file dir, Default is {GB_RULE_LEVEL}")
+
     argument_parser.add_argument("-u", "--user_name_file", default=GB_USER_NAME_FILE,
                                  help=f"Specifies the username rule file, Default is [{GB_USER_NAME_FILE}]")
 
@@ -381,6 +384,11 @@ if __name__ == '__main__':
 
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
+
+    # 根据level参数修改字典路径
+    GB_USER_NAME_FILE = GB_USER_NAME_FILE.format(LEVEL=GB_RULE_LEVEL)
+    GB_USER_PASS_FILE = GB_USER_PASS_FILE.format(LEVEL=GB_RULE_LEVEL)
+    GB_PAIR_FILE_NAME = GB_PAIR_FILE_NAME.format(LEVEL=GB_RULE_LEVEL)
 
     # 进行登录爆破
     http_packet_login_auto_brute()

@@ -16,7 +16,7 @@ from libs.lib_file_operate.file_path import file_is_empty
 from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
 from libs.lib_filter_srting.filter_string_call import format_string_list, format_tuple_list
-from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO
+from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO, LOG_ERROR
 from libs.lib_social_dict.repl_mark_user import replace_mark_user_on_pass
 from libs.lib_social_dict.transfer_passwd import transfer_passwd
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
@@ -34,22 +34,25 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         name_list = default_name_list
         output(f"[*] 已输入默认账号列表 {default_name_list} 忽略读取账号字典文件", level=LOG_INFO)
     else:
-        name_list = read_file_to_list(GB_USER_NAME_FILE,
-                                      encoding=file_encoding(GB_USER_NAME_FILE),
-                                      de_strip=True,
-                                      de_weight=True)
-        output(f"[*] 读取账号字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
+        if file_is_empty(GB_USER_NAME_FILE):
+            output(f"[!] 文件不存在 {GB_USER_NAME_FILE} !!!", level=LOG_ERROR)
+            return []
+        else:
+            output(f"[*] 读取账号字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
+            name_list = read_file_to_list(GB_USER_NAME_FILE, encoding=file_encoding(GB_USER_NAME_FILE), de_strip=True, de_weight=True)
 
     # 读取密码文件
     if default_pass_list:
         pass_list = default_pass_list
         output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
     else:
-        output(f"[*] 读取密码字典文件 {GB_USER_PASS_FILE}...", level=LOG_INFO)
-        pass_list = read_file_to_list(GB_USER_PASS_FILE,
-                                      encoding=file_encoding(GB_USER_PASS_FILE),
-                                      de_strip=True,
-                                      de_weight=True)
+
+        if file_is_empty(GB_USER_PASS_FILE):
+            output(f"[!] 文件不存在 {GB_USER_PASS_FILE} !!!", level=LOG_ERROR)
+            return []
+        else:
+            output(f"[*] 读取密码字典文件 {GB_USER_PASS_FILE}...", level=LOG_INFO)
+            pass_list = read_file_to_list(GB_USER_PASS_FILE, encoding=file_encoding(GB_USER_PASS_FILE), de_strip=True, de_weight=True)
 
     output(f"[*] 读取账号|密码文件完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
@@ -408,9 +411,11 @@ def parse_input():
     argument_parser.add_argument("-t", "--target_url", default=GB_TARGET_URL,
                                  help=f"Specify the blasting Target url, Default is {GB_TARGET_URL}", )
 
+    argument_parser.add_argument("-l", "--rule_level", default=GB_RULE_LEVEL,
+                                 help=f"Specifies the rule file dir, Default is {GB_RULE_LEVEL}")
+
     argument_parser.add_argument("-u", "--user_name_file", default=GB_USER_NAME_FILE,
                                  help=f"Specifies the username rule file, Default is {GB_USER_NAME_FILE}")
-
     argument_parser.add_argument("-p", "--user_pass_file", default=GB_USER_PASS_FILE,
                                  help=f"Specifies the password rule file, Default is {GB_USER_PASS_FILE}")
 
@@ -448,15 +453,23 @@ if __name__ == '__main__':
     args = parser.parse_args()
     output(f"[*] 所有输入参数信息: {args}")
 
-    # 通过一个循环将命令行传递的参数直接赋值给相应的全局变量，从而避免了冗余的代码
     # 使用字典解压将参数直接赋值给相应的全局变量
     for param_name, param_value in vars(args).items():
-        globals()[f"GB_{str(param_name).upper()}"] = param_value
-        # print(f"GB_{key.upper()} = {value}")
-        # print(globals()[f"GB_{key.upper()}"])
+        globals_var_name = f"GB_{str(param_name).upper()}"
+        try:
+            globals()[globals_var_name] = param_value
+            # output(f"[*] INPUT:{globals_var_name} -> {param_value}", level=SHOW_DEBUG)
+        except Exception as error:
+            output(f"[!] 输入参数信息: {param_name} {param_value} 未对应其全局变量!!!", level=LOG_ERROR)
+            exit()
 
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
+
+    # 根据level参数修改字典路径
+    GB_USER_NAME_FILE = GB_USER_NAME_FILE.format(LEVEL=GB_RULE_LEVEL)
+    GB_USER_PASS_FILE = GB_USER_PASS_FILE.format(LEVEL=GB_RULE_LEVEL)
+    GB_PAIR_FILE_NAME = GB_PAIR_FILE_NAME.format(LEVEL=GB_RULE_LEVEL)
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_PAIR_FILE_FLAG:

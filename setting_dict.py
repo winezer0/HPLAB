@@ -56,8 +56,9 @@ GB_TARGET_URL = None
 GB_USER_NAME_MARK = "%USERNAME%"
 ############################################################
 # 账号密码目录
-GB_RULE_LEVEL = "level1"
-GB_RULE_DICT_DIR = GB_BASE_DIR.joinpath("dict_rule", GB_RULE_LEVEL)
+GB_RULE_DICT_DIR = GB_BASE_DIR.joinpath("dict_rule", "{LEVEL}")
+# 实际的目录
+GB_RULE_LEVEL = "level0"
 # 账号密码字典
 GB_USER_NAME_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode1_name.txt")
 GB_USER_PASS_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode1_pass.txt")
