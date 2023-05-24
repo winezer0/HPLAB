@@ -40,11 +40,11 @@ if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
     base_dict = {
-        f"{script_name}.max.txt": {
+        f"{script_name}.max.gen.txt": {
             "lengths": [1, 2, 3, 4, 5, 6, 7, 8, 9],
             "numbers": [0, 1, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         },
-        f"{script_name}.min.txt": {
+        f"{script_name}.min.gen.txt": {
             "lengths": [1, 2, 3, 4],
             "numbers": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         },

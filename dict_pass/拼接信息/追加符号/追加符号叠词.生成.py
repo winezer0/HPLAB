@@ -31,8 +31,8 @@ if __name__ == '__main__':
 
     # 定义基本元素
     base_letters_dict = {
-        f"{script_name}.max.txt": list("~!@#$%^&*()_+."),
-        f"{script_name}.min.txt": list("!@#$*+."),
+        f"{script_name}.max.gen.txt": list("~!@#$%^&*()_+."),
+        f"{script_name}.min.gen.txt": list("!@#$*+."),
     }
 
     repeat_times = [1, 2, 3]

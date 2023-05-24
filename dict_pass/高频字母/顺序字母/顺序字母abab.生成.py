@@ -31,7 +31,7 @@ def consecutive_letters(letter_list, length, starts=[]):
 
     # 进行过滤 判断是否以列表内的字符开头
     if len(starts) > 0:
-        result = [string for string in result if any(string.startswith(start) for start in starts)]
+        result = [string for string in result if any(string.startswith(str(start)) for start in starts)]
     return result
 
 
@@ -42,12 +42,12 @@ if __name__ == '__main__':
     base_letters = list(string.ascii_lowercase)
 
     base_dict = {
-        f"{script_name}.max.txt": {
+        f"{script_name}.max.gen.txt": {
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
             "starts": ["a", "b", "c", "x"],  # 过滤 需要以指定字符开头
             "counts": [2, 3],  # 叠词的长度
         },
-        f"{script_name}.min.txt": {
+        f"{script_name}.min.gen.txt": {
             "length": [2, 3, ],  # 生成的长度需求
             "starts": ["a", "x"],  # 过滤 需要以指定字符开头
             "counts": [2],  # 叠词的长度

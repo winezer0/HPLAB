@@ -70,12 +70,12 @@ if __name__ == '__main__':
 
     # 1、生成 qwerty 这样的键盘字符串
     base_dict = {
-        f"{script_name}.max.txt": {
+        f"{script_name}.max.gen.txt": {
             "length": [2, 3, 4],
             "starts": ["z", "x", "c"],
             "counts": [2, 3],
         },
-        f"{script_name}.min.txt": {
+        f"{script_name}.min.gen.txt": {
             "length": [3, 4],
             "starts": ["z", "x"],
             "counts": [2],
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
         # 仅已指定字符开头的元素
         starts = options["starts"]
-        data_list = [string for string in data_list if any(string.startswith(start) for start in starts)]
+        data_list = [string for string in data_list if any(string.startswith(str(start)) for start in starts)]
 
         # 进行迭代
         new_data_list = []

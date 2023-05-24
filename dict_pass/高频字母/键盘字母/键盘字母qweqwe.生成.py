@@ -59,11 +59,11 @@ if __name__ == '__main__':
 
     # 1、生成 qwerty 这样的键盘字符串
     base_dict = {
-        f"{script_name}.max.txt": {
+        f"{script_name}.max.gen.txt": {
             "length": [2, 3, 4, 5],
             "counts": [2, 3],
         },
-        f"{script_name}.min.txt": {
+        f"{script_name}.min.gen.txt": {
             "length": [3],
             "counts": [2],
         },
