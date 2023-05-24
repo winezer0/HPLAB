@@ -1,9 +1,10 @@
 .idea
 *idea*
-result*
 *temp*
 *__pycache__*
-*runtime*
-.idea\workspace.xml
+runtime
+runlog*
+result*
+HIT*
+*.pyc
 *.gen.txt
-.idea/workspace.xml
