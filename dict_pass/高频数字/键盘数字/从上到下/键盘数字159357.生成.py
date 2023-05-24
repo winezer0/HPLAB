@@ -31,7 +31,7 @@ def remove_duplicates(seq):
     return [x for x in seq if not (x in seen or seen.add(x))]
 
 
-def gen_key_list(keyboard_x2d):
+def gen_key_list(keyboard_x2d,add_row=True):
     line_result = []
     for lll in [1, 2]:
         index_dict = {0: 1, -1: -1}
@@ -41,7 +41,7 @@ def gen_key_list(keyboard_x2d):
             for lst in keyboard_x2d[:3]:
                 tmp_list.append(lst[index])
                 index += step
-            line_result.append("".join(tmp_list))
+            if add_row: line_result.append("".join(tmp_list))
             row_result.append("".join(tmp_list))
         line_result.append("".join(row_result))
     return remove_duplicates(line_result)
@@ -64,11 +64,16 @@ if __name__ == '__main__':
     base_dict = {
         f"{script_name}.max.txt": {
             "starts": [],
+            "add_row":True,
+        },
+        f"{script_name}.min.txt": {
+            "starts": [],
+            "add_row": False,
         },
     }
 
     for file_path, options in base_dict.items():
-        data_list = gen_key_list(keyboard_x2d)
+        data_list = gen_key_list(keyboard_x2d,add_row=options["add_row"])
 
         # 仅已指定字符开头的元素
         starts = options["starts"]
