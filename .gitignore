@@ -1,6 +1,6 @@
-.idea*
+*idea*
 result*
 *temp*
 *__pycache__*
 *runtime*
-.idea/workspace.xml
+.idea\workspace.xml
