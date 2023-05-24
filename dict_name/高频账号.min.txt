@@ -1,4 +1,4 @@
-%BLANK%
+%blank%
 root
 administrator
 admin
@@ -13,7 +13,6 @@ sys
 manager
 管理员
 超级管理员
-Administrator
 manage
 test
 test1

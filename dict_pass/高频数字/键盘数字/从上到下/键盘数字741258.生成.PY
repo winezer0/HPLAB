@@ -50,7 +50,7 @@ def gen_key_list(keyboard_x2d, len_list=[], counts=[2]):
                 if i + length <= ele_num and index + 1 < len(ele_result):
                     # a1 = ele_result[index][i:i+length]
                     # a2 = ele_result[index + 1][i:i+length][::-1]
-                    # line_result.append(a1 + a2)
+                    # line_result.append(a1 + a2)  # ['147852', '258963']
                     for count in counts:
                         sss = ""
                         if index + count <= len(ele_result):
@@ -71,9 +71,9 @@ if __name__ == '__main__':
 
     # 定义键盘规则
     keyboard_rules = [
-        '123',
-        '456',
         '789',
+        '456',
+        '123',
         '-0-'
     ]
     # 0、生成 二维 键盘列表

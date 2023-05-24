@@ -42,14 +42,31 @@ def check_base_var_duplicates(dirs):
     dirs_list = [name_dirs, pass_dirs]
 
     for temp_dirs in dirs_list:
-        # 分析是否存在重复文件(基本变量)名
+        # 获取所有文件名
         all_file_list = []
         all_file_dict = {}
         for base_var_dir, ext_list in temp_dirs.items():
             file_info_dict = get_dir_path_file_info_dict(base_var_dir, ext_list=ext_list)
-            # output(f"[*] file_info_dict: {base_var_dir}:{file_info_dict.keys()}")
+            # get_dir_path_dir_info_dict 存在BUG,同一个目录下的文件会自动覆盖
             all_file_list.extend(list(file_info_dict.keys()))
             all_file_dict[base_var_dir] = list(file_info_dict.keys())
+
+        # 获取所有目录名
+        all_dir_list = []
+        all_dir_dict = {}
+        for base_var_dir, ext_list in temp_dirs.items():
+            # get_dir_path_dir_info_dict 存在BUG,同一个目录下的文件会自动覆盖
+            dir_info_dict = get_dir_path_dir_info_dict(base_var_dir)
+            all_dir_list.extend(list(dir_info_dict.keys()))
+            all_dir_dict[base_var_dir] = list(dir_info_dict.keys())
+        duplicates_dir_list = find_duplicates(all_dir_list)
+
+        # 输出所有文件名
+        output(f"[*] all_file_dict: {all_file_dict}", level=LOG_INFO)
+        # 输出所有目录名
+        output(f"[*] all_dir_dict: {all_dir_dict}", level=LOG_INFO)
+
+        # 判断是否存在重复文件名
         duplicates_file_list = find_duplicates(all_file_list)
         if duplicates_file_list:
             output(f"[-] 发现 (基本变量) 重复文件|建议修改名称: {duplicates_file_list}", level=LOG_ERROR)
@@ -62,14 +79,6 @@ def check_base_var_duplicates(dirs):
             output(f"[*] 未发现 (基本变量) 重复文件...{list(temp_dirs.keys())}", level=LOG_INFO)
 
         # 分析是否存在重复目录
-        all_dir_list = []
-        all_dir_dict = {}
-        for base_var_dir, ext_list in temp_dirs.items():
-            dir_info_dict = get_dir_path_dir_info_dict(base_var_dir)
-            # output(f"[*] dir_info_dict: {base_var_dir}:{dir_info_dict.keys()}")
-            all_dir_list.extend(list(dir_info_dict.keys()))
-            all_dir_dict[base_var_dir] = list(dir_info_dict.keys())
-        duplicates_dir_list = find_duplicates(all_dir_list)
         if duplicates_dir_list:
             output(f"[-] 发现 (基本变量) 重复目录|建议修改名称: {duplicates_dir_list}", level=LOG_ERROR)
             # 反向查找文件所在目录
