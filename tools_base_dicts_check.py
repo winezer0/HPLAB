@@ -83,7 +83,7 @@ def check_base_var_duplicates(dirs):
         # 分析是否存在目录和文件名重复的情况
         for dir_var in all_dir_list:
             for file_var in all_file_list:
-                if str(dir_var) == str(file_var).split(".",1)[0]:
+                if str(dir_var) in str(file_var):
                     output(f"[-] 发现 (基本变量) 重复目录文件|建议修改名称: {dir_var} <--> {file_var}", level=LOG_ERROR)
         else:
             output(f"[*] 未发现 (基本变量) 重复目录文件...{list(temp_dirs.keys())}", level=LOG_INFO)

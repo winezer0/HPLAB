@@ -38,12 +38,12 @@ if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
     base_dict = {
-        f"{script_name}.max.gen.txt": {
+        f"{script_name}.max.txt": {
             "letters": list("~!@#$%^&*()_+"),
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
             "starts": ["!", "@"],  # 过滤 需要以指定字符开头
         },
-        f"{script_name}.min.gen.txt": {
+        f"{script_name}.min.txt": {
             "letters": list("~!@#$%^&*()_+"),
             "length": [2, 3, ],  # 生成的长度需求
             "starts": ["!", "@"],  # 过滤 需要以指定字符开头
