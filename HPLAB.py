@@ -309,6 +309,9 @@ def parse_input():
     argument_parser.add_argument("-P", "--protocol", default=GB_PROTOCOL,
                                  help=f"Specifies HTTP Request Protocol, Default is [{GB_PROTOCOL}]")
 
+    argument_parser.add_argument("-b", "--base_dict_suffix", default=GB_BASE_DICT_SUFFIX, nargs="+",
+                                 help=f"Specifies the base var file suffix, Default is {GB_BASE_DICT_SUFFIX}")
+
     argument_parser.add_argument("-l", "--rule_level", default=GB_RULE_LEVEL,
                                  help=f"Specifies the rule file dir, Default is {GB_RULE_LEVEL}")
 

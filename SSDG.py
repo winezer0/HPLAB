@@ -74,17 +74,17 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
     # 基本变量替换处理
     if True:
         # 获取基本变量字典
-        base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
+        base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_BASE_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
         output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_BASE_DICT_SUFFIX, base_var_replace_dict)
         output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # 对账号列表依赖的 基本变量字典中的列表值进行中文处理
-        name_base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        name_base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_BASE_DICT_SUFFIX, base_var_replace_dict)
         output(f"[*] 账号基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-        pass_base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+        pass_base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_BASE_DICT_SUFFIX, base_var_replace_dict)
         output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
         # 清空不被需要的字典键
@@ -248,10 +248,11 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
     mode = "mode2"
     step = 0
     # 读取用户账号文件
-    name_pass_pair_list = read_file_to_list(GB_PAIR_FILE_NAME,
-                                            encoding=file_encoding(GB_PAIR_FILE_NAME),
-                                            de_strip=True,
-                                            de_weight=True)
+    if file_is_empty(GB_PAIR_FILE_NAME):
+        output(f"[!] 文件不存在 {GB_PAIR_FILE_NAME} !!!", level=LOG_ERROR)
+        return []
+    else:
+        name_pass_pair_list = read_file_to_list(GB_PAIR_FILE_NAME, encoding=file_encoding(GB_PAIR_FILE_NAME), de_strip=True, de_weight=True)
     output(f"[*] 读取账号密码文件完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
     # 动态规则解析和基本变量替换过程 默认取消
@@ -267,16 +268,16 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
         # 基本变量处理
         if True:
             # 获取基本变量字典
-            base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
+            base_var_replace_dict = set_base_var_dict(GB_BASE_VAR_DIR, GB_BASE_DICT_SUFFIX, GB_BASE_VAR_REPLACE_DICT)
             output(f"[*] 基本变量字典获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-            base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+            base_var_replace_dict = set_base_var_dict(GB_BASE_DYNA_DIR, GB_BASE_DICT_SUFFIX, base_var_replace_dict)
             output(f"[*] 动态基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-            base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+            base_var_replace_dict = set_base_var_dict(GB_BASE_NAME_DIR, GB_BASE_DICT_SUFFIX, base_var_replace_dict)
             output(f"[*] 姓名基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
-            base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_DICT_SUFFIX, base_var_replace_dict)
+            base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_BASE_DICT_SUFFIX, base_var_replace_dict)
             output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
 
             # 清空不被需要的字典键
@@ -411,11 +412,15 @@ def parse_input():
     argument_parser.add_argument("-t", "--target_url", default=GB_TARGET_URL,
                                  help=f"Specify the blasting Target url, Default is {GB_TARGET_URL}", )
 
+    argument_parser.add_argument("-b", "--base_dict_suffix", default=GB_BASE_DICT_SUFFIX, nargs="+",
+                                 help=f"Specifies the base var file suffix, Default is {GB_BASE_DICT_SUFFIX}")
+
     argument_parser.add_argument("-l", "--rule_level", default=GB_RULE_LEVEL,
                                  help=f"Specifies the rule file dir, Default is {GB_RULE_LEVEL}")
 
     argument_parser.add_argument("-u", "--user_name_file", default=GB_USER_NAME_FILE,
                                  help=f"Specifies the username rule file, Default is {GB_USER_NAME_FILE}")
+
     argument_parser.add_argument("-p", "--user_pass_file", default=GB_USER_PASS_FILE,
                                  help=f"Specifies the password rule file, Default is {GB_USER_PASS_FILE}")
 
