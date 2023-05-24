@@ -416,8 +416,14 @@ def parse_input():
     argument_parser.add_argument("-b", "--base_dict_suffix", default=GB_BASE_DICT_SUFFIX, nargs="+",
                                  help=f"Specifies the base var file suffix, Default is {GB_BASE_DICT_SUFFIX}")
 
-    argument_parser.add_argument("-l", "--rule_level", default=GB_RULE_LEVEL,
-                                 help=f"Specifies the rule file dir, Default is {GB_RULE_LEVEL}")
+    argument_parser.add_argument("-ln", "--rule_level_name", default=GB_RULE_LEVEL_NAME,
+                                 help=f"Specifies the name rule file level or prefix, Default is {GB_RULE_LEVEL_NAME}")
+
+    argument_parser.add_argument("-lp", "--rule_level_pass", default=GB_RULE_LEVEL_PASS,
+                                 help=f"Specifies the pass rule file level or prefix, Default is {GB_RULE_LEVEL_PASS}")
+
+    argument_parser.add_argument("-ll", "--rule_level_pair", default=GB_RULE_LEVEL_PAIR,
+                                 help=f"Specifies the pair rule file level or prefix, Default is {GB_RULE_LEVEL_PAIR}")
 
     argument_parser.add_argument("-u", "--user_name_file", default=GB_USER_NAME_FILE,
                                  help=f"Specifies the username rule file, Default is {GB_USER_NAME_FILE}")
@@ -425,16 +431,16 @@ def parse_input():
     argument_parser.add_argument("-p", "--user_pass_file", default=GB_USER_PASS_FILE,
                                  help=f"Specifies the password rule file, Default is {GB_USER_PASS_FILE}")
 
-    argument_parser.add_argument("-A", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
-                                 help=f"Specifies use pair file flag, Default is {GB_PAIR_FILE_FLAG}", )
+    argument_parser.add_argument("-af", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
+                                 help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
 
     argument_parser.add_argument("-a", "--pair_file_name", default=GB_PAIR_FILE_NAME,
-                                 help=f"Specifies the password rule file, Default is {GB_PAIR_FILE_NAME}")
+                                 help=f"Specifies the password rule file, Default is [{GB_PAIR_FILE_NAME}]")
 
     argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
                                  help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK_SYMBOL}", )
 
-    argument_parser.add_argument("-E", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
+    argument_parser.add_argument("-ef", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
                                  help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
 
     argument_parser.add_argument("-e", "--exclude_file", default=GB_EXCLUDE_FILE,
@@ -473,9 +479,9 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # 根据level参数修改字典路径
-    GB_USER_NAME_FILE = GB_USER_NAME_FILE.format(LEVEL=GB_RULE_LEVEL)
-    GB_USER_PASS_FILE = GB_USER_PASS_FILE.format(LEVEL=GB_RULE_LEVEL)
-    GB_PAIR_FILE_NAME = GB_PAIR_FILE_NAME.format(LEVEL=GB_RULE_LEVEL)
+    GB_USER_NAME_FILE = GB_USER_NAME_FILE.format(LEVEL=GB_RULE_LEVEL_NAME)
+    GB_USER_PASS_FILE = GB_USER_PASS_FILE.format(LEVEL=GB_RULE_LEVEL_PASS)
+    GB_PAIR_FILE_NAME = GB_PAIR_FILE_NAME.format(LEVEL=GB_RULE_LEVEL_PAIR)
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_PAIR_FILE_FLAG:
