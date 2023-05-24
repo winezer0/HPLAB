@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="781a756d-46c5-4db0-9ab2-8cd44b5395b5" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频数字.max.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频数字.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.max.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.min.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号高频.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号高频.参考.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/寓意字母频率.max.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/寓意字母频率.min.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/寓意字母频率.参考.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.max.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.参考.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/寓意数字.参考.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/高频数字.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/高频数字.参考.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/高频键盘.参考.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +60,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/dict_pass/高频数字" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/dict_pass/高频键盘" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
@@ -82,9 +73,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频键盘" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频数字" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频数字\键盘数字\从上到下" />
-      <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频键盘" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频数字\键盘数字" />
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频数字\键盘数字\从左到右" />
     </key>
@@ -497,7 +488,7 @@
       <workItem from="1684720868944" duration="927000" />
       <workItem from="1684724531086" duration="29546000" />
       <workItem from="1684830951972" duration="24183000" />
-      <workItem from="1684891471525" duration="5485000" />
+      <workItem from="1684891471525" duration="6280000" />
     </task>
     <servers />
   </component>
