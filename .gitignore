@@ -5,3 +5,4 @@ result*
 *runtime*
 .idea\workspace.xml
 *.gen.txt
+.idea/workspace.xml
