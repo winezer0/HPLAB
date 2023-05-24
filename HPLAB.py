@@ -306,37 +306,31 @@ def parse_input():
     argument_parser.add_argument("-f", "--http_file", default=GB_HTTP_FILE,
                                  help=f"Specifies HTTP Request Package, Default is [{GB_HTTP_FILE}]")
 
-    argument_parser.add_argument("-p", "--protocol", default=GB_PROTOCOL,
+    argument_parser.add_argument("-P", "--protocol", default=GB_PROTOCOL,
                                  help=f"Specifies HTTP Request Protocol, Default is [{GB_PROTOCOL}]")
 
-    argument_parser.add_argument("-U", "--user_name_file", default=GB_USER_NAME_FILE,
+    argument_parser.add_argument("-u", "--user_name_file", default=GB_USER_NAME_FILE,
                                  help=f"Specifies the username rule file, Default is [{GB_USER_NAME_FILE}]")
 
-    argument_parser.add_argument("-P", "--user_pass_file", default=GB_USER_PASS_FILE,
+    argument_parser.add_argument("-p", "--user_pass_file", default=GB_USER_PASS_FILE,
                                  help=f"Specifies the password rule file, Default is [{GB_USER_PASS_FILE}]")
 
-    argument_parser.add_argument("-a", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
+    argument_parser.add_argument("-A", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
 
-    argument_parser.add_argument("-A", "--pair_file_name", default=GB_PAIR_FILE_NAME,
+    argument_parser.add_argument("-a", "--pair_file_name", default=GB_PAIR_FILE_NAME,
                                  help=f"Specifies the password rule file, Default is [{GB_PAIR_FILE_NAME}]")
 
     argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
                                  help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK_SYMBOL}", )
 
-    argument_parser.add_argument("-t", "--threads_count", default=GB_THREADS_COUNT, type=int,
-                                 help=f"Specifies the request threads, Default is [{GB_THREADS_COUNT}]")
-
-    argument_parser.add_argument("-o", "--result_file_path", default=GB_RESULT_FILE_PATH,
-                                 help=f"Specify the result file name, Default is [{GB_RESULT_FILE_PATH}]")
-
     argument_parser.add_argument("-x", dest="proxies", default=GB_PROXIES,
                                  help=f"Specifies http|https|socks5 proxies, Default is [{GB_PROXIES}]")
 
-    argument_parser.add_argument("-e", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
+    argument_parser.add_argument("-E", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
                                  help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
 
-    argument_parser.add_argument("-E", "--exclude_file", default=GB_EXCLUDE_FILE,
+    argument_parser.add_argument("-e", "--exclude_file", default=GB_EXCLUDE_FILE,
                                  help=f"Specifies exclude history file name, Default is {GB_EXCLUDE_FILE}", )
 
     argument_parser.add_argument("-c", "--const_link", default=GB_CONST_LINK,
@@ -345,11 +339,17 @@ def parse_input():
     argument_parser.add_argument("-g", "--only_generate_dict", default=GB_ONLY_GENERATE_DICT, action="store_true",
                                  help=f"Specifies generate dictionary file, Default is [{GB_ONLY_GENERATE_DICT}]", )
 
+    argument_parser.add_argument("-t", "--threads_count", default=GB_THREADS_COUNT, type=int,
+                                 help=f"Specifies the request threads, Default is [{GB_THREADS_COUNT}]")
+
+    argument_parser.add_argument("-o", "--result_file_path", default=GB_RESULT_FILE_PATH,
+                                 help=f"Specify the result file name, Default is [{GB_RESULT_FILE_PATH}]")
+
     argument_parser.add_argument("-d", "--debug_flag", default=GB_DEBUG_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is [{GB_DEBUG_FLAG}]", )
 
     # epilog 程序额外信息
-    argument_parser.epilog = f"""Examples:\npython3 {argument_parser.prog} -f http.txt\n\nVersion: {GB_VERSION}\n\n更多参数可通过[setting.py]进行配置"""
+    argument_parser.epilog = f"""Version: {GB_VERSION}\n\n更多参数可通过[setting.py]进行配置"""
     return argument_parser
 
 

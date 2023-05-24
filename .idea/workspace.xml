@@ -8,8 +8,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HPLAB.py" beforeDir="false" afterPath="$PROJECT_DIR$/HPLAB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SSDG.py" beforeDir="false" afterPath="$PROJECT_DIR$/SSDG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level1/mode2_name_pass_pair.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1/mode2_pairs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_dict.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +112,7 @@
       <updated>1684909429290</updated>
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
-      <workItem from="1684911685805" duration="5556000" />
+      <workItem from="1684911685805" duration="5912000" />
     </task>
     <servers />
   </component>
