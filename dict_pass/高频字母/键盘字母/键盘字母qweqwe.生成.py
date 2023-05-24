@@ -26,16 +26,19 @@ def get_keyboard_x2d(keyboard_rule):
     return keyboard_rules_x2d
 
 
-def gen_key_list(keyboard_x2d, len_list=[]):
+def gen_key_list(keyboard_x2d, len_list=[], counts=[]):
     # 1、生成 qwer 这样的键盘字符串
     line_result = []
     for length in len_list:
         for index, lst in enumerate(keyboard_x2d):
             if len(keyboard_x2d) > index:
-                a1 = keyboard_x2d[index][:length]
-                a2 = keyboard_x2d[index][:length]
-                string = "".join(a1) + "".join(a2)
-                line_result.append(string)
+                # a1 = keyboard_x2d[index][:length]
+                # a2 = keyboard_x2d[index][:length]
+                # string = "".join(a1) + "".join(a2)
+                for count in counts:
+                    a1 = keyboard_x2d[index][:length]
+                    string = "".join(a1) * count
+                    line_result.append(string)
     line_result = list(set(line_result))
     return line_result
 
@@ -58,14 +61,16 @@ if __name__ == '__main__':
     base_dict = {
         f"{script_name}.max.txt": {
             "length": [2, 3, 4, 5],
+            "counts": [2, 3],
         },
         f"{script_name}.min.txt": {
             "length": [3],
+            "counts": [2],
         },
     }
 
     for file_path, options in base_dict.items():
-        data_list = gen_key_list(keyboard_x2d, options["length"])
+        data_list = gen_key_list(keyboard_x2d, options["length"],options["counts"])
         # 仅包含纯字母选项
         data_list = [data for data in data_list if str(data).isalpha()]
         print(data_list)
