@@ -4,3 +4,4 @@ result*
 *__pycache__*
 *runtime*
 .idea\workspace.xml
+*.gen.txt
