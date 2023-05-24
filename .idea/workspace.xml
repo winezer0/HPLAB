@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="68a987c5-a959-4436-bdad-2ddce21de896" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/键盘数字321.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/键盘数字321.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level2.mode1_name..txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level2.mode1_name..txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level3.mode1_name.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level3.mode1_name.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level3.mode1_pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level3.mode1_pass.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level4.mode1_name.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level4.mode1_name.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level4.mode1_pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level4.mode1_pass.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level5.mode1_pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level5.mode1_pass.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level6.mode1_name.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level6.mode1_name.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_rule/level6.mode1_pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level6.mode1_pass.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +201,7 @@
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
       <workItem from="1684911685805" duration="10660000" />
-      <workItem from="1684940660912" duration="7180000" />
+      <workItem from="1684940660912" duration="7974000" />
     </task>
     <servers />
   </component>
@@ -215,7 +222,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/HPLAB$tools_base_dicts_check.coverage" NAME="tools_base_dicts_check 覆盖结果" MODIFIED="1684943650446" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$11_.coverage" NAME="顺序数字11.生成 覆盖结果" MODIFIED="1684947254171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频数字/顺序数字" />
-    <SUITE FILE_PATH="coverage/HPLAB$321_.coverage" NAME="键盘数字321.生成 覆盖结果" MODIFIED="1684947931812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频数字/键盘数字" />
+    <SUITE FILE_PATH="coverage/HPLAB$321_.coverage" NAME="键盘数字321.生成 覆盖结果" MODIFIED="1684947970453" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频数字/键盘数字" />
     <SUITE FILE_PATH="coverage/HPLAB$HPLAB.coverage" NAME="HPLAB 覆盖结果" MODIFIED="1684918135138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$tags_const.coverage" NAME="tags_const 覆盖结果" MODIFIED="1684946789174" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/libs/lib_tags_exec" />
     <SUITE FILE_PATH="coverage/HPLAB$SSDG.coverage" NAME="SSDG 覆盖结果" MODIFIED="1684945701791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
