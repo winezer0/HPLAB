@@ -57,23 +57,25 @@ GB_USER_NAME_MARK = "%%USERNAME%%"
 ############################################################
 # 账号密码目录
 GB_RULE_DICT_DIR = GB_BASE_DIR.joinpath("dict_rule")
-# 账号密码字典
-GB_USER_NAME_FILE = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode1_name.txt")
-GB_USER_PASS_FILE = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode1_pass.txt")
+# 账号密码字典文件的格式
+GB_NAME_FILE_STR = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode1_name.txt")
+GB_PASS_FILE_STR = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode1_pass.txt")
+# 账号密码对文件命名格式
+GB_PAIR_FILE_STR = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode2_pairs.txt")
+###################
+# 实际调用的字典级别设置
+GB_RULE_LEVEL_NAME = 1  # 调用 level1.mode1_name.txt
+GB_RULE_LEVEL_PASS = 1  # 调用 level1.mode1_pass.txt
+GB_RULE_LEVEL_PAIR = 1  # 调用 level1.mode2_pairs.txt
+GB_RULE_LEVEL_EXACT = False  # 是否仅调用精确的字典级别,不调用更下级的字典
 ###################
 # 直接输入账号密码对文件
-GB_PAIR_FILE_NAME = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode2_pairs.txt")
 # 账号密码对文件 连接符号
 GB_PAIR_LINK_SYMBOL = ':'
 # 使用账号:密码对文件进行爆破，默认使用账号字典、密码字典
 GB_PAIR_FILE_FLAG = False
 # 使用账号:密码对文件进行爆破时,是否进行基本变量替换
 GB_USE_PAIR_BASE_REPL = False
-###################
-# 实际调用的字典级别设置
-GB_RULE_LEVEL_NAME = "1"  # 调用 level1.mode1_name.txt
-GB_RULE_LEVEL_PASS = "1"  # 调用 level1.mode1_pass.txt
-GB_RULE_LEVEL_PAIR = "1"  # 调用 level1.mode2_pairs.txt
 ##################################################################
 # 设置输出结果文件目录
 GB_RESULT_DIR = GB_BASE_DIR.joinpath("result")
@@ -84,7 +86,7 @@ GB_TEMP_DICT_DIR = os.path.join(GB_RESULT_DIR, f"dict.{time.strftime('%Y-%m-%d-%
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
 GB_STORE_CHINESE = True  # 保留原始的中文字符串 便于中文用户名的爆破
 # GB_IGNORE_SYMBOLS = ["%%", "%", "}$"] # }$规则解析应该已经被处理|%基本变量应该已经被处理
-GB_IGNORE_SYMBOLS = ["%%","</"]   # %% 表明字符串还需要因变量替换、 </表明还需要tag_exec处理
+GB_IGNORE_SYMBOLS = ["%%", "</"]  # %% 表明字符串还需要因变量替换、 </表明还需要tag_exec处理
 ###################
 # 中文转拼音处理时，通过长度对最后的（账号:密码）进行过滤的依据
 GB_USER_NAME_MIN_LEN = 0  # 用户名最小长度（含）

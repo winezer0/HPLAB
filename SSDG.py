@@ -25,8 +25,8 @@ from setting_total import *
 
 
 # 分割写法 基于 用户名和密码规则生成 元组列表
-def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, default_pass_list=None,
-                                         exclude_file=None):
+def social_rule_handle_in_steps_two_list(target_url, user_name_files, user_pass_files,
+                                         default_name_list=None, default_pass_list=None, exclude_file=None):
     mode = "mode1"
     step = 0
 
@@ -35,25 +35,33 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
         name_list = default_name_list
         output(f"[*] 已输入默认账号列表 {default_name_list} 忽略读取账号字典文件", level=LOG_INFO)
     else:
-        if file_is_empty(GB_USER_NAME_FILE):
-            output(f"[!] 文件不存在 {GB_USER_NAME_FILE} !!!", level=LOG_ERROR)
-            return []
+        name_list = []
+        output(f"[*] 读取账号字典文件 {user_name_files}...", level=LOG_INFO)
+        for name_file in user_name_files:
+            lines = read_file_to_list(name_file, encoding=file_encoding(name_file), de_strip=True, de_weight=True)
+            name_list.extend(lines)
+        if name_list:
+            # 保持原始顺序去重
+            name_list = [x for i, x in enumerate(name_list) if x not in name_list[:i]]
         else:
-            output(f"[*] 读取账号字典文件 {GB_USER_NAME_FILE}...", level=LOG_INFO)
-            name_list = read_file_to_list(GB_USER_NAME_FILE, encoding=file_encoding(GB_USER_NAME_FILE), de_strip=True, de_weight=True)
+            output(f"[!] 未输入任何有效账号字典文件!!!", level=LOG_ERROR)
+            return []
 
     # 读取密码文件
     if default_pass_list:
         pass_list = default_pass_list
         output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
     else:
-
-        if file_is_empty(GB_USER_PASS_FILE):
-            output(f"[!] 文件不存在 {GB_USER_PASS_FILE} !!!", level=LOG_ERROR)
-            return []
+        pass_list = []
+        for pass_file in user_pass_files:
+            lines = read_file_to_list(pass_file, encoding=file_encoding(pass_file), de_strip=True, de_weight=True)
+            pass_list.extend(lines)
+        if pass_list:
+            # 保持原始顺序去重
+            name_list = [x for i, x in enumerate(pass_list) if x not in pass_list[:i]]
         else:
-            output(f"[*] 读取密码字典文件 {GB_USER_PASS_FILE}...", level=LOG_INFO)
-            pass_list = read_file_to_list(GB_USER_PASS_FILE, encoding=file_encoding(GB_USER_PASS_FILE), de_strip=True, de_weight=True)
+            output(f"[!] 未输入任何有效密码字典文件!!!", level=LOG_ERROR)
+            return []
 
     output(f"[*] 读取账号|密码文件完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
 
@@ -244,16 +252,23 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
 
 
 # 分割写法 基于 用户名:密码对 规则生成 元组列表
-def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, default_pass_list=None,
-                                          exclude_file=None):
+def social_rule_handle_in_steps_one_pairs(target_url, pair_file_names, pair_link_symbol,
+                                          default_name_list=None, default_pass_list=None, exclude_file=None):
     mode = "mode2"
     step = 0
+
     # 读取用户账号文件
-    if file_is_empty(GB_PAIR_FILE_NAME):
-        output(f"[!] 文件不存在 {GB_PAIR_FILE_NAME} !!!", level=LOG_ERROR)
-        return []
+    name_pass_pair_list = []
+    for pair_file in pair_file_names:
+        lines = read_file_to_list(pair_file, encoding=file_encoding(pair_file), de_strip=True, de_weight=True)
+        name_pass_pair_list.extend(lines)
+    if name_pass_pair_list:
+        # 保持原始顺序去重
+        name_pass_pair_list = [x for i, x in enumerate(name_pass_pair_list) if x not in name_pass_pair_list[:i]]
     else:
-        name_pass_pair_list = read_file_to_list(GB_PAIR_FILE_NAME, encoding=file_encoding(GB_PAIR_FILE_NAME), de_strip=True, de_weight=True)
+        output(f"[!] 未输入任何有效密码字典文件!!!", level=LOG_ERROR)
+        return []
+
     output(f"[*] 读取账号密码文件完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
 
     # 动态规则解析和基本变量替换过程 默认取消
@@ -329,7 +344,7 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
             write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.tag_exec.pair.txt"), name_pass_pair_list)
 
     # 拆分出账号 密码对 元祖
-    name_pass_pair_list = unfrozen_tuple_list(name_pass_pair_list, GB_PAIR_LINK_SYMBOL)
+    name_pass_pair_list = unfrozen_tuple_list(name_pass_pair_list, pair_link_symbol)
 
     # 如果输入了默认值列表,就组合更新的账号 列表
     if default_name_list or default_pass_list:
@@ -416,26 +431,29 @@ def parse_input():
     argument_parser.add_argument("-b", "--base_dict_suffix", default=GB_BASE_DICT_SUFFIX, nargs="+",
                                  help=f"Specifies the base var file suffix, Default is {GB_BASE_DICT_SUFFIX}")
 
-    argument_parser.add_argument("-ln", "--rule_level_name", default=GB_RULE_LEVEL_NAME,
+    argument_parser.add_argument("-ln", "--rule_level_name", default=GB_RULE_LEVEL_NAME, type=int,
                                  help=f"Specifies the name rule file level or prefix, Default is {GB_RULE_LEVEL_NAME}")
 
-    argument_parser.add_argument("-lp", "--rule_level_pass", default=GB_RULE_LEVEL_PASS,
+    argument_parser.add_argument("-lp", "--rule_level_pass", default=GB_RULE_LEVEL_PASS, type=int,
                                  help=f"Specifies the pass rule file level or prefix, Default is {GB_RULE_LEVEL_PASS}")
 
-    argument_parser.add_argument("-ll", "--rule_level_pair", default=GB_RULE_LEVEL_PAIR,
+    argument_parser.add_argument("-ll", "--rule_level_pair", default=GB_RULE_LEVEL_PAIR, type=int,
                                  help=f"Specifies the pair rule file level or prefix, Default is {GB_RULE_LEVEL_PAIR}")
 
-    argument_parser.add_argument("-u", "--user_name_file", default=GB_USER_NAME_FILE,
-                                 help=f"Specifies the username rule file, Default is {GB_USER_NAME_FILE}")
+    argument_parser.add_argument("-lf", "--rule_level_exact", default=GB_RULE_LEVEL_EXACT, action="store_true",
+                                 help=f"Specifies Exact call level dictionary, Default is [{GB_RULE_LEVEL_EXACT}]", )
 
-    argument_parser.add_argument("-p", "--user_pass_file", default=GB_USER_PASS_FILE,
-                                 help=f"Specifies the password rule file, Default is {GB_USER_PASS_FILE}")
+    argument_parser.add_argument("-u", "--user_name_file", default=NAME_FILES,
+                                 help=f"Specifies the username rule file, Default is {NAME_FILES}")
+
+    argument_parser.add_argument("-p", "--user_pass_file", default=PASS_FILES,
+                                 help=f"Specifies the password rule file, Default is {PASS_FILES}")
 
     argument_parser.add_argument("-af", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
 
-    argument_parser.add_argument("-a", "--pair_file_name", default=GB_PAIR_FILE_NAME,
-                                 help=f"Specifies the password rule file, Default is [{GB_PAIR_FILE_NAME}]")
+    argument_parser.add_argument("-a", "--pair_file_name", default=PAIR_FILES,
+                                 help=f"Specifies the password rule file, Default is [{PAIR_FILES}]")
 
     argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
                                  help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK_SYMBOL}", )
@@ -478,15 +496,24 @@ if __name__ == '__main__':
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
-    # 根据level参数修改字典路径
-    GB_USER_NAME_FILE = GB_USER_NAME_FILE.format(LEVEL=GB_RULE_LEVEL_NAME)
-    GB_USER_PASS_FILE = GB_USER_PASS_FILE.format(LEVEL=GB_RULE_LEVEL_PASS)
-    GB_PAIR_FILE_NAME = GB_PAIR_FILE_NAME.format(LEVEL=GB_RULE_LEVEL_PAIR)
+    # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
+    NAME_FILES = [GB_NAME_FILE_STR.format(LEVEL=GB_RULE_LEVEL_NAME)] if GB_RULE_LEVEL_EXACT else [
+        GB_NAME_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_NAME + 1)]
+    PASS_FILES = [GB_PASS_FILE_STR.format(LEVEL=GB_RULE_LEVEL_PASS)] if GB_RULE_LEVEL_EXACT else [
+        GB_PASS_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_PASS + 1)]
+    PAIR_FILES = [GB_PAIR_FILE_STR.format(LEVEL=GB_RULE_LEVEL_PAIR)] if GB_RULE_LEVEL_EXACT else [
+        GB_PAIR_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_PAIR + 1)]
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_PAIR_FILE_FLAG:
-        user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL, exclude_file=GB_EXCLUDE_FILE)
+        user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL,
+                                                              user_name_files=NAME_FILES,
+                                                              user_pass_files=PASS_FILES,
+                                                              exclude_file=GB_EXCLUDE_FILE)
     else:
-        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_TARGET_URL, exclude_file=GB_EXCLUDE_FILE)
+        user_pass_dict = social_rule_handle_in_steps_one_pairs(GB_TARGET_URL,
+                                                               pair_file_names=PAIR_FILES,
+                                                               pair_link_symbol=GB_PAIR_LINK_SYMBOL,
+                                                               exclude_file=GB_EXCLUDE_FILE)
 
     output(f"[*] 最终生成账号密码对数量: {len(user_pass_dict)}", level=LOG_INFO)
