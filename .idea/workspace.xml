@@ -5,21 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="68a987c5-a959-4436-bdad-2ddce21de896" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/dict_rule/level1/mode1_name.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dict_rule/level1/mode1_pass.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HPLAB.py" beforeDir="false" afterPath="$PROJECT_DIR$/HPLAB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSDG.py" beforeDir="false" afterPath="$PROJECT_DIR$/SSDG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/mode1_name.动态.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level4/mode1_name.动态.max.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/mode1_name.动态.mid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level3/mode1_name.动态.mid.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/mode1_name.动态.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level2/mode1_name.动态.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/mode1_name.通用.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level4/mode1_name.通用.max.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/mode1_name.通用.mid.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level3/mode1_name.通用.mid.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/mode1_name.通用.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level2/mode1_name.通用.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/mode2_name_pass_pair.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1/mode2_name_pass_pair.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libs/lib_file_operate/file_path.py" beforeDir="false" afterPath="$PROJECT_DIR$/libs/lib_file_operate/file_path.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting_total.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_total.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +111,7 @@
       <updated>1684909429290</updated>
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
-      <workItem from="1684911685805" duration="4598000" />
+      <workItem from="1684911685805" duration="4732000" />
     </task>
     <servers />
   </component>
@@ -143,7 +130,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/HPLAB$HPLAB.coverage" NAME="HPLAB 覆盖结果" MODIFIED="1684915984572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/HPLAB$HPLAB.coverage" NAME="HPLAB 覆盖结果" MODIFIED="1684916338050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$SSDG.coverage" NAME="SSDG 覆盖结果" MODIFIED="1684915634994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

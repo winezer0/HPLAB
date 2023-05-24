@@ -7,10 +7,7 @@ from pathlib import Path
 
 def file_is_empty(file_path):
     # 判断一个文件是否为空
-    if not file_is_exist(file_path):
-        return True
-    else:
-        return os.path.getsize(file_path) == 0
+    return not os.path.exists(file_path) or os.path.getsize(file_path) == 0
 
 
 def auto_create_file(file_path):
