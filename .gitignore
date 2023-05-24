@@ -5,6 +5,5 @@
 runtime
 runlog*
 result*
-HIT*
 *.pyc
 *.gen.txt
