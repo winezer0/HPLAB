@@ -6,13 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="68a987c5-a959-4436-bdad-2ddce21de896" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSDG.py" beforeDir="false" afterPath="$PROJECT_DIR$/SSDG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level0.mode2_pairs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level0.mode2_pairs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level1.mode1_name.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1.mode1_name.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level1.mode1_pass.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1.mode1_pass.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_rule/level1.mode2_pairs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_rule/level1.mode2_pairs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting_dict.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_dict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setting_total.py" beforeDir="false" afterPath="$PROJECT_DIR$/setting_total.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +193,8 @@
       <workItem from="1684909430968" duration="104000" />
       <workItem from="1684911582250" duration="18000" />
       <workItem from="1684911685805" duration="10660000" />
-      <workItem from="1684940660912" duration="12145000" />
+      <workItem from="1684940660912" duration="12182000" />
+      <workItem from="1684953047783" duration="5000" />
     </task>
     <servers />
   </component>
