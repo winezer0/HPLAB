@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="781a756d-46c5-4db0-9ab2-8cd44b5395b5" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号叠词++.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号叠词.生成.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号高频.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号高频.参考.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频密码.mix.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频密码.min.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号高频.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号高频.参考.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/寓意字母频率.max.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/寓意字母频率.min.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/寓意字母频率.参考.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.max.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.max.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.min.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.min.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.参考.txt" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/高频字母频率.参考.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -489,7 +493,7 @@
       <workItem from="1684720868944" duration="927000" />
       <workItem from="1684724531086" duration="29546000" />
       <workItem from="1684830951972" duration="24183000" />
-      <workItem from="1684891471525" duration="2974000" />
+      <workItem from="1684891471525" duration="3942000" />
     </task>
     <servers />
   </component>
