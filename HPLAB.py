@@ -328,17 +328,8 @@ def parse_input():
     argument_parser.add_argument("-lf", "--rule_level_exact", default=GB_RULE_LEVEL_EXACT, action="store_true",
                                  help=f"Specifies Exact call level dictionary, Default is [{GB_RULE_LEVEL_EXACT}]", )
 
-    argument_parser.add_argument("-u", "--user_name_file", default=NAME_FILES,
-                                 help=f"Specifies the username rule file, Default is {NAME_FILES}")
-
-    argument_parser.add_argument("-p", "--user_pass_file", default=PASS_FILES,
-                                 help=f"Specifies the password rule file, Default is {PASS_FILES}")
-
     argument_parser.add_argument("-af", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
-
-    argument_parser.add_argument("-a", "--pair_file_name", default=PAIR_FILES,
-                                 help=f"Specifies the password rule file, Default is [{PAIR_FILES}]")
 
     argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
                                  help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK_SYMBOL}", )
