@@ -165,7 +165,7 @@ def http_packet_login_auto_brute():
     history_file = os.path.join(GB_LOG_FILE_DIR, f"history_{host_no_symbol}.{path_no_symbol}.log")
 
     # 动态生成账号密码字典
-    if GB_USE_PAIR_FILE:
+    if GB_PAIR_FILE_FLAG:
         # 使用【用户名:密码对】字典
         name_pass_pair_list = social_rule_handle_in_steps_one_pairs(target_url=req_url,
                                                                     default_name_list=default_name_list,
@@ -315,23 +315,20 @@ def parse_input():
     argument_parser.add_argument("-P", "--user_pass_file", default=GB_USER_PASS_FILE,
                                  help=f"Specifies the password rule file, Default is [{GB_USER_PASS_FILE}]")
 
-    argument_parser.add_argument("-A", "--user_pass_pair_file", default=GB_USER_PASS_PAIR_FILE,
-                                 help=f"Specifies the password rule file, Default is [{GB_USER_PASS_PAIR_FILE}]")
+    argument_parser.add_argument("-a", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
+                                 help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
 
-    argument_parser.add_argument("-a", "--use_pair_file", default=GB_USE_PAIR_FILE, action="store_true",
-                                 help=f"Specifies Display Debug Info, Default is [{GB_USE_PAIR_FILE}]", )
+    argument_parser.add_argument("-A", "--pair_file_name", default=GB_PAIR_FILE_NAME,
+                                 help=f"Specifies the password rule file, Default is [{GB_PAIR_FILE_NAME}]")
+
+    argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
+                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK_SYMBOL}", )
 
     argument_parser.add_argument("-t", "--threads_count", default=GB_THREADS_COUNT, type=int,
                                  help=f"Specifies the request threads, Default is [{GB_THREADS_COUNT}]")
 
     argument_parser.add_argument("-o", "--result_file_path", default=GB_RESULT_FILE_PATH,
                                  help=f"Specify the result file name, Default is [{GB_RESULT_FILE_PATH}]")
-
-    argument_parser.add_argument("-g", "--only_generate_dict", default=GB_ONLY_GENERATE_DICT, action="store_true",
-                                 help=f"Specifies generate dictionary file, Default is [{GB_ONLY_GENERATE_DICT}]", )
-
-    argument_parser.add_argument("-d", "--debug_flag", default=GB_DEBUG_FLAG, action="store_true",
-                                 help=f"Specifies Display Debug Info, Default is [{GB_DEBUG_FLAG}]", )
 
     argument_parser.add_argument("-x", dest="proxies", default=GB_PROXIES,
                                  help=f"Specifies http|https|socks5 proxies, Default is [{GB_PROXIES}]")
@@ -344,6 +341,12 @@ def parse_input():
 
     argument_parser.add_argument("-c", "--const_link", default=GB_CONST_LINK,
                                  help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_CONST_LINK}", )
+
+    argument_parser.add_argument("-g", "--only_generate_dict", default=GB_ONLY_GENERATE_DICT, action="store_true",
+                                 help=f"Specifies generate dictionary file, Default is [{GB_ONLY_GENERATE_DICT}]", )
+
+    argument_parser.add_argument("-d", "--debug_flag", default=GB_DEBUG_FLAG, action="store_true",
+                                 help=f"Specifies Display Debug Info, Default is [{GB_DEBUG_FLAG}]", )
 
     # epilog 程序额外信息
     argument_parser.epilog = f"""Examples:\npython3 {argument_parser.prog} -f http.txt\n\nVersion: {GB_VERSION}\n\n更多参数可通过[setting.py]进行配置"""

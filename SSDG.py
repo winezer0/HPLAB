@@ -226,7 +226,8 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
     # 排除历史文件内的账号密码对
     if GB_EXCLUDE_FLAG and not file_is_empty(exclude_file):
         output(f"[*] 历史爆破记录过滤开始, 原始元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
-        history_user_pass_list = read_file_to_list(exclude_file, encoding='utf-8', de_strip=True, de_weight=True, de_unprintable=True)
+        history_user_pass_list = read_file_to_list(exclude_file, encoding='utf-8', de_strip=True, de_weight=True,
+                                                   de_unprintable=True)
         # 移除已经被爆破过得账号密码
         history_tuple_list = unfrozen_tuple_list(history_user_pass_list, GB_CONST_LINK)
         name_pass_pair_list = reduce_str_str_tuple_list(name_pass_pair_list, history_tuple_list, GB_CONST_LINK)
@@ -239,12 +240,13 @@ def social_rule_handle_in_steps_two_list(target_url, default_name_list=None, def
 
 
 # 分割写法 基于 用户名:密码对 规则生成 元组列表
-def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, default_pass_list=None, exclude_file=None):
+def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, default_pass_list=None,
+                                          exclude_file=None):
     mode = "mode2"
     step = 0
     # 读取用户账号文件
-    name_pass_pair_list = read_file_to_list(GB_USER_PASS_PAIR_FILE,
-                                            encoding=file_encoding(GB_USER_PASS_PAIR_FILE),
+    name_pass_pair_list = read_file_to_list(GB_PAIR_FILE_NAME,
+                                            encoding=file_encoding(GB_PAIR_FILE_NAME),
                                             de_strip=True,
                                             de_weight=True)
     output(f"[*] 读取账号密码文件完成 name_pass_pair_list:{len(name_pass_pair_list)}", level=LOG_INFO)
@@ -310,7 +312,8 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
 
             # 写入当前结果
             step += 1
-            write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"), name_pass_pair_list)
+            write_lines(os.path.join(GB_TEMP_DICT_DIR, f"{mode}.{step}.replace_dependent.pair.txt"),
+                        name_pass_pair_list)
 
         # 调用tag exec来进行操作,实现字符串反序 实现1221等格式
         if True:
@@ -384,7 +387,8 @@ def social_rule_handle_in_steps_one_pairs(target_url, default_name_list=None, de
     # 排除历史文件内的账号密码对
     if GB_EXCLUDE_FLAG and not file_is_empty(exclude_file):
         output(f"[*] 历史爆破记录过滤开始, 原始元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
-        history_user_pass_list = read_file_to_list(exclude_file, encoding='utf-8', de_strip=True, de_weight=True, de_unprintable=True)
+        history_user_pass_list = read_file_to_list(exclude_file, encoding='utf-8', de_strip=True, de_weight=True,
+                                                   de_unprintable=True)
         # 移除已经被爆破过得账号密码
         history_tuple_list = unfrozen_tuple_list(history_user_pass_list, GB_CONST_LINK)
         name_pass_pair_list = reduce_str_str_tuple_list(name_pass_pair_list, history_tuple_list, GB_CONST_LINK)
@@ -406,14 +410,18 @@ def parse_input():
 
     argument_parser.add_argument("-U", "--user_name_file", default=GB_USER_NAME_FILE,
                                  help=f"Specifies the username rule file, Default is {GB_USER_NAME_FILE}")
+
     argument_parser.add_argument("-P", "--user_pass_file", default=GB_USER_PASS_FILE,
                                  help=f"Specifies the password rule file, Default is {GB_USER_PASS_FILE}")
 
-    argument_parser.add_argument("-a", "--use_pair_file", default=GB_USE_PAIR_FILE, action="store_true",
-                                 help=f"Specifies use use_pair_file, Default is {GB_USE_PAIR_FILE}", )
+    argument_parser.add_argument("-a", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
+                                 help=f"Specifies use pair file flag, Default is {GB_PAIR_FILE_FLAG}", )
 
-    argument_parser.add_argument("-A", "--user_pass_pair_file", default=GB_USER_PASS_PAIR_FILE,
-                                 help=f"Specifies the password rule file, Default is {GB_USER_PASS_PAIR_FILE}")
+    argument_parser.add_argument("-A", "--pair_file_name", default=GB_PAIR_FILE_NAME,
+                                 help=f"Specifies the password rule file, Default is {GB_PAIR_FILE_NAME}")
+
+    argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
+                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK_SYMBOL}", )
 
     argument_parser.add_argument("-e", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
                                  help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
@@ -451,7 +459,7 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
-    if not GB_USE_PAIR_FILE:
+    if not GB_PAIR_FILE_FLAG:
         user_pass_dict = social_rule_handle_in_steps_two_list(GB_TARGET_URL,
                                                               exclude_file=GB_EXCLUDE_FILE)
     else:

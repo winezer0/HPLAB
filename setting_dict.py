@@ -56,17 +56,18 @@ GB_TARGET_URL = None
 GB_USER_NAME_MARK = "%USERNAME%"
 ############################################################
 # 账号密码目录
-GB_RULE_DICT_DIR = GB_BASE_DIR.joinpath("dict_rule")
+GB_RULE_LEVEL = "level1"
+GB_RULE_DICT_DIR = GB_BASE_DIR.joinpath("dict_rule", GB_RULE_LEVEL)
 # 账号密码字典
 GB_USER_NAME_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode1_name.txt")
 GB_USER_PASS_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode1_pass.txt")
 ###################
 # 直接输入账号密码对文件
-GB_USER_PASS_PAIR_FILE = os.path.join(GB_RULE_DICT_DIR, f"mode2_name_pass_pair.txt")
+GB_PAIR_FILE_NAME = os.path.join(GB_RULE_DICT_DIR, f"mode2_pairs.txt")
 # 账号密码对文件 连接符号
 GB_PAIR_LINK_SYMBOL = ':'
 # 使用账号:密码对文件进行爆破，默认使用账号字典、密码字典
-GB_USE_PAIR_FILE = False
+GB_PAIR_FILE_FLAG = False
 # 使用账号:密码对文件进行爆破时,是否进行基本变量替换
 GB_USE_PAIR_BASE_REPL = False
 ##################################################################
