@@ -41,12 +41,12 @@ if __name__ == '__main__':
     # 生成一个包含 a-z 的所有小写字母的列表
 
     base_dict = {
-        f"{script_name}.max.gen.txt": {
+        f"{script_name}.max.txt": {
             "numbers": range(10),
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
             "starts": [],  # 过滤 需要以指定字符开头
         },
-        f"{script_name}.min.gen.txt": {
+        f"{script_name}.min.txt": {
             "numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
             "length": [3, 4, 5, 6, 7, 8, 9],  # 生成的长度需求
             "starts": [1, 7],  # 过滤 需要以指定字符开头

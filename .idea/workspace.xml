@@ -6,6 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="781a756d-46c5-4db0-9ab2-8cd44b5395b5" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号叠词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号叠词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号叠连.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号叠连.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号连叠.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号连叠.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号连词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/字母序号/字母序号连词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号01.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号01.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号10.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号10.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号叠词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号叠词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号叠连.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号叠连.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号连叠.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号连叠.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号连词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_base/账号序号/数字序号/数字序号连词.生成.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号叠词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号叠词.生成.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号叠连.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号叠连.生成.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号连叠.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/连接符号/连接符号连叠.生成.py" afterDir="false" />
@@ -14,6 +24,76 @@
       <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号叠连.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号叠连.生成.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号连叠.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号连叠.生成.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号连词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号连词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘上下顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从上到下/键盘下上顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序连续上下.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序连续上下.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序连续下上.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/键盘字母/从左到右/键盘左右顺序连续下上.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母叠词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母叠词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母叠连.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母叠连.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母连叠.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母连叠.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母连词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频字母/顺序字母/顺序字母连词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下交叉.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下交叉.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字上下顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上交叉.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上交叉.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从上到下/数字下上顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序连续上下.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序连续上下.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序连续下上.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/键盘数字/从左到右/数字键盘顺序连续下上.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字叠词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字叠词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字叠连.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字叠连.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字连叠.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字连叠.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字连词.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频数字/顺序数字/顺序数字连词.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘上下顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从上到下/键盘下上顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序连续上下.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序连续上下.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序连续下上.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母数字/从左到右/键盘左右顺序连续下上.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘上下顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下/键盘下上顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序连续上下.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序连续上下.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序连续下上.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从左到右/键盘左右顺序连续下上.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序连续左右.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序连续左右.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序连续左右倒序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序连续左右倒序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序叠加.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序叠加.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序连续上下.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序连续上下.生成.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序连续下上.生成.py" beforeDir="false" afterPath="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右/键盘左右顺序连续下上.生成.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tools_base_dicts_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/tools_base_dicts_check.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +173,7 @@
       <recent name="C:\Users\WINDOWS\GithubProject\HPLAB\dict_pass\高频字母\键盘字母\左右键盘" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.tools_base_dicts_check">
+  <component name="RunManager" selected="Python.键盘上下顺序.生成">
     <configuration name="789456" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -116,7 +196,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="追加符号叠词.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="键盘上下顺序连续左右倒序.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -124,12 +204,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号叠词.生成.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序连续左右倒序.生成.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -138,7 +218,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="追加符号叠连.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="键盘下上顺序.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -146,12 +226,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号叠连.生成.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘下上顺序.生成.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,7 +240,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="追加符号连叠.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="键盘上下顺序连续左右.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -168,12 +248,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号连叠.生成.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序连续左右.生成.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -182,7 +262,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="追加符号连词.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="键盘上下顺序叠加.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="HPLAB" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -190,12 +270,34 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/拼接信息/追加符号/追加符号连词.生成.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序叠加.生成.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="键盘上下顺序.生成" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="HPLAB" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下/键盘上下顺序.生成.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -424,35 +526,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="tools_base_dicts_check" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="HPLAB" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tools_base_dicts_check.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.tools_base_dicts_check" />
-        <item itemvalue="Python.追加符号连词.生成" />
-        <item itemvalue="Python.追加符号连叠.生成" />
-        <item itemvalue="Python.追加符号叠连.生成" />
-        <item itemvalue="Python.追加符号叠词.生成" />
+        <item itemvalue="Python.键盘上下顺序.生成" />
+        <item itemvalue="Python.键盘上下顺序叠加.生成" />
+        <item itemvalue="Python.键盘上下顺序连续左右.生成" />
+        <item itemvalue="Python.键盘上下顺序连续左右倒序.生成" />
+        <item itemvalue="Python.键盘下上顺序.生成" />
       </list>
     </recent_temporary>
   </component>
@@ -494,7 +574,7 @@
       <workItem from="1684720868944" duration="927000" />
       <workItem from="1684724531086" duration="29546000" />
       <workItem from="1684830951972" duration="24183000" />
-      <workItem from="1684891471525" duration="7255000" />
+      <workItem from="1684891471525" duration="7793000" />
     </task>
     <servers />
   </component>
@@ -538,7 +618,7 @@
     <SUITE FILE_PATH="coverage/HPLAB$tools_base_dicts_format__1_.coverage" NAME="tools_base_dicts_format (1) 覆盖结果" MODIFIED="1683342931306" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$transfer_passwd.coverage" NAME="transfer_passwd 覆盖结果" MODIFIED="1683365179858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/libs/lib_social_dict" />
     <SUITE FILE_PATH="coverage/HPLAB$HPLAB.coverage" NAME="HPLAB 覆盖结果" MODIFIED="1683590883394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HPLAB$_.coverage" NAME="追加符号连词.生成 覆盖结果" MODIFIED="1684898987532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/拼接信息/追加符号" />
+    <SUITE FILE_PATH="coverage/HPLAB$_.coverage" NAME="键盘下上顺序.生成 覆盖结果" MODIFIED="1684899600683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从上到下" />
     <SUITE FILE_PATH="coverage/HPLAB$tools_check_dicts.coverage" NAME="tools_check_dicts 覆盖结果" MODIFIED="1683336200947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$base_key_replace.coverage" NAME="base_key_replace 覆盖结果" MODIFIED="1683338888681" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/libs/lib_dyna_rule" />
     <SUITE FILE_PATH="coverage/HPLAB$xswcde.coverage" NAME="xswcde 覆盖结果" MODIFIED="1684893073467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频字母/键盘字母生成" />
@@ -557,7 +637,7 @@
     <SUITE FILE_PATH="coverage/HPLAB$_____1_.coverage" NAME="连接符号叠词++.生成 (1) 覆盖结果" MODIFIED="1684893802837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/拼接信息/连接符号" />
     <SUITE FILE_PATH="coverage/HPLAB$format_dict_base.coverage" NAME="format_dict_base 覆盖结果" MODIFIED="1682240275148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$tools_format_dicts__1_.coverage" NAME="tools_format_dicts (1) 覆盖结果" MODIFIED="1683336206135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/HPLAB$___1_.coverage" NAME="键盘上下顺序.生成 (1) 覆盖结果" MODIFIED="1684855157706" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频键盘/键盘字母符号/从上到下" />
+    <SUITE FILE_PATH="coverage/HPLAB$___1_.coverage" NAME="键盘左右顺序连续下上.生成 (1) 覆盖结果" MODIFIED="1684899415499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频键盘/键盘数字符号/从左到右" />
     <SUITE FILE_PATH="coverage/HPLAB$SSDG.coverage" NAME="SSDG 覆盖结果" MODIFIED="1684856724879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/HPLAB$xswedc.coverage" NAME="xswedc 覆盖结果" MODIFIED="1684893061669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/dict_pass/高频字母/键盘字母生成" />
     <SUITE FILE_PATH="coverage/HPLAB$test_num.coverage" NAME="test_num 覆盖结果" MODIFIED="1683431068082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/testdata" />

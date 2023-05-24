@@ -45,13 +45,13 @@ if __name__ == '__main__':
     script_name = os.path.basename(sys.argv[0]).split(".", 1)[0]
 
     base_dict = {
-        f"{script_name}.max.gen.txt": {
+        f"{script_name}.max.txt": {
             "letters": range(10),  # 基本字符
             "length": [2, 3, 4, 5, 6, 7],  # 生成的长度需求
             "starts": [],  # 过滤 仅需要以指定字符开头
             "counts": [2, 3],  # 叠词的长度
         },
-        f"{script_name}.min.gen.txt": {
+        f"{script_name}.min.txt": {
             "letters": range(10),  # 基本字符
             "length": [2, 3, ],  # 生成的长度需求
             "starts": [1, 7],  # 过滤 仅需要以指定字符开头

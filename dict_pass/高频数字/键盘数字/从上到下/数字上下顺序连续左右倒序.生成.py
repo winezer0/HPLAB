@@ -82,12 +82,12 @@ if __name__ == '__main__':
 
     # 1、生成 qwerty 这样的键盘字符串
     base_dict = {
-        f"{script_name}.max.gen.txt": {
+        f"{script_name}.max.txt": {
             "length": [2, 3, 4],
             "counts": [2, 3],
             "starts": [],
         },
-        f"{script_name}.min.gen.txt": {
+        f"{script_name}.min.txt": {
             "length": [3, 4],
             "counts": [2, 3],
             "starts": [],
