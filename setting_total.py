@@ -27,10 +27,10 @@ TAG_EXEC_CUSTOM_JS_FILE = r"libs/lib_tags_exec/demo/custom.js"
 TAG_EXEC_CUSTOM_PY_FILE = r"libs/lib_tags_exec/demo/custom.py"
 ##################################################################
 # 设置日志输出文件路径 #目录不存在会自动创建
-GB_LOG_FILE_DIR = str(GB_BASE_DIR.joinpath("runtime"))
+GB_LOG_FILE_DIR = GB_BASE_DIR.joinpath("runtime")
 
-GB_LOG_FILE_PATH = os.path.join(GB_LOG_FILE_DIR, "runtime_module.log")
-# LOG_FILE_PATH = os.path.join(LOG_FILE_DIR, "runtime_{GB_RUN_TIME}_module.log")
+GB_LOG_FILE_PATH = GB_LOG_FILE_DIR.joinpath("runtime_module.log")
+# GB_LOG_FILE_PATH = GB_LOG_FILE_DIR.joinpath("runtime_{GB_RUN_TIME}_module.log")
 
 GB_INFO_LOG_FILE = str(GB_LOG_FILE_PATH).replace('module', 'info')
 GB_DBG_LOG_FILE = str(GB_LOG_FILE_PATH).replace('module', 'debug')

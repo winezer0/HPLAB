@@ -162,7 +162,7 @@ def http_packet_login_auto_brute():
     # 存储已爆破的账号密码文件
     host_no_symbol = parse_host.replace(':', '_')
     path_no_symbol = parse_path.split('?', 1)[0].replace('/', '_')
-    history_file = os.path.join(GB_LOG_FILE_DIR, f"history_{host_no_symbol}.{path_no_symbol}.log")
+    history_file = GB_LOG_FILE_DIR.joinpath(f"history_{host_no_symbol}.{path_no_symbol}.log")
 
     # 动态生成账号密码字典
     if GB_PAIR_FILE_FLAG:
@@ -221,9 +221,9 @@ def http_packet_login_auto_brute():
     result_file_path = GB_RESULT_FILE_PATH
     # 根据主机名生成结果文件名
     if "auto" in str(result_file_path).lower():
-        result_file_path = os.path.join(GB_RESULT_DIR, f"{host_no_symbol}.{path_no_symbol}.result.csv")
+        result_file_path = GB_RESULT_DIR.joinpath(f"{host_no_symbol}.{path_no_symbol}.result.csv")
     # 直接被排除的请求记录
-    ignore_file_path = os.path.join(GB_RESULT_DIR, f"{host_no_symbol}.{path_no_symbol}.ignore.csv")
+    ignore_file_path = GB_RESULT_DIR.joinpath(f"{host_no_symbol}.{path_no_symbol}.ignore.csv")
 
     # 循环多线程请求操作
     for sub_task_index, sub_task_list in enumerate(brute_task_list):

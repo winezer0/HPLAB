@@ -58,10 +58,10 @@ GB_USER_NAME_MARK = "%%USERNAME%%"
 # 账号密码目录
 GB_RULE_DICT_DIR = GB_BASE_DIR.joinpath("dict_rule")
 # 账号密码字典文件的格式
-GB_NAME_FILE_STR = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode1_name.txt")
-GB_PASS_FILE_STR = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode1_pass.txt")
+GB_NAME_FILE_STR = str(GB_RULE_DICT_DIR.joinpath("level{LEVEL}.mode1_name.txt"))
+GB_PASS_FILE_STR = str(GB_RULE_DICT_DIR.joinpath("level{LEVEL}.mode1_pass.txt"))
 # 账号密码对文件命名格式
-GB_PAIR_FILE_STR = os.path.join(GB_RULE_DICT_DIR, "level{LEVEL}.mode2_pairs.txt")
+GB_PAIR_FILE_STR = str(GB_RULE_DICT_DIR.joinpath("level{LEVEL}.mode2_pairs.txt"))
 ###################
 # 实际调用的字典级别设置
 GB_RULE_LEVEL_NAME = 1  # 调用 level1.mode1_name.txt
@@ -80,7 +80,7 @@ GB_USE_PAIR_BASE_REPL = False
 # 设置输出结果文件目录
 GB_RESULT_DIR = GB_BASE_DIR.joinpath("result")
 # 指定记录字典文件的目录
-GB_TEMP_DICT_DIR = os.path.join(GB_RESULT_DIR, f"dict.{time.strftime('%Y-%m-%d-%H-%M', time.localtime())}")
+GB_TEMP_DICT_DIR = GB_RESULT_DIR.joinpath(f"dict.{time.strftime('%Y-%m-%d-%H-%M', time.localtime())}")
 ############################################################
 # 用户名中的中文转拼音处理
 GB_CHINESE_TO_PINYIN = True  # 开启中文转拼音的操作
