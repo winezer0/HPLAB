@@ -8,7 +8,7 @@ from setting_dict import *
 
 ##################################################################
 # 版本号配置
-GB_VERSION = "Ver 0.2.2 2023-05-26 12:00"
+GB_VERSION = "Ver 0.2.3 2023-05-27 06:40"
 ##################################################################
 # 程序开始运行时间  %Y-%m-%d-%H-%M-%S
 GB_RUN_TIME = time.strftime("%Y-%m-%d", time.localtime())
@@ -93,6 +93,14 @@ GB_MAX_ERROR_NUM = 20
 ############################################################
 # 仅爆破一个账号密码,成功后退出 很少使用
 GB_ONLY_BRUTE_ONE_PASS = True
+##################################################################
+# 命中文件保存路径
+GB_HIT_FILE_DIR = GB_BASE_DIR.joinpath("dict_hit")
+GB_HIT_NAME_FILE = GB_HIT_FILE_DIR.joinpath('HIT_NAME.hit')
+GB_HIT_PASS_FILE = GB_HIT_FILE_DIR.joinpath('HIT_PASS.hit')
+GB_HIT_PAIR_FILE = GB_HIT_FILE_DIR.joinpath('HIT_PAIR.hit')
+# 是否保存命中结果到HIT_XXX文件
+GB_SAVE_HIT_RESULT = True
 ############################################################
 # 一些创建目录的操作
 auto_make_dir(GB_RESULT_DIR)

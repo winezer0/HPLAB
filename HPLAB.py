@@ -4,8 +4,10 @@ import argparse
 import sys
 
 from SSDG import social_rule_handle_in_steps_two_list, social_rule_handle_in_steps_one_pairs
+from libs.lib_dyna_rule.set_depend_var import set_dependent_var_dict
 from libs.lib_file_operate.file_path import auto_create_file, file_is_empty
 from libs.lib_file_operate.file_read import read_file_to_str
+from libs.lib_file_operate.file_write import write_path_list_to_frequency_file
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
     search_and_get_param_value
 from libs.lib_http_pkg.parse_http_pkg import parse_http_pkg_by_email_simple
@@ -16,7 +18,7 @@ from libs.lib_requests.requests_thread import multi_thread_requests_url_body_hea
 from libs.lib_requests.requests_tools import get_random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
-from libs.util_ssdg import gen_file_names
+from libs.util_ssdg import gen_file_names, result_rule_classify
 from setting_total import *
 
 sys.dont_write_bytecode = True  # 设置不生成pyc文件
@@ -226,6 +228,12 @@ def http_packet_login_auto_brute():
     # 直接被排除的请求记录
     ignore_file_path = GB_RESULT_DIR.joinpath(f"{host_no_symbol}.{path_no_symbol}.ignore.csv")
 
+    # 获取因变量字典用于数据统计
+    current_dependent_dict = set_dependent_var_dict(target_url=req_url,
+                                                    base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
+                                                    ignore_ip_format=GB_IGNORE_IP_FORMAT,
+                                                    symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
+                                                    not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
     # 循环多线程请求操作
     for sub_task_index, sub_task_list in enumerate(brute_task_list):
         output(f"[*] 任务进度 {sub_task_index + 1}/{len(brute_task_list)}", level=LOG_INFO)
@@ -255,6 +263,22 @@ def http_packet_login_auto_brute():
                                                          max_error_num=GB_MAX_ERROR_NUM,
                                                          hit_saving_field=HTTP_CONST_SIGN
                                                          )
+        # 写入命中结果
+        if GB_SAVE_HIT_RESULT and hit_result_list:
+            # 分析命中的结果
+            hit_classify_dict = result_rule_classify(hit_str_list=hit_result_list,
+                                                     reverse_replace_dict_list=[current_dependent_dict],
+                                                     hit_user_file=GB_HIT_NAME_FILE,
+                                                     hit_pass_file=GB_HIT_PASS_FILE,
+                                                     hit_pair_file=GB_HIT_PAIR_FILE,
+                                                     hit_const_link=GB_CONST_LINK
+                                                     )
+            # 将命中的结果分别写到不同的频率文件中
+            for file_name, path_list in hit_classify_dict.items():
+                auto_make_dir(os.path.dirname(file_name))
+                write_path_list_to_frequency_file(file_path=file_name, path_list=path_list)
+            output(f"[*] 记录命中结果规则: {len(list(hit_classify_dict.values()))}", level=LOG_INFO)
+
         # 停止扫描任务
         if GB_ONLY_BRUTE_ONE_PASS and hit_result_list:
             output(f"[*] 发现可用账号密码 取消访问任务!!!", level=LOG_INFO)
@@ -394,8 +418,8 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
-    PASS_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
-    NAME_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
+    NAME_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
+    PASS_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
     PAIR_FILES = gen_file_names(formar_str=GB_PAIR_FILE_STR, repalce=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
 
     # 进行登录爆破

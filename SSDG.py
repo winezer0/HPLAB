@@ -28,6 +28,9 @@ from setting_total import *
 # 分割写法 基于 用户名和密码规则生成 元组列表
 def social_rule_handle_in_steps_two_list(target_url, user_name_files, user_pass_files,
                                          default_name_list=None, default_pass_list=None, exclude_file=None):
+    print(f"user_name_files:{user_name_files}")
+    print(f"user_pass_files:{user_pass_files}")
+
     mode = "mode1"
     step = 0
 
@@ -65,7 +68,8 @@ def social_rule_handle_in_steps_two_list(target_url, user_name_files, user_pass_
             output(f"[!] 未输入任何有效密码字典文件!!!", level=LOG_ERROR)
             return []
 
-    output(f"[*] 读取账号|密码文件完成 name_list:{len(name_list)} | pass_list:{len(pass_list)}", level=LOG_INFO)
+    output(f"[*] 读取账号文件完成 name_list:{len(name_list)} <--> {name_list[:10]}", level=LOG_INFO)
+    output(f"[*] 读取密码文件完成 pass_list:{len(pass_list)} <--> {pass_list[:10]}", level=LOG_INFO)
 
     # 动态规则解析
     if True:
@@ -97,8 +101,7 @@ def social_rule_handle_in_steps_two_list(target_url, user_name_files, user_pass_
 
         pass_base_var_replace_dict = set_base_var_dict(GB_BASE_PASS_DIR, GB_BASE_DICT_SUFFIX, base_var_replace_dict)
         output(f"[*] 密码基本变量获取成功 base_var_replace_dict:{len(str(base_var_replace_dict))}")
-
-        # 清空不被需要的字典键
+        # 删除不会被用到规则用到的基本变量替换字典的键
         name_base_var_replace_dict = remove_not_used_key(name_base_var_replace_dict, name_list)
         pass_base_var_replace_dict = remove_not_used_key(pass_base_var_replace_dict, pass_list)
 
@@ -490,8 +493,8 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
-    PASS_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
-    NAME_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
+    NAME_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
+    PASS_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
     PAIR_FILES = gen_file_names(formar_str=GB_PAIR_FILE_STR, repalce=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
