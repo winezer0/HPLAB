@@ -16,6 +16,7 @@ from libs.lib_requests.requests_thread import multi_thread_requests_url_body_hea
 from libs.lib_requests.requests_tools import get_random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
+from libs.util_ssdg import gen_file_names
 from setting_total import *
 
 sys.dont_write_bytecode = True  # 设置不生成pyc文件
@@ -392,13 +393,10 @@ if __name__ == '__main__':
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
-    # 根据level参数修改字典路径
-    NAME_FILES = [GB_NAME_FILE_STR.format(LEVEL=GB_RULE_LEVEL_NAME)] if GB_RULE_LEVEL_EXACT else [
-        GB_NAME_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_NAME + 1)]
-    PASS_FILES = [GB_PASS_FILE_STR.format(LEVEL=GB_RULE_LEVEL_PASS)] if GB_RULE_LEVEL_EXACT else [
-        GB_PASS_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_PASS + 1)]
-    PAIR_FILES = [GB_PAIR_FILE_STR.format(LEVEL=GB_RULE_LEVEL_PAIR)] if GB_RULE_LEVEL_EXACT else [
-        GB_PAIR_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_PAIR + 1)]
+    # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
+    PASS_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
+    NAME_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
+    PAIR_FILES = gen_file_names(formar_str=GB_PAIR_FILE_STR, repalce=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
 
     # 进行登录爆破
     http_packet_login_auto_brute()

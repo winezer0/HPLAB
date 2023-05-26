@@ -21,6 +21,7 @@ from libs.lib_social_dict.repl_mark_user import replace_mark_user_on_pass
 from libs.lib_social_dict.transfer_passwd import transfer_passwd
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import match_exec_repl_loop_batch
+from libs.util_ssdg import gen_file_names
 from setting_total import *
 
 
@@ -489,12 +490,9 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
-    NAME_FILES = [GB_NAME_FILE_STR.format(LEVEL=GB_RULE_LEVEL_NAME)] if GB_RULE_LEVEL_EXACT else [
-        GB_NAME_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_NAME + 1)]
-    PASS_FILES = [GB_PASS_FILE_STR.format(LEVEL=GB_RULE_LEVEL_PASS)] if GB_RULE_LEVEL_EXACT else [
-        GB_PASS_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_PASS + 1)]
-    PAIR_FILES = [GB_PAIR_FILE_STR.format(LEVEL=GB_RULE_LEVEL_PAIR)] if GB_RULE_LEVEL_EXACT else [
-        GB_PAIR_FILE_STR.format(LEVEL=level) for level in range(GB_RULE_LEVEL_PAIR + 1)]
+    PASS_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
+    NAME_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
+    PAIR_FILES = gen_file_names(formar_str=GB_PAIR_FILE_STR, repalce=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_PAIR_FILE_FLAG:
