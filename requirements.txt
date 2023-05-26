@@ -7,3 +7,4 @@ tldextract~=2.2.3
 exrex~=0.10.5
 pypinyin~=0.38.0
 jieba~=0.42.1
+Js2Py~=0.70
