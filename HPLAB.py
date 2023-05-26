@@ -277,7 +277,7 @@ def http_packet_login_auto_brute():
             for file_name, path_list in hit_classify_dict.items():
                 auto_make_dir(os.path.dirname(file_name))
                 write_path_list_to_frequency_file(file_path=file_name, path_list=path_list)
-            output(f"[*] 记录命中结果规则: {len(list(hit_classify_dict.values()))}", level=LOG_INFO)
+            output(f"[*] 记录命中结果规则: {len(hit_result_list)}", level=LOG_INFO)
 
         # 停止扫描任务
         if GB_ONLY_BRUTE_ONE_PASS and hit_result_list:
