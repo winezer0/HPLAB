@@ -493,9 +493,9 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
-    NAME_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
-    PASS_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
-    PAIR_FILES = gen_file_names(formar_str=GB_PAIR_FILE_STR, repalce=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
+    NAME_FILES = gen_file_names(format_str=GB_NAME_FILE_STR, replace=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
+    PASS_FILES = gen_file_names(format_str=GB_PASS_FILE_STR, replace=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
+    PAIR_FILES = gen_file_names(format_str=GB_PAIR_FILE_STR, replace=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
 
     # GB_TARGET_URL = "http://www.baidu.com"  # 336
     if not GB_PAIR_FILE_FLAG:

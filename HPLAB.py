@@ -139,8 +139,8 @@ def http_packet_login_auto_brute():
                 return
 
     # 动态判断判断请求协议
-    protocol = str(GB_PROTOCOL).lower()
-    if protocol == "auto":
+    protocol = str(GB_PROTOCOL).upper()
+    if protocol == "AUTO":
         output(f"[*] 动态获取当前请求协议...")
         protocol = check_protocol(req_host=parse_host,
                                   req_method="GET",
@@ -362,14 +362,15 @@ def parse_input():
     argument_parser.add_argument("-x", dest="proxies", default=GB_PROXIES,
                                  help=f"Specifies http|https|socks5 proxies, Default is [{GB_PROXIES}]")
 
-    argument_parser.add_argument("-ef", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
-                                 help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
-
-    argument_parser.add_argument("-e", "--exclude_file", default=GB_EXCLUDE_FILE,
-                                 help=f"Specifies exclude history file name, Default is {GB_EXCLUDE_FILE}", )
-
-    argument_parser.add_argument("-c", "--const_link", default=GB_CONST_LINK,
-                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_CONST_LINK}", )
+    # 排除 GB_EXCLUDE_FILE 仅用于SSDG模块使用
+    # argument_parser.add_argument("-ef", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
+    #                              help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
+    #
+    # argument_parser.add_argument("-e", "--exclude_file", default=GB_EXCLUDE_FILE,
+    #                              help=f"Specifies exclude history file name, Default is {GB_EXCLUDE_FILE}", )
+    #
+    # argument_parser.add_argument("-c", "--const_link", default=GB_CONST_LINK,
+    #                              help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_CONST_LINK}", )
 
     argument_parser.add_argument("-g", "--only_generate_dict", default=GB_ONLY_GENERATE_DICT, action="store_true",
                                  help=f"Specifies generate dictionary file, Default is [{GB_ONLY_GENERATE_DICT}]", )
@@ -418,9 +419,9 @@ if __name__ == '__main__':
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
 
     # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
-    NAME_FILES = gen_file_names(formar_str=GB_NAME_FILE_STR, repalce=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
-    PASS_FILES = gen_file_names(formar_str=GB_PASS_FILE_STR, repalce=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
-    PAIR_FILES = gen_file_names(formar_str=GB_PAIR_FILE_STR, repalce=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
+    NAME_FILES = gen_file_names(format_str=GB_NAME_FILE_STR, replace=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
+    PASS_FILES = gen_file_names(format_str=GB_PASS_FILE_STR, replace=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
+    PAIR_FILES = gen_file_names(format_str=GB_PAIR_FILE_STR, replace=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
 
     # 进行登录爆破
     http_packet_login_auto_brute()
