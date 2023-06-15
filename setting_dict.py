@@ -34,13 +34,14 @@ GB_BASE_PASS_DIR = GB_BASE_DIR.joinpath("dict_pass")
 # 基本变量字典文件的后缀名列表 通过file.endswith匹配
 GB_BASE_DICT_SUFFIX = [".min.txt", ".man.txt"]
 # 存储 自定义 基本变量
-GB_BASE_VAR_REPLACE_DICT = {"%BLANK%": ['']}
+GB_BASE_VAR_REPLACE_DICT = {}
 ###################
 # 存储 自定义 因变量
 GB_DEPENDENT_VAR_REPLACE_DICT = {
     STR_VAR_DEPENDENT: [],  # 存储自定义因变量
     STR_VAR_DOMAIN: [],  # 存储动态PATH因变量-无需处理
     STR_VAR_PATH: [],  # 存储动态域名因变量-无需处理
+    STR_VAR_BLANK: [''],
 }
 
 # DOMAIN PATH 因变量中的 符号替换规则, 替换后追加到域名因子列表

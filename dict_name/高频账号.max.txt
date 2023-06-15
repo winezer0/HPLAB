@@ -1,4 +1,4 @@
-%blank%
+%%BLANK%%
 root
 administrator
 admin
