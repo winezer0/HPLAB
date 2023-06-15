@@ -1,1 +1,1 @@
-{re=exrex:(%默认账号%)}$:{re=exrex:(%默认密码%|%%USERNAME%%)}$
+%默认账号%:{re=exrex:(%默认密码%|%%USERNAME%%)}$
