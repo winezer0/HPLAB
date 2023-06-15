@@ -320,7 +320,7 @@ def gen_dynamic_exclude_dict(mark_url, req_method, mark_body, mark_headers):
                                                                         ignore_encode_error=GB_CHINESE_ENCODE_CODING
                                                                         )
     # 分析测试结果
-    dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list, HTTP_FILTER_VALUE_DICT)
+    dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list, HTTP_FILTER_VALUE_DICT, HTTP_FILTER_IGNORE_KEYS)
     output(f"[+] 当前目标 {mark_url} 动态结果排除字典内容:[{dynamic_exclude_dict}]", level=LOG_INFO)
     return dynamic_exclude_dict
 
