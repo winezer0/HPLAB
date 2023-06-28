@@ -166,7 +166,7 @@ def get_domain_words(url, ignore_ip_format=True, symbol_replace_dict={}, not_all
 
 
 # 从URL中提取无参数无目录的URL
-def get_base_url(url):
+def get_root_url(url):
     netloc = urlparse(url).netloc
     if netloc:
         split_url = url.split(netloc)
