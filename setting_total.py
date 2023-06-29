@@ -80,7 +80,7 @@ GB_MARK_PASSWORD = '$pass$'  # $$$password$$$
 GB_CHECK_TAGS = True
 ############################################################
 # 是否是HTTPS协议
-GB_PROTOCOL = "AUTO"  # HTTPS|HTTP|AUTO
+GB_PROTOCOL = None  # HTTPS|HTTP|None 自动识别
 
 # 判断URI不存在的状态码，多个以逗号隔开,符合该状态码的响应将不会写入结果文件
 GB_EXCLUDE_STATUS = [404, 401, 403, 405, 406, 410, 500, 501, 502, 503]
