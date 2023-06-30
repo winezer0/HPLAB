@@ -4,8 +4,7 @@
 
 # 从URL中获取域名相关的单词
 import copy
-
-from libs.lib_dyna_rule.dyna_rule_const import STR_VAR_PATH, STR_VAR_DOMAIN, STR_VAR_FILE_NAME, STR_VAR_PURE_NAME
+from libs.lib_dyna_rule.dyna_rule_const import *
 from libs.lib_log_print.logger_printer import output, LOG_ERROR
 from libs.lib_dyna_rule.dyna_rule_tools import dict_content_base_rule_render
 from libs.lib_url_analysis.url_parser import parse_url_file_part
@@ -27,7 +26,7 @@ def set_dependent_var_dict(target_url,
 
     # 基于URL获取因变量
     if not target_url:
-        output(f"[-] 注意: 未输入目标URL参数,无法获取因变量", level=LOG_ERROR)
+        output(f"[-] 未输入目标URL参数,无法获取基于URL的因变量", level=LOG_ERROR)
         dependent_var_dict[STR_VAR_DOMAIN] = None
         dependent_var_dict[STR_VAR_PATH] = None
         dependent_var_dict[STR_VAR_FILE_NAME] = None
