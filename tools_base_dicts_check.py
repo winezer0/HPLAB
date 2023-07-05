@@ -3,7 +3,7 @@
 from libs.lib_file_operate.file_path import get_dir_path_info_dict, get_dir_path_dir_info_dict, \
     file_name_remove_ext_list
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_ERROR, LOG_INFO
-from setting_total import *
+from setting_com import *
 
 
 # 判断是否存在重复的属性名称,不能够存在重复【文件名|目录名】的

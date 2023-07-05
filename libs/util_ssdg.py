@@ -72,7 +72,7 @@ if __name__ == '__main__':
     from libs.lib_file_operate.file_write import write_path_list_to_frequency_file
     from setting_dict import GB_DEPENDENT_VAR_REPLACE_DICT, GB_IGNORE_IP_FORMAT
     from setting_dict import GB_NOT_ALLOW_SYMBOL, GB_SYMBOL_REPLACE_DICT, GB_CONST_LINK
-    from setting_total import GB_HIT_NAME_FILE, GB_HIT_PAIR_FILE, GB_HIT_PASS_FILE
+    from setting_com import GB_HIT_NAME_FILE, GB_HIT_PAIR_FILE, GB_HIT_PASS_FILE
 
     hit_result_list = ['admin<-->password',
                        'baidu<-->password',

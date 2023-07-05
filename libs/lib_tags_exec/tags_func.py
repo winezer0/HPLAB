@@ -8,7 +8,7 @@ import js2py
 from libs.lib_file_operate.file_path import file_is_exist
 from libs.lib_file_operate.file_read import read_file_to_str
 from libs.lib_log_print.logger_printer import output, LOG_ERROR
-from setting_total import TAG_EXEC_CUSTOM_JS_FILE, TAG_EXEC_CUSTOM_PY_FILE
+from setting_com import TAG_EXEC_CUSTOM_JS_FILE, TAG_EXEC_CUSTOM_PY_FILE
 
 
 def none_encode(string=""):

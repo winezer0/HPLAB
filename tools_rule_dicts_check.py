@@ -7,7 +7,7 @@ from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_na
     get_dir_path_dir_info_dict
 from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_log_print.logger_printer import output, LOG_ERROR, set_logger, LOG_INFO
-from setting_total import *
+from setting_com import *
 
 
 # 检查每一行规则，是否符合基本变量替换规则 % XXX % 的形式

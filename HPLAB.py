@@ -2,7 +2,6 @@
 # encoding: utf-8
 import argparse
 import sys
-
 from SSDG import social_rule_handle_in_steps_two_list, social_rule_handle_in_steps_one_pairs
 from libs.lib_dyna_rule.set_depend_var import set_dependent_var_dict
 from libs.lib_file_operate.file_path import auto_create_file, file_is_empty
@@ -19,7 +18,7 @@ from libs.lib_requests.requests_tools import get_random_str, analysis_dict_same_
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
 from libs.util_ssdg import gen_file_names, result_rule_classify
-from setting_total import *
+from setting_com import *
 
 sys.dont_write_bytecode = True  # 设置不生成pyc文件
 
@@ -139,8 +138,7 @@ def http_packet_login_auto_brute():
                 return
 
     # 动态判断判断请求协议
-    protocol = str(GB_PROTOCOL).upper()
-    if protocol == "AUTO":
+    if not GB_PROTOCOL:
         output(f"[*] 动态获取当前请求协议...")
         protocol = check_protocol(req_host=parse_host,
                                   req_method="GET",
@@ -150,7 +148,7 @@ def http_packet_login_auto_brute():
                                   req_timeout=GB_TIMEOUT,
                                   verify_ssl=GB_SSL_VERIFY)
         if protocol:
-            output(f"[+] 请求协议: [{protocol}]", level=LOG_INFO)
+            output(f"[+] 获取请求协议成功: [{protocol}]", level=LOG_INFO)
         else:
             output(f"[-] 获取请求协议失败!!! 请(检查网络|检查代理|再次重试|手动配置)", level=LOG_ERROR)
             exit()
@@ -320,7 +318,8 @@ def gen_dynamic_exclude_dict(mark_url, req_method, mark_body, mark_headers):
                                                                         ignore_encode_error=GB_CHINESE_ENCODE_CODING
                                                                         )
     # 分析测试结果
-    dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list, HTTP_FILTER_VALUE_DICT, HTTP_FILTER_IGNORE_KEYS)
+    dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list, HTTP_FILTER_VALUE_DICT,
+                                                   HTTP_FILTER_IGNORE_KEYS)
     output(f"[+] 当前目标 {mark_url} 动态结果排除字典内容:[{dynamic_exclude_dict}]", level=LOG_INFO)
     return dynamic_exclude_dict
 
@@ -389,12 +388,12 @@ def parse_input():
     return argument_parser
 
 
-def args_handle(args):
+def args_dict_handle(args):
     # 格式化输入的Proxy参数 如果输入了代理参数就会变为字符串
     if args.proxies and isinstance(args.proxies, str):
         if "socks" in args.proxies or "http" in args.proxies:
             args.proxies = {'http': args.proxies.replace('https://', 'http://'),
-                            'https': args.proxies.replace('http://', 'https://')}
+                            'https': args.proxies.replace('https://', 'http://')}
         else:
             output(f"[!] 输入的代理地址[{args.proxies}]不正确,正确格式:Proto://IP:PORT", level=LOG_ERROR)
     return args
@@ -406,7 +405,7 @@ if __name__ == '__main__':
     # 获取所有参数
     args = parser.parse_args()
     # 处理输入参数
-    args = args_handle(args)
+    args = args_dict_handle(args)
     # 输出所有参数信息
     output(f"[*] 所有输入参数信息: {args}", level=LOG_INFO)
     time.sleep(0.1)

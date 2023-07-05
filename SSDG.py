@@ -22,7 +22,7 @@ from libs.lib_social_dict.transfer_passwd import transfer_passwd
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import match_exec_repl_loop_batch
 from libs.util_ssdg import gen_file_names
-from setting_total import *
+from setting_com import *
 
 
 # 分割写法 基于 用户名和密码规则生成 元组列表
