@@ -101,5 +101,5 @@ if __name__ == '__main__':
                                           path_list=path_list,
                                           encoding='utf-8',
                                           frequency_symbol="<-->",
-                                          annotation_symbol="#")
+                                          annotation_symbol="###")
     output(f"[*] 记录命中结果: {len(list(hit_classify_dict.values()))}")
