@@ -23,11 +23,6 @@ TAG_RSP_8 = "rsp8"
 
 TAG_REVERSE = "revs"
 ##################################
-# # 标签执行时调用的自定义js文件路径
-# TAG_EXEC_CUSTOM_JS_FILE = r"demo/custom.js"
-# # 标签执行时调用的自定义py文件路径
-# TAG_EXEC_CUSTOM_PY_FILE = r"demo/custom.py"
-##################################
 # 支持的字符串常量和实际调用的函数的对应关系
 # key=在报文中使用的名字,  value=被调用的函数名 不要带括号,会报错
 TAG_FUNC_DICT = {

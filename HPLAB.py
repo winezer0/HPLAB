@@ -2,11 +2,10 @@
 # encoding: utf-8
 import argparse
 import sys
-from SSDG import social_rule_handle_in_steps_two_list, social_rule_handle_in_steps_one_pairs
-from libs.lib_dyna_rule.set_depend_var import set_dependent_var_dict
+
+from libs.lib_collect_opera.collect_operation import unfrozen_tuple_list, cartesian_product_merging
 from libs.lib_file_operate.file_path import auto_create_file, file_is_empty
-from libs.lib_file_operate.file_read import read_file_to_str
-from libs.lib_file_operate.file_write import write_path_list_to_frequency_file
+from libs.lib_file_operate.file_read import read_file_to_str, read_file_to_list
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
     search_and_get_param_value
 from libs.lib_http_pkg.parse_http_pkg import parse_http_pkg_by_email_simple
@@ -17,8 +16,7 @@ from libs.lib_requests.requests_thread import multi_thread_requests_url_body_hea
 from libs.lib_requests.requests_tools import get_random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
-from libs.util_ssdg import gen_file_names, result_rule_classify
-from setting_com import *
+from setting import *
 
 sys.dont_write_bytecode = True  # 设置不生成pyc文件
 
@@ -38,6 +36,19 @@ def generate_brute_task_list(pair_list, mark_url, mark_body, mark_headers, mark_
         task = (new_url, new_body, new_headers, f"{user_name}{const_sign_link}{user_pass}")
         all_task_list.append(task)
     return all_task_list
+
+
+def 读取账号密码对文件(pairs_file, link_symbol):
+    pair_list = read_file_to_list(pairs_file, de_strip=True, de_weight=True, de_unprintable=True)
+    pair_list = unfrozen_tuple_list(pair_list, link_symbol=link_symbol)
+    return pair_list
+
+
+def 读取账号密码文件并组合(name_file, pass_file):
+    name_list = read_file_to_list(name_file, de_strip=True, de_weight=True, de_unprintable=True)
+    pass_list = read_file_to_list(pass_file, de_strip=True, de_weight=True, de_unprintable=True)
+    pair_list = cartesian_product_merging(name_list, pass_list)
+    return pair_list
 
 
 # 登录爆破测试
@@ -168,31 +179,16 @@ def http_packet_login_auto_brute():
     # 动态生成账号密码字典
     if GB_PAIR_FILE_FLAG:
         # 使用【用户名:密码对】字典
-        name_pass_pair_list = social_rule_handle_in_steps_one_pairs(target_url=req_url,
-                                                                    pair_file_names=PAIR_FILES,
-                                                                    pair_link_symbol=GB_PAIR_LINK_SYMBOL,
-                                                                    default_name_list=default_name_list,
-                                                                    default_pass_list=default_pass_list,
-                                                                    exclude_file=history_file
-                                                                    )
-    else:
+        name_pass_pair_list = 读取账号密码对文件(pairs_file=GB_PAIR_FILE, link_symbol=GB_PAIR_LINK)
+
+    if GB_NAME_PASS_FILE:
         # 使用【用户名字典】和【密码字典】
-        name_pass_pair_list = social_rule_handle_in_steps_two_list(target_url=req_url,
-                                                                   user_name_files=NAME_FILES,
-                                                                   user_pass_files=PASS_FILES,
-                                                                   default_name_list=default_name_list,
-                                                                   default_pass_list=default_pass_list,
-                                                                   exclude_file=history_file
-                                                                   )
+        name_pass_pair_list = 读取账号密码文件并组合(name_file=GB_NAME_FILE, pass_file=GB_PASS_FILE)
 
     if len(name_pass_pair_list) > 0:
         output(f"[*] 历史爆破记录过滤完毕, 剩余元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
     else:
         output(f"[*] 所有账号密码字典已过滤, 退出本次操作", level=LOG_INFO)
-        return
-
-    # 仅生成口令字典
-    if GB_ONLY_GENERATE_DICT:
         return
 
     # 生成动态排除字典
@@ -217,21 +213,11 @@ def http_packet_login_auto_brute():
 
     # 统计总访问错误次数
     access_fail_count = 0
-
-    # 构造常规的结果文件
-    result_file_path = GB_RESULT_FILE_PATH
     # 根据主机名生成结果文件名
-    if "auto" in str(result_file_path).lower():
-        result_file_path = GB_RESULT_DIR.joinpath(f"{host_no_symbol}.{path_no_symbol}.result.csv")
+    result_file_path = GB_RESULT_DIR.joinpath(f"{host_no_symbol}.{path_no_symbol}.result.csv")
     # 直接被排除的请求记录
     ignore_file_path = GB_RESULT_DIR.joinpath(f"{host_no_symbol}.{path_no_symbol}.ignore.csv")
 
-    # 获取因变量字典用于数据统计
-    current_dependent_dict = set_dependent_var_dict(target_url=req_url,
-                                                    base_dependent_dict=GB_DEPENDENT_VAR_REPLACE_DICT,
-                                                    ignore_ip_format=GB_IGNORE_IP_FORMAT,
-                                                    symbol_replace_dict=GB_SYMBOL_REPLACE_DICT,
-                                                    not_allowed_symbol=GB_NOT_ALLOW_SYMBOL)
     # 循环多线程请求操作
     for sub_task_index, sub_task_list in enumerate(brute_task_list):
         output(f"[*] 任务进度 {sub_task_index + 1}/{len(brute_task_list)}", level=LOG_INFO)
@@ -247,7 +233,7 @@ def http_packet_login_auto_brute():
                                                                        retry_times=GB_RETRY_TIMES,
                                                                        add_host_header=True,
                                                                        add_refer_header=True,
-                                                                       ignore_encode_error=GB_CHINESE_ENCODE_CODING
+                                                                       ignore_encode_error=True
                                                                        )
 
         stop_run, hit_result_list = access_result_handle(result_dict_list=result_dict_list,
@@ -261,21 +247,6 @@ def http_packet_login_auto_brute():
                                                          max_error_num=GB_MAX_ERROR_NUM,
                                                          hit_saving_field=HTTP_CONST_SIGN
                                                          )
-        # 写入命中结果
-        if GB_SAVE_HIT_RESULT and hit_result_list:
-            # 分析命中的结果
-            hit_classify_dict = result_rule_classify(hit_str_list=hit_result_list,
-                                                     reverse_replace_dict_list=[current_dependent_dict],
-                                                     hit_user_file=GB_HIT_NAME_FILE,
-                                                     hit_pass_file=GB_HIT_PASS_FILE,
-                                                     hit_pair_file=GB_HIT_PAIR_FILE,
-                                                     hit_const_link=GB_CONST_LINK
-                                                     )
-            # 将命中的结果分别写到不同的频率文件中
-            for file_name, path_list in hit_classify_dict.items():
-                auto_make_dir(os.path.dirname(file_name))
-                write_path_list_to_frequency_file(file_path=file_name, path_list=path_list)
-            output(f"[*] 记录命中结果规则: {len(hit_result_list)}", level=LOG_INFO)
 
         # 停止扫描任务
         if GB_ONLY_BRUTE_ONE_PASS and hit_result_list:
@@ -315,7 +286,7 @@ def gen_dynamic_exclude_dict(mark_url, req_method, mark_body, mark_headers):
                                                                         retry_times=GB_RETRY_TIMES,
                                                                         add_host_header=True,
                                                                         add_refer_header=True,
-                                                                        ignore_encode_error=GB_CHINESE_ENCODE_CODING
+                                                                        ignore_encode_error=True
                                                                         )
     # 分析测试结果
     dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list, HTTP_FILTER_VALUE_DICT,
@@ -337,48 +308,17 @@ def parse_input():
     argument_parser.add_argument("-P", "--protocol", default=GB_PROTOCOL,
                                  help=f"Specifies HTTP Request Protocol, Default is [{GB_PROTOCOL}]")
 
-    argument_parser.add_argument("-b", "--base_dict_suffix", default=GB_BASE_DICT_SUFFIX, nargs="+",
-                                 help=f"Specifies the base var file suffix, Default is {GB_BASE_DICT_SUFFIX}")
-
-    argument_parser.add_argument("-ln", "--rule_level_name", default=GB_RULE_LEVEL_NAME, type=int,
-                                 help=f"Specifies the name rule file level or prefix, Default is {GB_RULE_LEVEL_NAME}")
-
-    argument_parser.add_argument("-lp", "--rule_level_pass", default=GB_RULE_LEVEL_PASS, type=int,
-                                 help=f"Specifies the pass rule file level or prefix, Default is {GB_RULE_LEVEL_PASS}")
-
-    argument_parser.add_argument("-ll", "--rule_level_pair", default=GB_RULE_LEVEL_PAIR, type=int,
-                                 help=f"Specifies the pair rule file level or prefix, Default is {GB_RULE_LEVEL_PAIR}")
-
-    argument_parser.add_argument("-lf", "--rule_level_exact", default=GB_RULE_LEVEL_EXACT, action="store_true",
-                                 help=f"Specifies Exact call level dictionary, Default is [{GB_RULE_LEVEL_EXACT}]", )
-
     argument_parser.add_argument("-af", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
 
-    argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK_SYMBOL,
-                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK_SYMBOL}", )
+    argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK,
+                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK}", )
 
     argument_parser.add_argument("-x", dest="proxies", default=GB_PROXIES,
                                  help=f"Specifies http|https|socks5 proxies, Default is [{GB_PROXIES}]")
 
-    # 排除 GB_EXCLUDE_FILE 仅用于SSDG模块使用
-    # argument_parser.add_argument("-ef", "--exclude_flag", default=GB_EXCLUDE_FLAG, action="store_true",
-    #                              help=f"Specifies exclude history file flag, Default is {GB_EXCLUDE_FLAG}", )
-    #
-    # argument_parser.add_argument("-e", "--exclude_file", default=GB_EXCLUDE_FILE,
-    #                              help=f"Specifies exclude history file name, Default is {GB_EXCLUDE_FILE}", )
-    #
-    # argument_parser.add_argument("-c", "--const_link", default=GB_CONST_LINK,
-    #                              help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_CONST_LINK}", )
-
-    argument_parser.add_argument("-g", "--only_generate_dict", default=GB_ONLY_GENERATE_DICT, action="store_true",
-                                 help=f"Specifies generate dictionary file, Default is [{GB_ONLY_GENERATE_DICT}]", )
-
     argument_parser.add_argument("-t", "--threads_count", default=GB_THREADS_COUNT, type=int,
                                  help=f"Specifies the request threads, Default is [{GB_THREADS_COUNT}]")
-
-    argument_parser.add_argument("-o", "--result_file_path", default=GB_RESULT_FILE_PATH,
-                                 help=f"Specify the result file name, Default is [{GB_RESULT_FILE_PATH}]")
 
     argument_parser.add_argument("-d", "--debug_flag", default=GB_DEBUG_FLAG, action="store_true",
                                  help=f"Specifies Display Debug Info, Default is [{GB_DEBUG_FLAG}]", )
@@ -422,11 +362,6 @@ if __name__ == '__main__':
 
     # 根据用户输入的debug参数设置日志打印器属性 # 为主要是为了接受config.debug参数来配置输出颜色.
     set_logger(GB_INFO_LOG_FILE, GB_ERR_LOG_FILE, GB_DBG_LOG_FILE, GB_DEBUG_FLAG)
-
-    # 根据level参数和GB_RULE_LEVEL_EXACT设置修改字典路径
-    NAME_FILES = gen_file_names(format_str=GB_NAME_FILE_STR, replace=GB_RULE_LEVEL_NAME, rule_exact=GB_RULE_LEVEL_EXACT)
-    PASS_FILES = gen_file_names(format_str=GB_PASS_FILE_STR, replace=GB_RULE_LEVEL_PASS, rule_exact=GB_RULE_LEVEL_EXACT)
-    PAIR_FILES = gen_file_names(format_str=GB_PAIR_FILE_STR, replace=GB_RULE_LEVEL_PAIR, rule_exact=GB_RULE_LEVEL_EXACT)
 
     # 进行登录爆破
     http_packet_login_auto_brute()

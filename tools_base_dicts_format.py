@@ -6,7 +6,7 @@ from libs.lib_file_operate.file_coding import file_encoding
 from libs.lib_file_operate.file_read import read_file_to_list
 from libs.lib_file_operate.file_write import write_lines
 from libs.lib_log_print.logger_printer import set_logger, output, LOG_INFO
-from setting_com import *
+from setting import *
 
 from libs.lib_file_operate.file_path import get_dir_path_file_info_dict, file_name_remove_ext_list
 
