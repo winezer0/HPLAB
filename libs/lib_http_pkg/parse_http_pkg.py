@@ -187,7 +187,7 @@ def data_is_urlencode(data):
 def parse_body_xml_json_urlencode(body, content_type=""):
     """
     获取xml, json, urlencode解析后的结果
-    参数：body是http body, content_type应该取自http headers，默认为空字符串
+    参数：body是http body, content_type应该取自http headers，默认值空字符串
     返回：解析后的结果可能是dict或者list
     """
     # 下面的代码借助了content_type来帮助判断，能加快解析速度。
@@ -226,7 +226,7 @@ def parse_body_xml_json_urlencode(body, content_type=""):
 def parse_body_multipart(body, content_type=""):
     """
     解析multipart/form-data格式的数据
-    参数：body是http body, content_type应该取自http headers，默认为空字符串
+    参数：body是http body, content_type应该取自http headers，默认值空字符串
     返回：multipart/form-data格式的数据的解析结果
     BUG: AttributeError: 'str' object has no attribute 'items'
     """
