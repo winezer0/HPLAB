@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # encoding: utf-8
-import argparse
 import setting_com
-from libs.input_const import *
-from libs.input_parse import args_parser, args_dict_handle, config_dict_add_args, config_dict_handle, show_config_dict
+from libs.lib_args.input_const import *
+from libs.lib_args.input_basic import config_dict_add_args
+from libs.lib_args.input_parse import args_parser, args_dict_handle, config_dict_handle
 from libs.lib_attribdict.config import CONFIG
 from libs.lib_collect_opera.collect_operation import unfrozen_tuple_list, cartesian_product_merging, \
     de_duplicate_tuple_list, freeze_list_subtract
