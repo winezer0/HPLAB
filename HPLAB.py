@@ -3,7 +3,8 @@
 import argparse
 import sys
 
-from libs.lib_collect_opera.collect_operation import unfrozen_tuple_list, cartesian_product_merging
+from libs.lib_collect_opera.collect_operation import unfrozen_tuple_list, cartesian_product_merging, \
+    de_duplicate_tuple_list, freeze_list_subtract
 from libs.lib_file_operate.file_path import auto_create_file, file_is_empty
 from libs.lib_file_operate.file_read import read_file_to_str, read_file_to_list
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
@@ -38,17 +39,50 @@ def generate_brute_task_list(pair_list, mark_url, mark_body, mark_headers, mark_
     return all_task_list
 
 
-def 读取账号密码对文件(pairs_file, link_symbol):
+def read_pairs_file_to_tuples(pairs_file, link_symbol, default_name_list=None, default_pass_list=None):
     pair_list = read_file_to_list(pairs_file, de_strip=True, de_weight=True, de_unprintable=True)
+
+    # 拆分出账号 密码对 元祖
     pair_list = unfrozen_tuple_list(pair_list, link_symbol=link_symbol)
+
+    # 如果输入了默认值列表,就组合更新的账号 列表
+    if default_name_list or default_pass_list:
+        output(f"[*] 已输入默认账号列表 {default_name_list} 需要更新账号密码列表")
+
+        if default_name_list:
+            pass_list = [name_pass_pair[1] for name_pass_pair in pair_list]
+            pair_list = cartesian_product_merging(default_name_list, pass_list)
+
+        if default_pass_list:
+            name_list = [name_pass_pair[0] for name_pass_pair in pair_list]
+            pair_list = cartesian_product_merging(name_list, default_pass_list)
+        output(f"[*] 重组账号密码列表完成 name_pass_pair_list:{len(pair_list)}", level=LOG_INFO)
+
     return pair_list
 
 
-def 读取账号密码文件并组合(name_file, pass_file):
-    name_list = read_file_to_list(name_file, de_strip=True, de_weight=True, de_unprintable=True)
-    pass_list = read_file_to_list(pass_file, de_strip=True, de_weight=True, de_unprintable=True)
-    pair_list = cartesian_product_merging(name_list, pass_list)
-    return pair_list
+def read_name_pass_to_tuples(name_file, pass_file, default_name_list=None, default_pass_list=None):
+    # 读取账号文件
+    if default_name_list:
+        output(f"[*] 已输入默认账号列表 {default_name_list} 忽略读取账号字典文件", level=LOG_INFO)
+        name_list = default_name_list
+    else:
+        name_list = read_file_to_list(name_file, de_strip=True, de_weight=True, de_unprintable=True)
+        output(f"[*] 读取账号文件完成 name_list:{len(name_list)} <--> {name_list[:10]}", level=LOG_INFO)
+
+    # 读取密码文件
+    if default_pass_list:
+        output(f"[*] 已输入默认密码列表 {default_pass_list} 忽略读取密码字典文件", level=LOG_INFO)
+        pass_list = default_pass_list
+    else:
+        pass_list = read_file_to_list(pass_file, de_strip=True, de_weight=True, de_unprintable=True)
+        output(f"[*] 读取密码文件完成 pass_list:{len(pass_list)} <--> {pass_list[:10]}", level=LOG_INFO)
+
+    # 笛卡尔积组合账号密码字典
+    name_pass_pair_list = []
+    if len(name_list) and len(pass_list):
+        name_pass_pair_list = cartesian_product_merging(name_list, pass_list)
+    return name_pass_pair_list
 
 
 # 登录爆破测试
@@ -171,21 +205,34 @@ def http_packet_login_auto_brute():
     # 重新发送HTTP请求
     output(f"[*] 进行字典替换和多线程请求...", level=LOG_INFO)
 
+    # 读取账号密码字典
+    name_pass_pair_list = []
+    if GB_NAME_PASS_FILE:
+        # 使用【用户名字典】和【密码字典】
+        pairs_list = read_name_pass_to_tuples(name_file=GB_NAME_FILE, pass_file=GB_PASS_FILE)
+        name_pass_pair_list.extend(pairs_list)
+    if GB_PAIR_FILE_FLAG:
+        # 使用【用户名:密码对】字典
+        pairs_list = read_pairs_file_to_tuples(pairs_file=GB_PAIR_FILE,
+                                               link_symbol=GB_PAIR_LINK,
+                                               default_name_list=default_name_list,
+                                               default_pass_list=default_pass_list
+                                               )
+        name_pass_pair_list.extend(pairs_list)
+    # 去重用户名密码对字典
+    name_pass_pair_list = de_duplicate_tuple_list(name_pass_pair_list)
+
     # 存储已爆破的账号密码文件
     host_no_symbol = parse_host.replace(':', '_')
     path_no_symbol = parse_path.split('?', 1)[0].replace('/', '_')
     history_file = GB_LOG_FILE_DIR.joinpath(f"history_{host_no_symbol}.{path_no_symbol}.log")
 
-    # 动态生成账号密码字典
-    if GB_PAIR_FILE_FLAG:
-        # 使用【用户名:密码对】字典
-        name_pass_pair_list = 读取账号密码对文件(pairs_file=GB_PAIR_FILE, link_symbol=GB_PAIR_LINK)
+    # 排除已经被爆破过得账号密码对
+    history_list = read_file_to_list(history_file)
+    history_tuple = unfrozen_tuple_list(history_list, GB_CONST_LINK)
+    name_pass_pair_list = freeze_list_subtract(name_pass_pair_list, history_tuple, GB_CONST_LINK)
 
-    if GB_NAME_PASS_FILE:
-        # 使用【用户名字典】和【密码字典】
-        name_pass_pair_list = 读取账号密码文件并组合(name_file=GB_NAME_FILE, pass_file=GB_PASS_FILE)
-
-    if len(name_pass_pair_list) > 0:
+    if len(name_pass_pair_list):
         output(f"[*] 历史爆破记录过滤完毕, 剩余元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)
     else:
         output(f"[*] 所有账号密码字典已过滤, 退出本次操作", level=LOG_INFO)
@@ -308,11 +355,11 @@ def parse_input():
     argument_parser.add_argument("-P", "--protocol", default=GB_PROTOCOL,
                                  help=f"Specifies HTTP Request Protocol, Default is [{GB_PROTOCOL}]")
 
-    argument_parser.add_argument("-af", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
-                                 help=f"Specifies Display Debug Info, Default is [{GB_PAIR_FILE_FLAG}]", )
+    argument_parser.add_argument("-pff", "--pair_file_flag", default=GB_PAIR_FILE_FLAG, action="store_true",
+                                 help=f"控制使用账号密码对字典, Default is [{GB_PAIR_FILE_FLAG}]", )
 
-    argument_parser.add_argument("-s", "--pair_link_symbol", default=GB_PAIR_LINK,
-                                 help=f"Specifies Name Pass Link Symbol in history file, Default is {GB_PAIR_LINK}", )
+    argument_parser.add_argument("-npf", "--name_pass_file", default=GB_NAME_PASS_FILE, action="store_false",
+                                 help=f"控制使用账号、密码字典, Default is [{GB_NAME_PASS_FILE}]", )
 
     argument_parser.add_argument("-x", dest="proxies", default=GB_PROXIES,
                                  help=f"Specifies http|https|socks5 proxies, Default is [{GB_PROXIES}]")

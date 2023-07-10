@@ -73,7 +73,6 @@ GB_MARK_PASSWORD = '$pass$'  # $$$password$$$
 ############################################################
 # 进行标签格式检查
 GB_CHECK_TAGS = True
-
 # 增加标签处理功能,便于对标记的数据自动进行（加密|编码）操作
 # 目前支持功能请查看 libs/lib_tags_exec/tags_const.py 的 TAG_FUNC_DICT
 # 标签执行时调用的自定义js文件路径
