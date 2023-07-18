@@ -188,7 +188,9 @@ def http_packet_login_auto_brute(config_dict):
                 return
 
     # 动态判断判断请求协议
-    if not config_dict[GB_PROTOCOL]:
+    if  config_dict[GB_PROTOCOL]:
+        protocol = config_dict[GB_PROTOCOL]
+    else:
         output(f"[*] 动态获取当前请求协议...")
         protocol = check_protocol(req_host=parse_host,
                                   req_method="GET",
