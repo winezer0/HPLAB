@@ -45,7 +45,7 @@ def read_file_to_frequency_dict(file_path, encoding=None, frequency_symbol='<-->
     """
     读取一个文件内容并返回结果字典 {"路径”:频率}
     文件的每一行格式类似 path frequency_symbol 10
-    frequency_symbol 指定切割每一行的字符串 没有 frequency_symbol 的默认值1
+    frequency_symbol 指定切割每一行的字符串 没有 frequency_symbol 的默认为1
     annotation_symbol = "###" 如果启用注释,对###号开头的行,和频率字符串后面的###号都会进行删除
     """
     result_dict = {}
@@ -163,7 +163,7 @@ def read_files_to_frequency_dict(file_list, encoding=None, frequency_symbol='<--
     """
     读取文件列表内所有文件的内容并返回结果字典 {"路径”:频率}
     文件的每一行格式类似 path frequency_symbol 10
-    frequency_symbol 指定切割每一行的字符串 没有 frequency_symbol 的默认值1
+    frequency_symbol 指定切割每一行的字符串 没有 frequency_symbol 的默认为1
     annotation_symbol = "###" 如果启用注释,对###号开头的行,和频率字符串后面的###号都会进行删除
     """
     result_dict = {}
