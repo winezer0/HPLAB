@@ -16,7 +16,7 @@ from libs.lib_log_print.logger_printer import *
 from libs.lib_requests.check_protocol import check_protocol
 from libs.lib_requests.requests_const import *
 from libs.lib_requests.requests_thread import multi_thread_requests_url_body_headers_sign
-from libs.lib_requests.requests_tools import get_random_str, analysis_dict_same_keys, access_result_handle
+from libs.lib_requests.requests_utils import get_random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
 
@@ -347,8 +347,8 @@ def gen_dynamic_exclude_dict(config_dict, mark_url, req_method, mark_body, mark_
                                                                         )
     # 分析测试结果
     dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list,
-                                                   HTTP_FILTER_VALUE_DICT,
-                                                   HTTP_FILTER_IGNORE_KEYS)
+                                                   FILTER_HTTP_VALUE_DICT,
+                                                   FILTER_DYNA_IGNORE_KEYS)
     output(f"[+] 当前目标 {mark_url} 动态结果排除字典内容:[{dynamic_exclude_dict}]", level=LOG_INFO)
     return dynamic_exclude_dict
 
