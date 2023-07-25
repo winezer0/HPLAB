@@ -6,7 +6,7 @@ import pathlib
 import time
 
 from libs.lib_args.input_const import *
-from libs.lib_file_operate.file_path import auto_make_dir
+from libs.lib_file_operate.file_utils import auto_make_dir
 
 
 def init_common(config):
@@ -20,7 +20,7 @@ def init_common(config):
     config[GB_BASE_DIR] = pathlib.Path(__file__).parent.resolve()
     ##################################################################
     # 版本号配置
-    config[GB_VERSION] = "Ver 0.4.2 2023-07-18 12:00"
+    config[GB_VERSION] = "Ver 0.4.3 2023-07-25 18:30"
     ##################################################################
     # 程序开始运行时间  %Y-%m-%d-%H-%M-%S
     config[GB_RUN_TIME] = time.strftime("%Y-%m-%d", time.localtime())

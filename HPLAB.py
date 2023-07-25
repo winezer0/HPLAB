@@ -7,7 +7,7 @@ from libs.lib_args.input_parse import args_parser, args_dict_handle, config_dict
 from libs.lib_attribdict.config import CONFIG
 from libs.lib_collect_opera.collect_operation import unfrozen_tuple_list, cartesian_product_merging, \
     de_duplicate_tuple_list, freeze_list_subtract
-from libs.lib_file_operate.file_path import auto_create_file, file_is_empty
+from libs.lib_file_operate.file_utils import auto_create_file, file_is_empty
 from libs.lib_file_operate.file_read import read_file_to_str, read_file_to_list
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
     search_and_get_param_value
@@ -188,7 +188,7 @@ def http_packet_login_auto_brute(config_dict):
                 return
 
     # 动态判断判断请求协议
-    if  config_dict[GB_PROTOCOL]:
+    if config_dict[GB_PROTOCOL]:
         protocol = config_dict[GB_PROTOCOL]
     else:
         output(f"[*] 动态获取当前请求协议...")
@@ -276,21 +276,21 @@ def http_packet_login_auto_brute(config_dict):
     # 循环多线程请求操作
     for sub_task_index, sub_task_list in enumerate(brute_task_list):
         output(f"[*] 任务进度 {sub_task_index + 1}/{len(brute_task_list)}", level=LOG_INFO)
-        result_dict_list = multi_thread_requests_url_body_headers_sign(task_list=sub_task_list,
-                                                                       threads_count=config_dict[GB_THREADS_COUNT],
-                                                                       thread_sleep=config_dict[GB_THREAD_SLEEP],
-                                                                       req_method=parse_method,
-                                                                       req_proxies=config_dict[GB_PROXIES],
-                                                                       req_timeout=config_dict[GB_TIME_OUT],
-                                                                       verify_ssl=config_dict[GB_SSL_VERIFY],
-                                                                       req_allow_redirects=config_dict[
-                                                                           GB_ALLOW_REDIRECTS],
-                                                                       req_stream=False,
-                                                                       retry_times=config_dict[GB_RETRY_TIMES],
-                                                                       add_host_header=True,
-                                                                       add_refer_header=True,
-                                                                       ignore_encode_error=True
-                                                                       )
+        result_dict_list = multi_thread_requests_url_body_headers_sign(
+            task_list=sub_task_list,
+            threads_count=config_dict[GB_THREADS_COUNT],
+            thread_sleep=config_dict[GB_THREAD_SLEEP],
+            req_method=parse_method,
+            req_proxies=config_dict[GB_PROXIES],
+            req_timeout=config_dict[GB_TIME_OUT],
+            verify_ssl=config_dict[GB_SSL_VERIFY],
+            req_allow_redirects=config_dict[GB_ALLOW_REDIRECTS],
+            req_stream=False,
+            retry_times=config_dict[GB_RETRY_TIMES],
+            add_host_header=True,
+            add_refer_header=True,
+            ignore_encode_error=True
+        )
 
         stop_run, hit_result_list = access_result_handle(result_dict_list=result_dict_list,
                                                          dynamic_exclude_dict=dynamic_exclude_dict,
@@ -346,7 +346,8 @@ def gen_dynamic_exclude_dict(config_dict, mark_url, req_method, mark_body, mark_
                                                                         ignore_encode_error=True
                                                                         )
     # 分析测试结果
-    dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list, HTTP_FILTER_VALUE_DICT,
+    dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list,
+                                                   HTTP_FILTER_VALUE_DICT,
                                                    HTTP_FILTER_IGNORE_KEYS)
     output(f"[+] 当前目标 {mark_url} 动态结果排除字典内容:[{dynamic_exclude_dict}]", level=LOG_INFO)
     return dynamic_exclude_dict
@@ -377,7 +378,7 @@ if __name__ == '__main__':
     output(f"[*] 配置参数更新: {updates}")
 
     # 根据用户输入的debug参数设置日志打印器属性
-    set_logger(CONFIG[GB_LOG_INFO_FILE], CONFIG[GB_LOG_ERROR_FILE],  CONFIG[GB_LOG_DEBUG_FILE], CONFIG[GB_DEBUG_FLAG])
+    set_logger(CONFIG[GB_LOG_INFO_FILE], CONFIG[GB_LOG_ERROR_FILE], CONFIG[GB_LOG_DEBUG_FILE], CONFIG[GB_DEBUG_FLAG])
 
     # 输出所有参数信息
     output(f"[*] 最终配置信息: {CONFIG}", level=LOG_INFO)
