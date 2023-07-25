@@ -2,11 +2,10 @@
 # encoding: utf-8
 
 from libs.lib_tags_exec.tags_func import func_mypy
-from setting_com import TAG_EXEC_CUSTOM_PY_FILE
 
 # 测试自定义PY脚本是否可以正常调用
 if __name__ == '__main__':
     string = "password"
-    py_file_path = TAG_EXEC_CUSTOM_PY_FILE
+    py_file_path = "libs/lib_tags_exec/demo/custom.py"
     result = func_mypy(string, py_file_path)
     print(f"result:{result}")
