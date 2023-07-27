@@ -232,7 +232,7 @@ def http_packet_login_auto_brute(config_dict):
     # 存储已爆破的账号密码文件
     host_no_symbol = parse_host.replace(':', '_')
     path_no_symbol = parse_path.split('?', 1)[0].replace('/', '_')
-    history_file = config_dict[GB_BASE_DIR].joinpath("runtime", f"history_{host_no_symbol}.{path_no_symbol}.log")
+    history_file = config_dict[GB_BASE_DIR].joinpath("runtime", f"{host_no_symbol}.{path_no_symbol}.history.log")
 
     # 排除已经被爆破过得账号密码对
     history_list = read_file_to_list(history_file)
