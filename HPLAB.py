@@ -15,7 +15,7 @@ from libs.lib_http_pkg.parse_http_pkg import parse_http_pkg_by_email_simple
 from libs.lib_log_print.logger_printer import *
 from libs.lib_requests.check_protocol import check_protocol
 from libs.lib_requests.requests_const import *
-from libs.lib_requests.requests_thread import multi_thread_requests_url_body_headers_sign
+from libs.lib_requests.requests_thread import multi_thread_requests
 from libs.lib_requests.requests_utils import random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
@@ -35,7 +35,7 @@ def generate_brute_task_list(pair_list, mark_url, mark_body, mark_headers, mark_
                                                               mark_repl_str_dict=mark_repl_str_dict,
                                                               func_dict=TAG_FUNC_DICT)
 
-        task = (new_url, new_body, new_headers, f"{user_name}{const_sign_link}{user_pass}")
+        task = (new_url, f"{user_name}{const_sign_link}{user_pass}", new_body, new_headers)
         all_task_list.append(task)
     return all_task_list
 
@@ -276,7 +276,7 @@ def http_packet_login_auto_brute(config_dict):
     # 循环多线程请求操作
     for sub_task_index, sub_task_list in enumerate(brute_task_list):
         output(f"[*] 任务进度 {sub_task_index + 1}/{len(brute_task_list)}", level=LOG_INFO)
-        result_dict_list = multi_thread_requests_url_body_headers_sign(
+        result_dict_list = multi_thread_requests(
             task_list=sub_task_list,
             threads_count=config_dict[GB_THREADS_COUNT],
             thread_sleep=config_dict[GB_THREAD_SLEEP],
@@ -330,21 +330,21 @@ def gen_dynamic_exclude_dict(config_dict, mark_url, req_method, mark_body, mark_
 
     # 执行测试任务
     output(f"[+] 动态测试 分析动态结果排除字典", level=LOG_INFO)
-    test_result_dict_list = multi_thread_requests_url_body_headers_sign(task_list=test_task_list,
-                                                                        threads_count=config_dict[GB_THREADS_COUNT],
-                                                                        thread_sleep=config_dict[GB_THREAD_SLEEP],
-                                                                        req_method=req_method,
-                                                                        req_proxies=config_dict[GB_PROXIES],
-                                                                        req_timeout=config_dict[GB_TIME_OUT],
-                                                                        verify_ssl=config_dict[GB_SSL_VERIFY],
-                                                                        req_allow_redirects=config_dict[
+    test_result_dict_list = multi_thread_requests(task_list=test_task_list,
+                                                  threads_count=config_dict[GB_THREADS_COUNT],
+                                                  thread_sleep=config_dict[GB_THREAD_SLEEP],
+                                                  req_method=req_method,
+                                                  req_proxies=config_dict[GB_PROXIES],
+                                                  req_timeout=config_dict[GB_TIME_OUT],
+                                                  verify_ssl=config_dict[GB_SSL_VERIFY],
+                                                  req_allow_redirects=config_dict[
                                                                             GB_ALLOW_REDIRECTS],
-                                                                        req_stream=False,
-                                                                        retry_times=config_dict[GB_RETRY_TIMES],
-                                                                        add_host_header=True,
-                                                                        add_refer_header=True,
-                                                                        ignore_encode_error=True
-                                                                        )
+                                                  req_stream=False,
+                                                  retry_times=config_dict[GB_RETRY_TIMES],
+                                                  add_host_header=True,
+                                                  add_refer_header=True,
+                                                  ignore_encode_error=True
+                                                  )
     # 分析测试结果
     dynamic_exclude_dict = analysis_dict_same_keys(test_result_dict_list,
                                                    FILTER_HTTP_VALUE_DICT,
