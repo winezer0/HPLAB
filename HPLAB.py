@@ -16,7 +16,7 @@ from libs.lib_log_print.logger_printer import *
 from libs.lib_requests.check_protocol import check_protocol
 from libs.lib_requests.requests_const import *
 from libs.lib_requests.requests_thread import multi_thread_requests_url_body_headers_sign
-from libs.lib_requests.requests_utils import get_random_str, analysis_dict_same_keys, access_result_handle
+from libs.lib_requests.requests_utils import random_str, analysis_dict_same_keys, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
 
@@ -316,9 +316,9 @@ def http_packet_login_auto_brute(config_dict):
 # 生成动态测试结果
 def gen_dynamic_exclude_dict(config_dict, mark_url, req_method, mark_body, mark_headers):
     # 组合测试任务
-    test_name_pass_pair_list = [(get_random_str(12), get_random_str(12)),
-                                (get_random_str(11), get_random_str(11)),
-                                (get_random_str(10), get_random_str(10))]
+    test_name_pass_pair_list = [(random_str(12, num=True, char=True), random_str(12, num=True, char=True)),
+                                (random_str(11, num=True, char=True), random_str(11, num=True, char=True)),
+                                (random_str(10, num=True, char=True), random_str(10, num=True, char=True))]
 
     test_task_list = generate_brute_task_list(pair_list=test_name_pass_pair_list,
                                               mark_url=mark_url,
