@@ -5,8 +5,8 @@ from libs.lib_args.input_const import *
 from libs.lib_args.input_basic import config_dict_add_args
 from libs.lib_args.input_parse import args_parser, args_dict_handle, config_dict_handle
 from libs.lib_attribdict.config import CONFIG
-from libs.lib_collect_opera.collect_operation import unfrozen_tuple_list, cartesian_product_merging, \
-    de_duplicate_tuple_list, freeze_list_subtract
+from libs.lib_collect_opera.tuple_operate import unfrozen_tuples, de_dup_tuples, tuples_subtract
+from libs.lib_collect_opera.list_operate import cartesian_product_merging
 from libs.lib_file_operate.file_utils import auto_create_file, file_is_empty
 from libs.lib_file_operate.file_read import read_file_to_str, read_file_to_list
 from libs.lib_http_pkg.http_pkg_mark import replace_payload_sign, search_and_mark_http_param, parse_http_params, \
@@ -45,7 +45,7 @@ def read_pairs_file_to_tuples(pairs_file, link_symbol, default_name_list=None, d
     output(f"[*] 读取口令对文件完成 pair_list:{len(pair_list)} <--> {pair_list[:10]}", level=LOG_INFO)
 
     # 拆分出账号 密码对 元祖
-    pair_list = unfrozen_tuple_list(pair_list, link_symbol=link_symbol)
+    pair_list = unfrozen_tuples(pair_list, link_symbol=link_symbol)
 
     # 如果输入了默认值列表,就组合更新的账号 列表
     if default_name_list or default_pass_list:
@@ -227,7 +227,7 @@ def http_packet_login_auto_brute(config_dict):
                                                )
         name_pass_pair_list.extend(pairs_list)
     # 去重用户名密码对字典
-    name_pass_pair_list = de_duplicate_tuple_list(name_pass_pair_list)
+    name_pass_pair_list = de_dup_tuples(name_pass_pair_list)
 
     # 存储已爆破的账号密码文件
     host_no_symbol = parse_host.replace(':', '_')
@@ -236,8 +236,8 @@ def http_packet_login_auto_brute(config_dict):
 
     # 排除已经被爆破过得账号密码对
     history_list = read_file_to_list(history_file)
-    history_tuple = unfrozen_tuple_list(history_list, config_dict[GB_CONST_LINK])
-    name_pass_pair_list = freeze_list_subtract(name_pass_pair_list, history_tuple, config_dict[GB_CONST_LINK])
+    history_tuple = unfrozen_tuples(history_list, config_dict[GB_CONST_LINK])
+    name_pass_pair_list = tuples_subtract(name_pass_pair_list, history_tuple, config_dict[GB_CONST_LINK])
 
     if len(name_pass_pair_list):
         output(f"[*] 历史爆破记录过滤完毕, 剩余元素数量 {len(name_pass_pair_list)}", level=LOG_INFO)

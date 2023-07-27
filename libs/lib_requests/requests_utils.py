@@ -47,21 +47,6 @@ def content_encode(content):
     return content
 
 
-# 判断列表内的元素是否存在有包含在字符串内的
-def list_ele_in_str(list_=None, str_=None, default=False):
-    if not list_:
-        flag = default
-    else:
-        # flag = False
-        # for ele in list_:
-        #     if ele in str_:
-        #         flag = True
-        #         break
-        # 在 lists为空列表时，any(key in string for key in lists) 会返回 False。
-        flag = any(key in str(str_) for key in list_)
-    return flag
-
-
 # 获得随机字符串
 def random_str(length=12, num=False, char=False, capital=False, symbol=False, dot=False, slash=False):
     base_str = ""

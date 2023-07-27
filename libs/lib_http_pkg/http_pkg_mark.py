@@ -2,21 +2,13 @@
 # encoding: utf-8
 import sys
 
+from libs.lib_collect_opera.dict_operate import dict_dumps, dict_loads, search_key_in_list
 from libs.lib_http_pkg.parse_http_pkg import parse_diff_content_type_body_simple, update_http_param_value, \
     parsed_query_params
-from libs.lib_http_pkg.parse_tools import list_ele_in_str, freeze_headers, unfreeze_headers
 from libs.lib_log_print.logger_printer import output, LOG_INFO, LOG_ERROR
 from libs.lib_tags_exec.tags_exec import match_exec_repl_loop
 
 sys.dont_write_bytecode = True  # 设置不生成pyc文件
-
-
-# 在参数字典的键中，查找是否有 存在于列表中的键
-def search_key_in_list(params_dict={}, key_list=[]):
-    for key, value in params_dict.items():
-        if list_ele_in_str(list_=key_list, str_=str(key).lower(), default=False):
-            return key
-    return None
 
 
 # 查找参数名 并进行标记
@@ -55,8 +47,7 @@ def search_and_mark_http_param(req_params,
 
 
 # 查找参数名 并进行标记
-def search_and_get_param_value(req_params,
-                               search_key_list):
+def search_and_get_param_value(req_params, search_key_list):
     output(f"[*] 查找参数列表: [{search_key_list}]")
     search_key = search_key_in_list(req_params, search_key_list)
 
@@ -107,7 +98,7 @@ def replace_payload_sign(req_url, req_body, req_headers, mark_repl_str_dict, fun
 
     # 冻结headers
     if req_headers:
-        req_headers = freeze_headers(req_headers)
+        req_headers = dict_dumps(req_headers)
 
     for mark_string, replace_string in mark_repl_str_dict.items():
         # 判断注入标记是否在URL中
@@ -131,6 +122,6 @@ def replace_payload_sign(req_url, req_body, req_headers, mark_repl_str_dict, fun
 
     # 恢复headers
     if req_headers:
-        req_headers = unfreeze_headers(req_headers)
+        req_headers = dict_loads(req_headers)
 
     return req_url, req_body, req_headers
