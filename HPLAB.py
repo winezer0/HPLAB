@@ -5,6 +5,7 @@ from libs.lib_args.input_const import *
 from libs.lib_args.input_basic import config_dict_add_args
 from libs.lib_args.input_parse import args_parser, args_dict_handle, config_dict_handle
 from libs.lib_attribdict.config import CONFIG
+from libs.lib_collect_opera.dict_check import analysis_dict_same_keys
 from libs.lib_collect_opera.tuple_operate import unfrozen_tuples, de_dup_tuples, tuples_subtract
 from libs.lib_collect_opera.list_operate import cartesian_product_merging
 from libs.lib_file_operate.file_utils import auto_create_file, file_is_empty
@@ -16,7 +17,7 @@ from libs.lib_log_print.logger_printer import *
 from libs.lib_requests.check_protocol import check_protocol
 from libs.lib_requests.requests_const import *
 from libs.lib_requests.requests_thread import multi_thread_requests
-from libs.lib_requests.requests_utils import random_str, analysis_dict_same_keys, access_result_handle
+from libs.lib_requests.requests_utils import random_str, access_result_handle
 from libs.lib_tags_exec.tags_const import TAG_FUNC_DICT
 from libs.lib_tags_exec.tags_exec import find_string_tag_error
 
