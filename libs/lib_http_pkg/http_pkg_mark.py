@@ -2,7 +2,8 @@
 # encoding: utf-8
 import sys
 
-from libs.lib_collect_opera.dict_operate import dict_dumps, dict_loads, search_key_in_list
+from libs.lib_collect_opera.dict_check import search_key_in_list
+from libs.lib_collect_opera.dict_operate import dict_dumps, dict_loads
 from libs.lib_http_pkg.parse_http_pkg import parse_diff_content_type_body_simple, update_http_param_value, \
     parsed_query_params
 from libs.lib_log_print.logger_printer import output, LOG_INFO, LOG_ERROR
