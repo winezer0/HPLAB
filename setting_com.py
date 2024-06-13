@@ -20,7 +20,7 @@ def init_common(config):
     config[GB_BASE_DIR] = pathlib.Path(__file__).parent.resolve()
     ##################################################################
     # 版本号配置
-    config[GB_VERSION] = "Ver 0.4.8 2023-08-02 22:22"
+    config[GB_VERSION] = "Ver 0.4.9 2024-06-13 15:30"
     ##################################################################
     # 程序开始运行时间  %Y-%m-%d-%H-%M-%S
     config[GB_RUN_TIME] = time.strftime("%Y-%m-%d", time.localtime())

@@ -73,10 +73,10 @@ def parse_http_pkg_by_email_simple(http_pkg):
         content_type = headers.get("Content-Type", "")
         # body = parse_diff_content_type_body_entirely(body, content_type)
         host = headers.get("Host", "")
-    except:
-        output("解析失败")
-    finally:
-        return host, method, path, headers, body, content_type
+    except Exception as error:
+        output(f"解析失败 Error:{error}")
+
+    return host, method, path, headers, body, content_type
 
 
 # 完全依赖email分割http报文(包括body部分获取) 返回：http起始行，headers, body
@@ -126,10 +126,9 @@ def parse_http_pkg_by_email_entirely(http_pkg):
         content_type = headers.get("Content-Type", "")
         # body = parse_diff_content_type_body_entirely(body, content_type)
         host = headers.get("Host", "")
-    except:
-        output("解析失败")
-    finally:
-        return host, method, path, headers, body, content_type
+    except Exception as error:
+        output(f"解析失败 error:{error}")
+    return host, method, path, headers, body, content_type
 
 
 """请求Body数据解析"""
